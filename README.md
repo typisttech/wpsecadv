@@ -35,9 +35,80 @@
 
 ## Usage
 
-TODO!
+```sh
+composer repo --append add wpsecadv composer https://repo-wpsecadv.typist.tech
+composer audit
+```
 
-## Design Philosophies
+You should see audit report like this:
+
+```
+Found 2 security vulnerability advisories affecting 1 package:
++-------------------+----------------------------------------------------------------------------------+
+| Package           | roots/wordpress-no-content                                                       |
+| Severity          | medium                                                                           |
+| Advisory ID       | WPSECADV/WF/112ed4f2-fe91-4d83-a3f7-eaf889870af4/wordpress                       |
+| CVE               | CVE-2022-3590                                                                    |
+
+// snip...
+```
+
+The `composer repo` subcommand is added since v2.9.0. If you are using an older Composer version, manually **append** it to your `composer.json`:
+
+```diff
+    "repositories": [
+      {
+        "name": "wp-composer",
+        "type": "composer",
+        "url": "https://repo.wp-composer.com",
+        "only": [
+          "wp-plugin/*",
+          "wp-theme/*"
+        ]
++     },
++     {
++       "name": "wpsecadv",
++       "type": "composer",
++       "url": "https://repo-wpsecadv.typist.tech"
+      }
+    ],
+```
+
+## Ignoring Vulnerabilities
+
+Every WordPress core package comes with at least 2 CVE advisories.
+Composer resolver blocks known vulnerabilities and fails `compsoer install|update|require`.
+
+To ignore the advisories:
+
+```sh
+composer config audit.ignore --merge --json '["CVE-2017-14990", "CVE-2022-3590"]'
+```
+
+If you already have `audit.ignore` in object form, manually edit `composer.json`
+
+```diff
+      "config": {
+          "audit": {
+              "ignore": {
+                  "CVE-1234": {
+                      "apply": "audit",
+                      "reason": "Your existing config"
++                 },
++                 "CVE-2017-14990": {
++                     "apply": "block",
++                     "reason": "XXX"
++                 },
++                 "CVE-2022-3590": {
++                     "apply": "all",
++                     "reason": "YYY"
+                  }
+              }
+          }
+      }
+```
+
+Learn more at https://getcomposer.org/doc/06-config.md#audit
 
 ## Caveats
 
