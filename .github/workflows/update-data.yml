@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: 54 2 * * 1 # Weekly on Monday # TODO!
-  push:
-    branches:
-      - main
+#  push: # TODO!
+#    branches:
+#      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
