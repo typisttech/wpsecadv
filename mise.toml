@@ -2,7 +2,8 @@
 GOEXPERIMENT = "jsonv2"
 
 [tools]
-golangci-lint = "2.11.3"
+# Must be updated in GitHub Actions workflow as well.
+golangci-lint = "2.11"
 
 [tasks.upgrade]
 run = [
