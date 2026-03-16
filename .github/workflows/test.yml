@@ -73,3 +73,22 @@ jobs:
           fail_ci_if_error: true
           disable_search: true
           files: coverage.out
+
+  dispatch:
+    if: github.event_name == 'push' && github.ref_name == 'main'
+    needs:
+      - test
+      - e2e-test
+    permissions:
+      actions: write
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Dispatch Publish Workflow
+        run: |
+          gh workflow run publish.yml \
+            --repo "${REPO}" \
+            --ref "${REF}"
+        env:
+          REPO: ${{ github.repository }}
+          REF: ${{ github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
