@@ -1,0 +1,16 @@
+exec composer create-project --quiet roots/bedrock
+cd bedrock
+
+exec composer config --quiet secure-http false
+exec composer require --quiet wp-plugin/woocommerce:10.0.0
+
+exec composer audit --format=json
+cmp stdout ../stdout.golden
+
+-- stdout.golden --
+{
+    "advisories": [],
+    "abandoned": []
+}
+-- dummy.txt --
+I am dummy
