@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
   dispatch:
-    if: github.event_name == 'push' && github.ref_name == 'main'
+    if: github.ref_name == 'main'
     needs:
       - image
     permissions:
