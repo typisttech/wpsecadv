@@ -38,6 +38,6 @@ jobs:
           title: ":robot: `go generate ./...`"
           labels: go-generate
           add-paths: |
-            *_gen.go
-            *_gen_test.go
-            *_gen.json
+            **/*_gen.go
+            **/*_gen_test.go
+            **/*_gen.json
