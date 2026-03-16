@@ -3,10 +3,7 @@ name: Update Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: 54 2 * * 1 # Weekly on Monday # TODO!
-#  push: # TODO!
-#    branches:
-#      - main
+    - cron: 38 3 * * * # Daily
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
@@ -14,6 +11,9 @@ concurrency:
 
 permissions:
   contents: read
+
+env:
+  GOEXPERIMENT: jsonv2
 
 jobs:
   update-data:
@@ -27,6 +27,8 @@ jobs:
           go-version-file: 'go.mod'
 
       - run: go generate ./...
+        env:
+          WORDFENCE_INTELLIGENCE_API_KEY: ${{ secrets.WORDFENCE_INTELLIGENCE_API_KEY }}
 
       - uses: typisttech/.github/.github/actions/create-auto-merged-pull-request@v3
         with:
@@ -35,3 +37,7 @@ jobs:
           branch: "tastendruck/github_actions/go-generate/${{ github.ref_name }}"
           title: ":robot: `go generate ./...`"
           labels: go-generate
+          add-paths: |
+            **/*_gen.go
+            **/*_gen_test.go
+            **/*_gen.json
