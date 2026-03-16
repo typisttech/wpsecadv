@@ -1,0 +1,18 @@
+exec composer create-project --quiet roots/bedrock
+cd bedrock
+
+exec composer config --quiet secure-http false
+exec composer require --quiet wp-plugin/woocommerce:10.0.0
+
+[composer:2.9] exec composer repo add wpsecadv composer $WPSECADV_SERVER_URL
+[!composer:2.9] exec composer config --quiet repositories.wpsecadv composer $WPSECADV_SERVER_URL
+
+! exec composer audit --format=json
+
+# Core
+stdout CVE-2017-14990
+stdout CVE-2022-3590
+
+# WooCommerce
+stdout CVE-2025-15033
+stdout CVE-2025-49042
