@@ -42,6 +42,7 @@ linters:
     - godoclint
     - godot
     - gosec
+    - misspell
     - nolintlint
     - nonamedreturns
     - revive
@@ -134,6 +135,14 @@ linters:
     generated: disable
     warn-unused: true
     rules:
+      - source: "^\\s*defer\\s+"
+        linters:
+          - errcheck
+
+      - source: "^\\s*fmt\\.Fprint(f|ln)\\(stderr,\\s+"
+        linters:
+          - errcheck
+
       - text: "^\\s*shadow: declaration of \"err\" shadows declaration at\\s+"
         linters:
           - govet
@@ -152,13 +161,9 @@ linters:
         linters:
           - gocritic
 
-      - source: "^\\s*defer\\s+"
+      - path: (_gen|_gen_test)\.go
         linters:
-          - errcheck
-
-      - source: "^\\s*fmt\\.Fprint(f|ln)\\(stderr,\\s+"
-        linters:
-          - errcheck
+          - misspell
 
       - path: cmd/server/(.+).go
         linters:

@@ -18,7 +18,7 @@ func TestIsCoreImplementation(t *testing.T) {
 		project string
 		want    bool
 	}{
-		{"positve_for_sanity", "roots", "wordpress-no-content", true},
+		{"positive_for_sanity", "roots", "wordpress-no-content", true},
 		{"vendor_does_not_exist", "nonexistent", "wordpress-no-content", false},
 		{"project_does_not_exist", "roots", "nonexistent", false},
 		{"both_vendor_and_project_do_not_exist", "nonexistent", "nonexistent", false},
