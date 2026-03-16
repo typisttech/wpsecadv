@@ -16,31 +16,43 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  GOEXPERIMENT: jsonv2
+
 jobs:
   actions:
-    uses: typisttech/.github/.github/workflows/lint-actions.yml@v3
+    uses: typisttech/.github/.github/workflows/lint-actions.yml@45c776c6114c7493626281d38635f0578b3b2c7d # v3.5.0
+
+  pinact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: suzuki-shunsuke/pinact-action@1081f5ad49ac904b7d977784f338145150a32112 # v1.4.0
+        with:
+          skip_push: true
+          verify: true
 
   go:
-    uses: typisttech/.github/.github/workflows/lint-go.yml@v3
+    uses: typisttech/.github/.github/workflows/lint-go.yml@45c776c6114c7493626281d38635f0578b3b2c7d # v3.5.0
     with:
       golangci-lint: false
 
   golangci-lint:
     runs-on: ubuntu-latest
-    env:
-      GOEXPERIMENT: jsonv2
     permissions:
       contents: read
       pull-requests: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - uses: actions/setup-go@v6
+      - uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6.3.0
         with:
           go-version-file: 'go.mod'
 
-      - uses: golangci/golangci-lint-action@v9
+      - uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v9.2.0
         with:
           version: v2.11
           only-new-issues: true
@@ -48,6 +60,7 @@ jobs:
   wait-for-all-lint:
     needs:
       - actions
+      - pinact
       - go
       - golangci-lint
     runs-on: ubuntu-latest
