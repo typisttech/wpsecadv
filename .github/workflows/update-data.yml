@@ -19,10 +19,10 @@ jobs:
   update-data:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
-      - uses: actions/setup-go@v6
+      - uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6.3.0
         with:
           go-version-file: 'go.mod'
 
@@ -30,7 +30,7 @@ jobs:
         env:
           WORDFENCE_INTELLIGENCE_API_KEY: ${{ secrets.WORDFENCE_INTELLIGENCE_API_KEY }}
 
-      - uses: typisttech/.github/.github/actions/create-auto-merged-pull-request@v3
+      - uses: typisttech/.github/.github/actions/create-auto-merged-pull-request@45c776c6114c7493626281d38635f0578b3b2c7d # v3.5.0
         with:
           app-id: ${{ vars.TASTENDRUCK_APP_ID }}
           private-key: ${{ secrets.TASTENDRUCK_PRIVATE_KEY }}
