@@ -19,5 +19,9 @@ permissions:
   contents: read
 
 jobs:
-  go:
-    uses: typisttech/.github/.github/workflows/audit-go.yml@v3
+  govulncheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: golang/govulncheck-action@v1
+        env:
+          GOEXPERIMENT: jsonv2
