@@ -1,0 +1,22 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  fly:
+    runs-on: ubuntu-24.04
+    environment: production-fly
+    steps:
+      - uses: superfly/flyctl-actions/setup-flyctl@v1
+      - run: flyctl deploy --image "${IMAGE}"
+        env:
+          IMAGE: ghcr.io/${{ github.repository }}:latest
+          FLY_APP: ${{ vars.FLY_APP }}
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

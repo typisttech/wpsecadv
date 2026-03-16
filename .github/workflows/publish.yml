@@ -32,3 +32,21 @@ jobs:
         - registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+  dispatch:
+    if: github.event_name == 'push' && github.ref_name == 'main'
+    needs:
+      - image
+    permissions:
+      actions: write
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Dispatch Deploy Workflow
+        run: |
+          gh workflow run deploy.yml \
+            --repo "${REPO}" \
+            --ref "${REF}"
+        env:
+          REPO: ${{ github.repository }}
+          REF: ${{ github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
