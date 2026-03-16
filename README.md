@@ -3,7 +3,7 @@
 # WP Sec Adv
 
 [![Test](https://github.com/typisttech/wpsecadv/actions/workflows/test.yml/badge.svg)](https://github.com/typisttech/wpsecadv/actions/workflows/test.yml)
-[![codecov](https://codecov.io/gh/typisttech/wpsecadv/graph/badge.svg?token=TODO)](https://codecov.io/gh/typisttech/wpsecadv)
+[![codecov](https://codecov.io/gh/typisttech/wpsecadv/graph/badge.svg?token=PVY82NZYZE)](https://codecov.io/gh/typisttech/wpsecadv)
 [![Go Report Card](https://goreportcard.com/badge/github.com/typisttech/wpsecadv)](https://goreportcard.com/report/github.com/typisttech/wpsecadv)
 [![License](https://img.shields.io/github/license/typisttech/wpsecadv.svg)](https://github.com/typisttech/wpsecadv/blob/master/LICENSE)
 [![Follow @TangRufus on X](https://img.shields.io/badge/Follow-TangRufus-15202B?logo=x&logoColor=white)](https://x.com/tangrufus)
