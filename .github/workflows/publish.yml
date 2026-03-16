@@ -1,17 +1,34 @@
-name: Publish
+name: Publish Container Image
 
 on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref_name }}-${{ github.event.pull_request.number || github.sha }}
+  group: ${{ github.workflow }}-${{ github.ref_name }}
   cancel-in-progress: true
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
-  docker:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo TODO
+  image:
+    uses: docker/github-builder/.github/workflows/build.yml@v1
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+    with:
+      output: image
+      push: true
+      platforms: linux/amd64,linux/arm64
+      meta-images: ghcr.io/${{ github.repository }}
+      meta-tags: |
+        type=raw,value=latest,enable={{is_default_branch}}
+        type=raw,value={{commit_date 'YYYYMMDDHHmmss'}}
+        type=sha
+      set-meta-annotations: true
+      set-meta-labels: true
+    secrets:
+      registry-auths: |
+        - registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
