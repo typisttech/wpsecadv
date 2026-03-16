@@ -1,0 +1,19 @@
+{
+  "metadata-url": "/p2/%package%.json",
+  "security-advisories": {
+    "metadata": true,
+    "api-url": "/api/security-advisories/"
+  },
+  "infos": [
+    {
+      "versions": "*",
+      "message": "WP Sec Adv relies on commuity supports. If you found it useful, please consider <href=https://github.com/sponsors/tangrufus>sponsoring</> or <href=https://typist.tech/contact-me/>hiring</> Tang Rufus.\n    - https://github.com/sponsors/tangrufus\n    - https://typist.tech/contact-me/"
+    }
+  ],
+  "warnings": [
+    {
+      "versions": "*",
+      "message": "WP Sec Adv runs on a shoestring budget. For production environments, you should self-host it. Learn more at https://github.com/typisttech/wpsecadv"
+    }
+  ]
+}

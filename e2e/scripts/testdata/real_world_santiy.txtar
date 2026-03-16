@@ -1,0 +1,48 @@
+exec composer update --quiet
+exec composer audit --format=json
+cmp stdout stdout.golden
+
+-- composer.json --
+{
+    "name": "test/project",
+    "repositories": [
+        {
+            "name": "wpackagist",
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+        }
+    ],
+    "require": {
+        "composer/installers": "2.3.0",
+        "oscarotero/env": "2.1.1",
+        "roots/bedrock-autoloader": "1.1.0",
+        "roots/bedrock-disallow-indexing": "2.1.0",
+        "roots/wordpress": "6.8.2",
+        "roots/wp-config": "1.0.0",
+        "vlucas/phpdotenv": "5.6.3",
+        "wpackagist-theme/twentytwentyfive": "1.4",
+
+        "wpackagist-plugin/akismet": "3.1.4",
+        "wpackagist-plugin/woocommerce": "10.0.0",
+
+        "wpackagist-theme/astra": "4.12.3",
+        "wpackagist-theme/twentyfifteen": "1.1"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "composer/installers": true,
+            "roots/wordpress-core-installer": true
+        },
+        "secure-http": false
+    }
+}
+
+-- stdout.golden --
+{
+    "advisories": [],
+    "abandoned": []
+}
+-- dummy.txt --
+I am dummy

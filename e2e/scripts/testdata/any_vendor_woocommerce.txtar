@@ -1,0 +1,27 @@
+exec composer config --quiet repositories.wpsecadv composer $WPSECADV_SERVER_URL
+exec composer update --quiet
+! exec composer audit --format=json
+stdout CVE-2025-15033
+stdout CVE-2025-49042
+
+-- composer.json --
+{
+    "name": "test/project",
+    "repositories": [
+        {
+            "name": "foobar",
+            "type": "package",
+            "package": {
+                "name": "any-vendor/woocommerce",
+                "version": "10.0.0",
+                "dist": { "type": "file", "url": "./dummy.txt" }
+            }
+        },
+        { "packagist.org": false }
+    ],
+    "config": { "secure-http": false },
+    "require": { "any-vendor/woocommerce": "*" }
+}
+
+-- dummy.txt --
+I am dummy

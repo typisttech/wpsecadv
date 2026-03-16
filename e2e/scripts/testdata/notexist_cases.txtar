@@ -1,0 +1,73 @@
+exec composer config --quiet repositories.wpsecadv composer $WPSECADV_SERVER_URL
+exec composer update --quiet
+exec composer audit --format=json
+cmp stdout stdout.golden
+
+-- composer.json --
+{
+    "name": "test/project",
+    "repositories": [
+        {
+            "name": "foobar1",
+            "type": "package",
+            "package": {
+                "name": "any-vendor/non-existent",
+                "version": "0.0.1",
+                "dist": { "type": "file", "url": "./dummy.txt" }
+            }
+        },
+        {
+            "name": "foobar2",
+            "type": "package",
+            "package": {
+                "name": "wpackagist-plugin/non-existent-plugin",
+                "version": "0.0.1",
+                "dist": { "type": "file", "url": "./dummy.txt" }
+            }
+        },
+        {
+            "name": "foobar3",
+            "type": "package",
+            "package": {
+                "name": "wpackagist-plugin/twentyfifteen",
+                "version": "0.0.1",
+                "dist": { "type": "file", "url": "./dummy.txt" }
+            }
+        },
+        {
+            "name": "foobar4",
+            "type": "package",
+            "package": {
+                "name": "wpackagist-theme/non-existent-theme",
+                "version": "0.0.1",
+                "dist": { "type": "file", "url": "./dummy.txt" }
+            }
+        },
+        {
+            "name": "foobar5",
+            "type": "package",
+            "package": {
+                "name": "wpackagist-theme/woocommerce",
+                "version": "0.0.1",
+                "dist": { "type": "file", "url": "./dummy.txt" }
+            }
+        },
+        { "packagist.org": false }
+    ],
+    "config": { "secure-http": false },
+    "require": {
+        "wpackagist-plugin/non-existent-plugin": "*",
+        "wpackagist-theme/woocommerce": "*",
+        "wpackagist-theme/non-existent-theme": "*",
+        "wpackagist-plugin/twentyfifteen": "*",
+        "any-vendor/non-existent": "*"
+    }
+}
+
+-- stdout.golden --
+{
+    "advisories": [],
+    "abandoned": []
+}
+-- dummy.txt --
+I am dummy

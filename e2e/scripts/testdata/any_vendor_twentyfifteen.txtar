@@ -1,0 +1,26 @@
+exec composer config --quiet repositories.wpsecadv composer $WPSECADV_SERVER_URL
+exec composer update --quiet
+! exec composer audit --format=json
+stdout CVE-2015-3429
+
+-- composer.json --
+{
+    "name": "test/project",
+    "repositories": [
+        {
+            "name": "foobar",
+            "type": "package",
+            "package": {
+                "name": "any-vendor/twentyfifteen",
+                "version": "1.0.0",
+                "dist": { "type": "file", "url": "./dummy.txt" }
+            }
+        },
+        { "packagist.org": false }
+    ],
+    "config": { "secure-http": false },
+    "require": { "any-vendor/twentyfifteen": "*" }
+}
+
+-- dummy.txt --
+I am dummy

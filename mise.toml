@@ -1,0 +1,171 @@
+[env]
+GOEXPERIMENT = "jsonv2"
+
+[tools]
+golangci-lint = "2.11.3"
+
+[tasks.upgrade]
+run = [
+    'mise upgrade --bump --local',
+    'go get -u -t -tags e2econtainer,e2escripts ./...',
+    'go mod tidy',
+]
+
+[tasks.server]
+env.PORT = { value="{{ get_env(name='PORT', default='8080') }}" }
+depends = [{ task = "port:check", args = ["{{ get_env(name='PORT', default='8080') }}"] }]
+run = 'go run ./cmd/server'
+
+####################################
+#
+# Test
+#
+####################################
+
+[tasks."test:unit"]
+run = 'go test -count=1 -race -shuffle=on ./...'
+
+[tasks."test:e2e:container"]
+run = '''
+#!/usr/bin/env bash
+set -e
+
+echo "==> Running e2e tests within containers. This could take a while..."
+go test -tags=e2econtainer -count=1 -shuffle=on ./e2e/container/... $@
+'''
+
+[tasks."test:e2e:local"]
+env.PORT = { value="{{ get_env(name='E2E_PORT', default='8081') }}" }
+depends = [{ task = "port:check", args = ["{{ get_env(name='E2E_PORT', default='8081') }}"] }]
+depends_post = [{ task = "port:terminate", args = ["{{ get_env(name='E2E_PORT', default='8081') }}"] }]
+run = '''
+#!/usr/bin/env bash
+set -e
+
+export TESTSCRIPT_COMPOSER_CACHE_DIR="$(composer global config cache-dir --absolute --quiet)"
+export WPSECADV_SERVER_URL="http://localhost:${PORT}"
+
+echo "==> Starting server on '"${WPSECADV_SERVER_URL}"' in the background..."
+go run ./cmd/server > /dev/null 2>&1 &
+
+echo "==> Wating for server ready..."
+curl --silent --out-null -X GET --retry 10 --retry-connrefused --retry-delay 1 "${WPSECADV_SERVER_URL}"
+
+echo "==> Running e2e tests with system composer. This could take a while..."
+go test -tags=e2escripts -count=1 -shuffle=on ./e2e/scripts/... $@
+'''
+
+####################################
+#
+# Lint
+#
+####################################
+
+[tasks.lint]
+run = 'golangci-lint run'
+
+####################################
+#
+# Code Generation & Cleanup
+#
+####################################
+
+[tasks.gen]
+env.WORDFENCE_INTELLIGENCE_API_KEY = { required = true, redact = true }
+run = 'go generate ./...'
+
+[tasks."gen:data:fixture"]
+# TODO: Use npx serve instead.
+env.FEED_FIXTURE = { required = true }
+env.PORT = { value="{{ get_env(name='FIXTURE_PORT', default='8082') }}" }
+depends = [{ task = "port:check", args = ["{{ get_env(name='FIXTURE_PORT', default='8082') }}"] }]
+depends_post = [{ task = "port:terminate", args = ["{{ get_env(name='FIXTURE_PORT', default='8082') }}"] }]
+run = '''
+#!/usr/bin/env bash
+set -e
+
+export WORDFENCE_FEED_URL="http://localhost:${PORT}"
+export WORDFENCE_INTELLIGENCE_API_KEY="dummy"
+
+echo "==> Starting fixture server on '"${WORDFENCE_FEED_URL}"' in the background..."
+go run ./internal/data/gen/fixture > /dev/null 2>&1 &
+
+echo "==> Wating for server ready..."
+curl --silent --out-null -X GET --retry 10 --retry-connrefused --retry-delay 1 "${WORDFENCE_FEED_URL}"
+
+go generate ./internal/data $@
+'''
+
+[tasks."gen:packagist"]
+run = 'go generate ./internal/packagist'
+
+[tasks.clean]
+depends = ["clean:*"]
+
+[tasks."clean:data"]
+run = [
+    'rm -rf internal/data/assets',
+    'rm -rf internal/data/assets_gen.go',
+    'rm -rf internal/data/assets_gen_test.go',
+]
+
+[tasks."clean:packagist"]
+run = 'rm -rf internal/packagist/core_gen.go'
+
+[tasks."clean:test"]
+run = 'rm -rf _artifacts'
+
+####################################
+#
+# Utility
+#
+####################################
+
+[tasks."port:check"]
+hide = true
+usage = '''
+arg "<port>"
+'''
+run = '''
+#!/usr/bin/env bash
+set -e
+
+echo "==> Checking whether port '{{ usage.port }}' is being used..."
+pid=$(lsof -t -i ":{{ usage.port }}") || true
+
+if [[ ! -z "${pid}" ]]; then
+    echo "Process '"${pid}"' is using port '{{ usage.port }}'"
+    echo "To terminate that process, run:"
+    echo ""
+    echo "    mise run port:terminate {{ usage.port }}"
+    echo ""
+    echo "To forcefully kill that process, run:"
+    echo ""
+    echo "    kill -9 "${pid}""
+    echo ""
+    exit 1
+fi
+
+echo "No process is using port '{{ usage.port }}'."
+'''
+
+[tasks."port:terminate"]
+hide = true
+usage = '''
+arg "<port>"
+'''
+run = '''
+#!/usr/bin/env bash
+set -e
+
+echo "==> Checking whether port '{{ usage.port }}' is being used..."
+pid=$(lsof -t -i ":{{ usage.port }}") || true
+
+if [[ -z "${pid}" ]]; then
+    echo "No process is using port '{{ usage.port }}'."
+    exit 0
+fi
+
+echo "==> Terminating the server (pid: '"${pid}"') using port '{{ usage.port }}'..."
+kill -15 "${pid}"
+'''

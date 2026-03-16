@@ -1,0 +1,10 @@
+[env]
+# https://podman-desktop.io/tutorial/testcontainers-with-podman
+# `true` for rootless Podman. Otherwise, `false`.
+TESTCONTAINERS_RYUK_DISABLED = "true"
+
+# https://www.wordfence.com/help/wordfence-intelligence/v3-accessing-and-consuming-the-vulnerability-data-feed/#token_auth
+# You should load it via password managers.
+WORDFENCE_INTELLIGENCE_API_KEY = "your-secret-api-key"
+
+FEED_FIXTURE = "/absolute/path/to/vulnerabilities.production.json"

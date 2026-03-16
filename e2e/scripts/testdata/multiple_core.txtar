@@ -1,0 +1,41 @@
+exec composer config --quiet repositories.wpsecadv composer $WPSECADV_SERVER_URL
+exec composer update --quiet
+! exec composer audit --format=json
+stdout -count=2 '"cve": "CVE-2025-58674"'
+stdout -count=2 '"cve": "CVE-2022-3590"'
+stdout -count=2 '"cve": "CVE-2025-58246"'
+stdout -count=2 '"cve": "CVE-2025-58674"'
+
+-- composer.json --
+{
+    "name": "test/project",
+    "repositories": [
+        {
+            "name": "foobar",
+            "type": "package",
+            "package": {
+                "name": "johnpbloch/wordpress-core",
+                "version": "6.8.2",
+                "dist": { "type": "file", "url": "./dummy.txt" }
+            }
+        },
+        {
+            "name": "bazqux",
+            "type": "package",
+            "package": {
+                "name": "roots/wordpress-full",
+                "version": "6.8.2",
+                "dist": { "type": "file", "url": "./dummy.txt" }
+            }
+        },
+        { "packagist.org": false }
+    ],
+    "config": { "secure-http": false },
+    "require": {
+        "johnpbloch/wordpress-core": "*",
+        "roots/wordpress-full": "*"
+    }
+}
+
+-- dummy.txt --
+I am dummy

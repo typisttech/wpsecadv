@@ -1,0 +1,55 @@
+name: Lint
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref_name }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  actions:
+    uses: typisttech/.github/.github/workflows/lint-actions.yml@v3
+
+  go:
+    uses: typisttech/.github/.github/workflows/lint-go.yml@v3
+    with:
+      golangci-lint: false
+
+  golangci-lint:
+    runs-on: ubuntu-latest
+    env:
+      GOEXPERIMENT: jsonv2
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: 'go.mod'
+
+      - uses: golangci/golangci-lint-action@v9
+        with:
+          version-file: mise.toml
+          only-new-issues: true
+
+  wait-for-all-lint:
+    needs:
+      - actions
+      - go
+      - golangci-lint
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 0

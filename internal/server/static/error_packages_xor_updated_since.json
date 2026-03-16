@@ -1,0 +1,4 @@
+{
+  "status": "error",
+  "message": "Pass only one of \"updatedSince\" OR \"packages\" parameters, they cannot be provided together."
+}

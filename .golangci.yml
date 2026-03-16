@@ -1,0 +1,180 @@
+version: "2"
+
+run:
+  build-tags:
+    - e2econtainer
+    - e2escripts
+
+linters:
+  enable:
+    # Default
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    # Custom
+    - asasalint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - containedctx
+    - contextcheck
+    - copyloopvar
+    - cyclop
+    - depguard
+    - dogsled
+    - dupl
+    - dupword
+    - durationcheck
+    - embeddedstructfieldcheck
+    - errchkjson
+    - errname
+    - errorlint
+    - exhaustive
+    - exptostd
+    - fatcontext
+    - forcetypeassert
+    - gocheckcompilerdirectives
+    - gochecknoglobals
+    - gochecknoinits
+    - gocritic
+    - godoclint
+    - godot
+    - gosec
+    - nolintlint
+    - nonamedreturns
+    - revive
+    - sloglint
+    - unparam
+    - usestdlibvars
+    - wrapcheck
+
+  settings:
+    # Default
+    errcheck:
+      exclude-functions:
+        - fmt.Fprintln(os.Stdout)
+        - (net/http.ResponseWriter).Write
+
+    govet:
+      enable-all: true
+      disable:
+        - fieldalignment
+
+    staticcheck:
+      checks:
+        - all
+        - -ST1000 # at least one file in a package should have a package comment
+
+    # Custom
+    depguard:
+      rules:
+        all:
+          files:
+            - $all
+          deny:
+            - pkg: encoding/json$
+              desc: Use 'encoding/json/v2' or 'encoding/json/jsontext'
+            - pkg: github.com/stretchr/testify
+              desc: Use standard library or 'github.com/google/go-cmp/cmp'
+        production:
+          files:
+            - "**/cmd/server/*.go"
+            - "**/internal/server/*.go"
+            - "**/internal/data/*.go"
+            - "**/internal/packagist/*.go"
+            - "!$test"
+          allow:
+            - $gostd
+            - "github.com/typisttech/wpsecadv/internal/data$"
+            - "github.com/typisttech/wpsecadv/internal/server$"
+            - "github.com/typisttech/wpsecadv/internal/packagist$"
+          deny:
+            - pkg: encoding/json
+              desc: Do not perform JSON encoding/decoding in production server
+
+    exhaustive:
+      default-signifies-exhaustive: true
+
+    gocritic:
+      enabled-checks:
+        - emptyStringTest
+        - httpNoBody
+        - preferStringWriter
+
+    godoclint:
+      enable:
+        - max-len
+        - no-unused-link
+        - require-stdlib-doclink
+
+    godot:
+      scope: toplevel
+      capital: true
+
+    gosec:
+      excludes:
+        - G104 # Handled by errcheck
+
+    nolintlint:
+      require-specific: true
+
+    revive:
+      rules:
+        - name: exported
+          disabled: true
+
+    wrapcheck:
+      extra-ignore-sigs:
+        - encoding/json/v2.Marshal(
+        - encoding/json/v2.Unmarshal(
+
+  exclusions:
+    generated: disable
+    warn-unused: true
+    rules:
+      - text: "^\\s*shadow: declaration of \"err\" shadows declaration at\\s+"
+        linters:
+          - govet
+
+      - path: _test\.go
+        linters:
+          - cyclop
+          - dupl
+
+      - path: (main|store|_gen)\.go
+        linters:
+          - cyclop
+
+      - path: internal/packagist/core_gen.go
+        text: singleCaseSwitch
+        linters:
+          - gocritic
+
+      - source: "^\\s*defer\\s+"
+        linters:
+          - errcheck
+
+      - source: "^\\s*fmt\\.Fprint(f|ln)\\(stderr,\\s+"
+        linters:
+          - errcheck
+
+      - path: cmd/server/(.+).go
+        linters:
+          - wrapcheck
+
+      - path: internal/data/gen/(.+).go
+        linters:
+          - wrapcheck
+
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+
+  settings:
+    gofumpt:
+      extra-rules: true
