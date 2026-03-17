@@ -56,6 +56,19 @@ echo "==> Running e2e tests with system composer. This could take a while..."
 go test -tags=e2escripts -count=1 -shuffle=on ./e2e/scripts/... $@
 '''
 
+[tasks."test:e2e:prod"]
+env.WPSECADV_SERVER_URL = { value="{{ get_env(name='WPSECADV_SERVER_URL', default='https://repo-wpsecadv.typist.tech') }}" }
+run = '''
+#!/usr/bin/env bash
+set -e
+
+echo "==> Wating for server '"${WPSECADV_SERVER_URL}"' ready..."
+curl --silent --out-null -X GET --retry 10 --retry-connrefused --retry-delay 1 "${WPSECADV_SERVER_URL}"
+
+echo "==> Running e2e tests with system composer. This could take a while..."
+go test -tags=e2escripts -count=1 -shuffle=on ./e2e/scripts/... $@
+'''
+
 ####################################
 #
 # Lint
