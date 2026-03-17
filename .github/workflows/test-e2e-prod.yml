@@ -1,0 +1,35 @@
+name: Test (e2e Production)
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Composer repository URL'
+        required: true
+        default: 'https://repo-wpsecadv.typist.tech/'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  GOEXPERIMENT: jsonv2
+
+jobs:
+  e2e-test-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6.3.0
+        with:
+          go-version-file: 'go.mod'
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
+
+      - run: go test -tags=e2econtainer -count=1 -shuffle=on ./e2e/container/...
+        env:
+          WPSECADV_SERVER_URL: ${{ github.event.inputs.url }}
