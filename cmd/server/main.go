@@ -35,7 +35,11 @@ func main() {
 }
 
 func run(ctx context.Context, w io.Writer) error {
+	sigCtx, stop := signal.NotifyContext(ctx, os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
 	logger := log.New(w, "", log.LstdFlags|log.LUTC)
+	printInfo(logger)
 
 	port, err := port()
 	if err != nil {
@@ -49,18 +53,19 @@ func run(ctx context.Context, w io.Writer) error {
 
 	modTime := vcsTimeOrNow()
 
+	logger.Printf(" * %-15s%s", "304 Mod Time:", modTime.Format(time.RFC3339))
+
 	srv := &http.Server{
 		Addr:        ":" + port,
 		Handler:     server.New(&data.Store{}, modTime),
 		ReadTimeout: 5 * time.Second, // TODO: Allow customization.
 	}
 
-	sigCtx, stop := signal.NotifyContext(ctx, os.Interrupt, syscall.SIGTERM)
-	defer stop()
-
 	errCh := make(chan error, 1)
 	go func() {
-		printInfo(logger, modTime, srv.Addr)
+		logger.Printf(" * Listening on http://127.0.0.1%s", srv.Addr)
+		logger.Printf(" * Listening on http://[::1]%s", srv.Addr)
+		logger.Println("Use Ctrl-C to stop")
 
 		if err := srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			errCh <- err
@@ -144,19 +149,19 @@ func vcsTimeOrNow() time.Time {
 	return time.Now().UTC()
 }
 
-func printInfo(logger *log.Logger, modTime time.Time, addr string) {
+func printInfo(logger *log.Logger) {
 	logger.Println("==> Booting WP Sec Adv")
 
 	keys := map[string]string{
-		"GOARCH":       "Go Arch:\t\t",
-		"GOOS":         "Go OS:\t\t",
-		"vcs.revision": "VCS Revision:\t",
-		"vcs.time":     "VCS Time:\t",
-		"vcs.modified": "VCS Dirty:\t",
+		"GOARCH":       "Go Arch",
+		"GOOS":         "Go OS",
+		"vcs.revision": "VCS Revision",
+		"vcs.time":     "VCS Time",
+		"vcs.modified": "VCS Dirty",
 	}
 	bi, ok := debug.ReadBuildInfo()
 	if ok {
-		logger.Printf(" * Go Version:\t%s", bi.GoVersion)
+		logger.Printf(" * %-15s%s", "Go Version:", bi.GoVersion)
 
 		for _, s := range bi.Settings {
 			label, ok := keys[s.Key]
@@ -164,12 +169,7 @@ func printInfo(logger *log.Logger, modTime time.Time, addr string) {
 				continue
 			}
 
-			logger.Printf(" * %s%s", label, s.Value)
+			logger.Printf(" * %-15s%s", label+":", s.Value)
 		}
 	}
-
-	logger.Printf(" * 304 Mod Time:\t%s", modTime.Format(time.RFC3339))
-	logger.Printf(" * Listening on http://127.0.0.1%s", addr)
-	logger.Printf(" * Listening on http://[::1]%s", addr)
-	logger.Println("Use Ctrl-C to stop")
 }
