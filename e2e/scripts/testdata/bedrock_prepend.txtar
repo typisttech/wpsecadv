@@ -1,4 +1,4 @@
-exec composer create-project --quiet roots/bedrock
+exec composer create-project --quiet roots/bedrock bedrock 1.30.0
 cd bedrock
 
 exec composer config --quiet secure-http false
