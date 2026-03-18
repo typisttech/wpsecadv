@@ -34,4 +34,4 @@ jobs:
 
       - run: go test -tags=e2econtainer -count=1 -shuffle=on ./e2e/container/...
         env:
-          WPSECADV_SERVER_URL: ${{ github.event.inputs.url }}
+          WPSECADV_SERVER_URL: ${{ github.event.inputs.url || 'https://repo-wpsecadv.typist.tech/' }}
