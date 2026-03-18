@@ -3,7 +3,7 @@ name: Update Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: 38 3 * * * # Daily
+    - cron: '34 5,17 * * *' # Twice a day
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}

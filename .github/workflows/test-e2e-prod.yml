@@ -7,6 +7,8 @@ on:
         description: 'Composer repository URL'
         required: true
         default: 'https://repo-wpsecadv.typist.tech/'
+  schedule:
+    - cron: '34 6,18 * * *' # Twice a day, one hour after the Update Data workflow
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
@@ -32,4 +34,4 @@ jobs:
 
       - run: go test -tags=e2econtainer -count=1 -shuffle=on ./e2e/container/...
         env:
-          WPSECADV_SERVER_URL: ${{ github.event.inputs.url }}
+          WPSECADV_SERVER_URL: ${{ github.event.inputs.url || 'https://repo-wpsecadv.typist.tech/' }}
