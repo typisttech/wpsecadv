@@ -34,7 +34,6 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
             type=raw,value={{commit_date 'YYYYMMDDHHmmss'}},enable={{is_default_branch}}
             type=sha
-            type=raw,value=docker
 
       - name: Get Git commit timestamp
         run: echo TIMESTAMP="$(git log -1 --pretty=%ct)" >> "$GITHUB_ENV"
