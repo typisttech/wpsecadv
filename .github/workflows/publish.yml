@@ -36,7 +36,7 @@ jobs:
             type=sha
             type=raw,value=docker
 
-      - name: Get Git commit timestamps
+      - name: Get Git commit timestamp
         run: echo TIMESTAMP="$(git log -1 --pretty=%ct)" >> "$GITHUB_ENV"
 
       - uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
