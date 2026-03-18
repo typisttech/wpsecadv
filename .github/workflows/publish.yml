@@ -10,33 +10,61 @@ concurrency:
 permissions: {}
 
 jobs:
-  image:
-    uses: docker/github-builder/.github/workflows/build.yml@61b16ec4d881c8bdebcb8ed369c81c20187975ba # v1.3.0
+  build-and-push:
+    if: github.event_name != 'pull_request' && github.ref_name == 'main'
     permissions:
       contents: read
       id-token: write
       packages: write
-    with:
-      output: image
-      push: true
-      platforms: linux/amd64,linux/arm64
-      meta-images: ghcr.io/${{ github.repository }}
-      meta-tags: |
-        type=raw,value=latest,enable={{is_default_branch}}
-        type=raw,value={{commit_date 'YYYYMMDDHHmmss'}}
-        type=sha
-      set-meta-annotations: true
-      set-meta-labels: true
-    secrets:
-      registry-auths: |
-        - registry: ghcr.io
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - uses: sigstore/cosign-installer@ba7bc0a3fef59531c69a25acd34668d6d3fe6f22 # v4.1.0
+      - uses: docker/setup-qemu-action@ce360397dd3f832beb865e1373c09c0e9f86d70a # v4.0.0
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
+
+      - uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf # v6.0.0
+        id: meta
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value={{commit_date 'YYYYMMDDHHmmss'}},enable={{is_default_branch}}
+            type=sha
+
+      - name: Get Git commit timestamp
+        run: echo TIMESTAMP="$(git log -1 --pretty=%ct)" >> "$GITHUB_ENV"
+
+      - uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
+        with:
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7.0.0
+        id: build-and-push
+        with:
+          push: true
+          context: .
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          annotations: ${{ steps.meta.outputs.annotations }}
+        env:
+          SOURCE_DATE_EPOCH: ${{ env.TIMESTAMP }}
+
+      - run: echo "${TAGS}" | xargs -I "{}" cosign sign --yes "{}@${DIGEST}"
+        env:
+          TAGS: ${{ steps.meta.outputs.tags }}
+          DIGEST: ${{ steps.build-and-push.outputs.digest }}
+
   dispatch:
-    if: github.ref_name == 'main'
+    if: github.event_name != 'pull_request' && github.ref_name == 'main'
     needs:
-      - image
+      - build-and-push
     permissions:
       actions: write
     runs-on: ubuntu-24.04
