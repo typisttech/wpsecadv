@@ -245,6 +245,7 @@ func plugins() []string {
 		"add-custom-codes",
 		"add-custom-content-after-post",
 		"add-custom-css-and-js",
+		"add-custom-fields-to-media",
 		"add-custom-google-tag-manager",
 		"add-custom-page-template",
 		"add-customer-for-woocommerce",
