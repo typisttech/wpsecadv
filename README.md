@@ -259,7 +259,7 @@ Ignore `roots/wordpress-no-content` from auditing, edit `composer.json`:
 }
 ```
 
-When installing packages with known vulnerabilities, Composer resolver blocks them and fails `compsoer update|require`.
+When installing packages with known vulnerabilities, Composer resolver blocks them and fails `composer update|require`.
 
 Install a vulnerable WooCommerce version:
 
@@ -332,7 +332,7 @@ Run "composer audit" for a full list of advisories.
 </details>
 
 The `--no-security-blocking` flag allows installing packages with security advisories but it is one-off.
-Future `compsoer update|require` will be blocked.
+Future `composer update|require` will be blocked.
 
 Once you have it installed, get the CVE IDs via:
 
@@ -465,7 +465,7 @@ Allow specific advisories to be installed, edit `composer.json`:
 }
 ```
 
-All of the above are Composer features. WP Sec Adv merely makes Wordfence vulnerability data feed available in Composer comsumable format.
+All of the above are Composer features. WP Sec Adv merely makes Wordfence vulnerability data feed available in Composer consumable format.
 
 Learn more at:
 
@@ -525,7 +525,7 @@ WP Sec Adv matches Composer packages with WordPress themes & plugins by `project
 
 In case of naming collision, add `exclude` to the repository config.
 
-For example, this setup prevent mismatching `spatie/ignition` as the [Ignition theme](https://www.wordfence.com/threat-intel/vulnerabilities/wordpress-themes/ignition#:~:text=Ignition):
+For example, this setup prevents mismatching `spatie/ignition` as the [Ignition theme](https://www.wordfence.com/threat-intel/vulnerabilities/wordpress-themes/ignition#:~:text=Ignition):
 
 ```diff
   "repositories": [
@@ -580,12 +580,12 @@ To avoid mismatches and speed up Composer operations, add `only` to the reposito
   ],
 ```
 
-Adjust the `only` array to suit your situration.
+Adjust the `only` array to suit your situation.
 
 ## Continuous Monitoring
 
 > [!IMPORTANT]
-> Vulnerabilities get discovered every day. Audit your dependencies **automatcally**.
+> Vulnerabilities get discovered every day. Audit your dependencies **automatically**.
 
 ### GitHub Actions
 
@@ -625,10 +625,10 @@ jobs:
 
 ## Best Practices
 
-- Prefer the detailed `config.ignore` object with [`apply` and `reason`](https://getcomposer.org/doc/06-config.md#detailed-format-with-apply-scope-) so you can review the decisions in the future
+- Prefer the detailed `config.audit.ignore` object with [`apply` and `reason`](https://getcomposer.org/doc/06-config.md#detailed-format-with-apply-scope-) so you can review the decisions in the future
 - Unless you have [continuous monitoring](#continuous-monitoring) set up, use [`config.audit.block-insecure`](https://getcomposer.org/doc/06-config.md#block-insecure) only as an emergency or short-term measure
 - Narrow [`only`](#only) just enough to cover your WordPress core, plugins and themes
-- Check the vulnerability advisories. Even though it get patched, the damage might already be done
+- Check the vulnerability advisory details. Even though it gets patched, the damage might already be done
 
 ## Self-host
 
@@ -636,7 +636,7 @@ TODO!
 
 ## Wordfence
 
-WP Sec Adv sources the advisory data from [Wordfence vulnerability data feed](https://www.wordfence.com/help/wordfence-intelligence/v3-accessing-and-consuming-the-vulnerability-data-feed/). Kudos to the Wordfence team open the data feed freely to all.
+WP Sec Adv sources the advisory data from [Wordfence vulnerability data feed](https://www.wordfence.com/help/wordfence-intelligence/v3-accessing-and-consuming-the-vulnerability-data-feed/). Kudos to the Wordfence team for opening the data feed freely to all.
 
 The data feed comes with [attribution requirement](https://www.wordfence.com/help/wordfence-intelligence/v3-accessing-and-consuming-the-vulnerability-data-feed/#mitre_attribution_requirement). However, Composer has no mechanism to display the copyrights. Thus, WP Sec Adv appends copyright details to advisory titles.
 
