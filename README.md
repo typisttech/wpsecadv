@@ -4,7 +4,6 @@
 
 [![Test](https://github.com/typisttech/wpsecadv/actions/workflows/test.yml/badge.svg)](https://github.com/typisttech/wpsecadv/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/typisttech/wpsecadv/graph/badge.svg?token=PVY82NZYZE)](https://codecov.io/gh/typisttech/wpsecadv)
-[![Go Report Card](https://goreportcard.com/badge/github.com/typisttech/wpsecadv)](https://goreportcard.com/report/github.com/typisttech/wpsecadv)
 [![License](https://img.shields.io/github/license/typisttech/wpsecadv.svg)](https://github.com/typisttech/wpsecadv/blob/master/LICENSE)
 [![Follow @TangRufus on X](https://img.shields.io/badge/Follow-TangRufus-15202B?logo=x&logoColor=white)](https://x.com/tangrufus)
 [![Follow @TangRufus.com on Bluesky](https://img.shields.io/badge/Bluesky-TangRufus.com-blue?logo=bluesky)](https://bsky.app/profile/tangrufus.com)
@@ -340,8 +339,8 @@ Once you have it installed, get the CVE IDs via:
 ```sh
 composer audit
 // ...
-| Package   | wp-plugin/woocommerce   |
-| CVE       | CVE-2026-3589           |
+// | Package   | wp-plugin/woocommerce   |
+// | CVE       | CVE-2026-3589           |
 // ...
 ```
 
@@ -466,7 +465,7 @@ Allow specific advisories to be installed, edit `composer.json`:
 }
 ```
 
-All of the above are Composer features. WP Sec Adv merely make Wordfence's vulnerability data feed available in Composer comsumable format.
+All of the above are Composer features. WP Sec Adv merely makes Wordfence vulnerability data feed available in Composer comsumable format.
 
 Learn more at:
 
@@ -511,13 +510,16 @@ Composer package names consist of `vendor` and `project`, e.g: `my-vendor/my-pro
 
 WP Sec Adv matches Composer packages with WordPress themes & plugins by `project` and `slug`. For example:
 
-| Composer                          | WordPress        |
-| --------------------------------- | ---------------- |
-| `wp-plugin/woocommerce`           | `woocommerce`    |
-| `wpackagist-plugin/woocommerce`   | `woocommerce`    |
-| `my-mirror/woocommerce`           | `woocommerce`    |
-| `gravity/gravityforms`            | `gravityforms`   |
-| `my-mirror/gravityforms`          | `gravityforms`   |
+| Composer                            | WordPress          |
+| ----------------------------------- | ------------------ |
+| `wp-plugin/woocommerce`             | `woocommerce`      |
+| `wpackagist-plugin/woocommerce`     | `woocommerce`      |
+| `my-mirror/woocommerce`             | `woocommerce`      |
+| `gravity/gravityforms`              | `gravityforms`     |
+| `my-mirror/gravityforms`            | `gravityforms`     |
+| `wp-theme/twentytwentyfive`         | `twentytwentyfive` |
+| `wpackagist-theme/twentytwentyfive` | `twentytwentyfive` |
+| `my-mirror/twentytwentyfive`        | `twentytwentyfive` |
 
 ### `exclude`
 
