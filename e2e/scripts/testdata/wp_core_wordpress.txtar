@@ -1,0 +1,29 @@
+exec composer config --quiet repositories.wpsecadv composer $WPSECADV_SERVER_URL
+exec composer update --quiet
+! exec composer audit --format=json
+stdout CVE-2017-14990
+stdout CVE-2022-3590
+stdout CVE-2025-58246
+stdout CVE-2025-58674
+
+-- composer.json --
+{
+    "name": "test/project",
+    "repositories": [
+        {
+            "name": "foobar",
+            "type": "package",
+            "package": {
+                "name": "wp-core/wordpress",
+                "version": "6.8.2",
+                "dist": { "type": "file", "url": "./dummy.txt" }
+            }
+        },
+        { "packagist.org": false }
+    ],
+    "config": { "secure-http": false },
+    "require": { "wp-core/wordpress": "*" }
+}
+
+-- dummy.txt --
+I am dummy

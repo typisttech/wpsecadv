@@ -51,6 +51,26 @@ func TestStore_MarshalAdvisoriesFor(t *testing.T) {
 			},
 		},
 		{
+			name:   "core_exists_wp_core_wordpress",
+			vendor: "wp-core",
+			slug:   "wordpress",
+			wantCVEs: []string{
+				"CVE-2012-0287",
+				"CVE-2018-5776",
+				"CVE-2022-21664",
+			},
+		},
+		{
+			name:   "core_exists_wp_core_wordpress_no_content",
+			vendor: "wp-core",
+			slug:   "wordpress-no-content",
+			wantCVEs: []string{
+				"CVE-2012-0287",
+				"CVE-2018-5776",
+				"CVE-2022-21664",
+			},
+		},
+		{
 			name:   "any_vendor_plugin_exists",
 			vendor: "any-vendor",
 			slug:   "woocommerce",

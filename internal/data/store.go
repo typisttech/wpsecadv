@@ -21,7 +21,7 @@ func (s *Store) MarshalAdvisoriesFor(vendor, slug string) ([]byte, error) {
 		return pluginAdvisories(slug)
 	case vendor == "wpackagist-theme":
 		return themeAdvisories(slug)
-	case packagist.IsCoreImplementation(vendor, slug):
+	case isCoreImplementation(vendor, slug):
 		return coreAdvisories(slug)
 	default:
 		b, err := themeAdvisories(slug)
@@ -30,6 +30,14 @@ func (s *Store) MarshalAdvisoriesFor(vendor, slug string) ([]byte, error) {
 		}
 		return b, nil
 	}
+}
+
+func isCoreImplementation(vendor, slug string) bool {
+	if vendor == "wp-core" {
+		return true
+	}
+
+	return packagist.IsCoreImplementation(vendor, slug)
 }
 
 func coreAdvisories(_ string) ([]byte, error) {
