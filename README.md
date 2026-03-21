@@ -590,7 +590,7 @@ Adjust the `only` array to suit your situation.
 ### GitHub Actions
 
 ```yml
-name: Update Data
+name: Audit Dependencies
 
 on:
   workflow_dispatch:
