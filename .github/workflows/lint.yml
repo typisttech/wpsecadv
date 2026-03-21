@@ -57,12 +57,26 @@ jobs:
           version: v2.11
           only-new-issues: true
 
+  fly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+          sparse-checkout: fly.toml
+
+      - uses: superfly/flyctl-actions/setup-flyctl@fc53c09e1bc3be6f54706524e3b82c4f462f77be # 1.5
+      - run: flyctl config validate --strict
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN_ORG_READONLY }}
+
   wait-for-all-lint:
     needs:
       - actions
       - pinact
       - go
       - golangci-lint
+      - fly
     runs-on: ubuntu-latest
     steps:
       - run: exit 0
