@@ -200,6 +200,12 @@ func assertAdvisoriesResponse(t *testing.T, data map[string][]byte, req *http.Re
 		t.Errorf("status = %d, want %d", rec.Code, wantCode)
 	}
 
+	gotCC := rec.Header().Get("Cache-Control")
+	wantCC := "max-age=3600"
+	if gotCC != wantCC {
+		t.Errorf("Cache-Control header = %q, want %q", gotCC, wantCC)
+	}
+
 	var got body
 	if err := json.Unmarshal(rec.Body.Bytes(), &got); err != nil {
 		t.Fatalf("json.Unmarshal() unexpected error: %v", err)

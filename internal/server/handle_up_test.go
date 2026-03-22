@@ -4,7 +4,6 @@ import (
 	"encoding/json/v2"
 	"net/http"
 	"net/http/httptest"
-	"strings"
 	"testing"
 	"testing/synctest"
 	"time"
@@ -44,17 +43,16 @@ func TestUpRoute(t *testing.T) {
 					t.Errorf("Last-Modified header = %q, want empty", lm)
 				}
 
-				cc := rec.Header().Get("Cache-Control")
-				wantCCs := []string{"no-cache", "must-revalidate", "max-age=0", "no-store", "private"}
-				for _, want := range wantCCs {
-					if !strings.Contains(cc, want) {
-						t.Errorf("Cache-Control header = %q, want to contain %q", cc, want)
-					}
+				gotCC := rec.Header().Get("Cache-Control")
+				wantCC := "no-store"
+				if gotCC != wantCC {
+					t.Errorf("Cache-Control header = %q, want %q", gotCC, wantCC)
 				}
 
-				ct := rec.Header().Get("Content-Type")
-				if ct != "application/json" {
-					t.Errorf("Content-Type = %q, want %q", ct, "application/json")
+				gotCT := rec.Header().Get("Content-Type")
+				wantCT := "application/json"
+				if gotCT != wantCT {
+					t.Errorf("Content-Type header = %q, want %q", gotCT, wantCT)
 				}
 
 				var got struct {

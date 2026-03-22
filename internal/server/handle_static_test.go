@@ -41,9 +41,17 @@ func TestStatic(t *testing.T) {
 			if rec.Code != http.StatusOK {
 				t.Errorf("status code = %d, want %d", rec.Code, http.StatusOK)
 			}
-			if got := rec.Header().Get("Content-Type"); got != tt.wantContentType {
-				t.Errorf("Content-Type = %q, want %q", got, tt.wantContentType)
+
+			gotCC := rec.Header().Get("Cache-Control")
+			wantCC := "max-age=86400"
+			if gotCC != wantCC {
+				t.Errorf("Cache-Control header = %q, want %q", gotCC, wantCC)
 			}
+
+			if got := rec.Header().Get("Content-Type"); got != tt.wantContentType {
+				t.Errorf("Content-Type header = %q, want %q", got, tt.wantContentType)
+			}
+
 			if got := rec.Body.String(); got != tt.wantBody {
 				t.Errorf("body = %q, want %q", got, tt.wantBody)
 			}
