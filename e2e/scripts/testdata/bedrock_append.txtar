@@ -1,6 +1,6 @@
 [!composer:2.9] skip 'Subcommand "repo" is added in Composer v2.9'
 
-exec composer create-project --quiet roots/bedrock bedrock 1.30.0
+exec composer create-project --quiet roots/bedrock bedrock
 cd bedrock
 
 exec composer config --quiet secure-http false
