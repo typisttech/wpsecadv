@@ -12,10 +12,10 @@ run = [
     'go mod tidy',
 ]
 
-[tasks.server]
+[tasks.serve]
 env.PORT = { value="{{ get_env(name='PORT', default='8080') }}" }
 depends = [{ task = "port:check", args = ["{{ get_env(name='PORT', default='8080') }}"] }]
-run = 'go run ./cmd/server'
+run = 'go run ./cmd/serve'
 
 ####################################
 #
@@ -47,7 +47,7 @@ export TESTSCRIPT_COMPOSER_CACHE_DIR="$(composer global config cache-dir --absol
 export WPSECADV_SERVER_URL="http://localhost:${PORT}"
 
 echo "==> Starting server on '"${WPSECADV_SERVER_URL}"' in the background..."
-go run ./cmd/server > /dev/null 2>&1 &
+go run ./cmd/serve > /dev/null 2>&1 &
 
 echo "==> Wating for server ready..."
 curl --silent --out-null -X GET --retry 10 --retry-connrefused --retry-delay 1 "${WPSECADV_SERVER_URL}"
