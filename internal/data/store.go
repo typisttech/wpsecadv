@@ -17,11 +17,11 @@ type Store struct{}
 
 func (s *Store) MarshalAdvisoriesFor(vendor, slug string) ([]byte, error) {
 	switch {
-	case vendor == "wpackagist-plugin":
+	case vendor == "wp-plugin" || vendor == "wpackagist-plugin":
 		return pluginAdvisories(slug)
-	case vendor == "wpackagist-theme":
+	case vendor == "wp-theme" || vendor == "wpackagist-theme":
 		return themeAdvisories(slug)
-	case isCoreImplementation(vendor, slug):
+	case vendor == "wp-core" || packagist.IsCoreImplementation(vendor, slug):
 		return coreAdvisories(slug)
 	default:
 		b, err := themeAdvisories(slug)
@@ -30,14 +30,6 @@ func (s *Store) MarshalAdvisoriesFor(vendor, slug string) ([]byte, error) {
 		}
 		return b, nil
 	}
-}
-
-func isCoreImplementation(vendor, slug string) bool {
-	if vendor == "wp-core" {
-		return true
-	}
-
-	return packagist.IsCoreImplementation(vendor, slug)
 }
 
 func coreAdvisories(_ string) ([]byte, error) {
