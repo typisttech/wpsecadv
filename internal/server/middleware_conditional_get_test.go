@@ -61,6 +61,8 @@ func TestConditionalGet(t *testing.T) {
 				t.Fatalf("Last-Modified header = %q, want %q", gotLM, wantLM)
 			}
 
+			rec1CC := rec1.Header().Get("Cache-Control")
+
 			b1, err := io.ReadAll(rec1.Body)
 			if err != nil {
 				t.Fatalf("io.ReadAll(rec1.Body) unexpected error: %v", err)
@@ -77,6 +79,10 @@ func TestConditionalGet(t *testing.T) {
 
 			if rec2.Code != http.StatusNotModified {
 				t.Errorf("second status = %d, want %d", rec2.Code, http.StatusNotModified)
+			}
+
+			if got := rec2.Header().Get("Cache-Control"); got != rec1CC {
+				t.Errorf("second Cache-Control header = %q, want %q", got, rec1CC)
 			}
 
 			hs := []string{
