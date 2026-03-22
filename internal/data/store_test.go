@@ -144,10 +144,14 @@ func TestStore_MarshalAdvisoriesFor_NotExist(t *testing.T) {
 		vendor string
 		slug   string
 	}{
-		{name: "wpackagist_plugin_not_exist", vendor: "wpackagist-plugin", slug: "non-existent-plugin"},
-		{name: "wpackagist_plugin_exists_bad_vendor", vendor: "wpackagist-theme", slug: "woocommerce"},
-		{name: "wpackagist_theme_not_exist", vendor: "wpackagist-theme", slug: "non-existent-theme"},
-		{name: "wpackagist_theme_exists_bad_vendor", vendor: "wpackagist-plugin", slug: "twentyfifteen"},
+		{name: "plugin/not_exist/wp-plugin", vendor: "wp-plugin", slug: "non-existent-plugin"},
+		{name: "plugin/not_exist/wpackagist-plugin", vendor: "wpackagist-plugin", slug: "non-existent-plugin"},
+		{name: "plugin/exists/wp-theme", vendor: "wp-theme", slug: "woocommerce"},
+		{name: "plugin/exists/wpackagist-theme", vendor: "wpackagist-theme", slug: "woocommerce"},
+		{name: "theme/not_exist/wp-theme", vendor: "wp-theme", slug: "non-existent-theme"},
+		{name: "theme/not_exist/wpackagist-theme", vendor: "wpackagist-theme", slug: "non-existent-theme"},
+		{name: "theme/exists/wp-plugin", vendor: "wp-plugin", slug: "twentyfifteen"},
+		{name: "theme/exists/wpackagist-plugin", vendor: "wpackagist-plugin", slug: "twentyfifteen"},
 		{name: "any_vendor_not_exist", vendor: "any-vendor", slug: "non-existent"},
 	}
 
