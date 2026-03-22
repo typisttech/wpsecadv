@@ -81,7 +81,7 @@ linters:
               desc: Use standard library or 'github.com/google/go-cmp/cmp'
         production:
           files:
-            - "**/cmd/server/*.go"
+            - "**/cmd/serve/*.go"
             - "**/internal/server/*.go"
             - "**/internal/data/*.go"
             - "**/internal/packagist/*.go"
@@ -165,7 +165,7 @@ linters:
         linters:
           - misspell
 
-      - path: cmd/server/(.+).go
+      - path: cmd/serve/(.+).go
         linters:
           - wrapcheck
 

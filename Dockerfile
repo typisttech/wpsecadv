@@ -8,10 +8,10 @@ COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 
 COPY . .
-RUN CGO_ENABLED=0 go build -buildvcs=true -trimpath -ldflags "-s -w" -o /app/bin/server ./cmd/server
+RUN CGO_ENABLED=0 go build -buildvcs=true -trimpath -ldflags "-s -w" -o /app/bin/serve ./cmd/serve
 
 FROM gcr.io/distroless/static-debian13:nonroot
 EXPOSE 8080
 
-COPY --from=build /app/bin/server /server
-ENTRYPOINT ["/server"]
+COPY --from=build /app/bin/serve /serve
+ENTRYPOINT ["/serve"]
