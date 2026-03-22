@@ -20,7 +20,7 @@ jobs:
     environment: production-fly
     steps:
       - uses: imjasonh/setup-crane@6da1ae018866400525525ce74ff892880c099987 # v0.5
-      - run: echo digest="$(crane digest "${IMAGE}")" >> "$GITHUB_OUTPUT"
+      - run: echo image_ref="$(crane digest --full-ref "${IMAGE}")" >> "$GITHUB_OUTPUT"
         id: crane
         env:
           IMAGE: ghcr.io/${{ github.repository }}:${{ github.event.inputs.tag }}
@@ -33,13 +33,13 @@ jobs:
             --certificate-github-workflow-repository "${REPO}" \
             "${IMAGE}"
         env:
-          CERTIFICATE_IDENTITY_REGEXP: '^https://github.com/${{ github.repository }}/.github/workflows/publish.yml.*$'
+          CERTIFICATE_IDENTITY_REGEXP: '^${{ github.server_url }}/${{ github.repository }}/.github/workflows/publish.yml.*$'
           REPO: ${{ github.repository }}
-          IMAGE: ghcr.io/${{ github.repository }}@${{ steps.crane.outputs.digest }}
+          IMAGE: ${{ steps.crane.outputs.image_ref }}
 
       - uses: superfly/flyctl-actions/setup-flyctl@fc53c09e1bc3be6f54706524e3b82c4f462f77be # 1.5
       - run: flyctl deploy --image "${IMAGE}"
         env:
-          IMAGE: ghcr.io/${{ github.repository }}@${{ steps.crane.outputs.digest }}
+          IMAGE: ${{ steps.crane.outputs.image_ref }}
           FLY_APP: ${{ vars.FLY_APP }}
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
