@@ -35,6 +35,12 @@ func TestP2(t *testing.T) {
 					if rec.Code != http.StatusNotFound {
 						t.Errorf("status code = %d, want %d", rec.Code, http.StatusNotFound)
 					}
+
+					gotCC := rec.Header().Get("Cache-Control")
+					wantCC := "max-age=86400"
+					if gotCC != wantCC {
+						t.Errorf("Cache-Control header = %q, want %q", gotCC, wantCC)
+					}
 				})
 			}
 		})

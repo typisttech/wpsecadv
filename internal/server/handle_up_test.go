@@ -49,9 +49,10 @@ func TestUpRoute(t *testing.T) {
 					t.Errorf("Cache-Control header = %q, want %q", gotCC, wantCC)
 				}
 
-				ct := rec.Header().Get("Content-Type")
-				if ct != "application/json" {
-					t.Errorf("Content-Type header = %q, want %q", ct, "application/json")
+				gotCT := rec.Header().Get("Content-Type")
+				wantCT := "application/json"
+				if gotCT != wantCT {
+					t.Errorf("Content-Type header = %q, want %q", gotCT, wantCT)
 				}
 
 				var got struct {

@@ -14,12 +14,14 @@ func addRoutes(mux *http.ServeMux, store AdvisoriesMarshaler, modTime time.Time)
 	m := withConditionalGet(modTime)
 
 	hAdvs := handleAdvisories(store)
+	hAdvs = withCacheControl("max-age=3600")(hAdvs)
 	mux.HandleFunc("GET /api/security-advisories/{$}", m(hAdvs))
 	mux.HandleFunc("POST /api/security-advisories/{$}", hAdvs)
 
 	// Health check.
-	mux.HandleFunc("GET /up", handleUp)
-	mux.HandleFunc("POST /up", handleUp)
+	hUp := withCacheControl("no-store")(http.HandlerFunc(handleUp))
+	mux.HandleFunc("GET /up", hUp)
+	mux.HandleFunc("POST /up", hUp)
 
 	// In case someone clicks form composer.json, redirect them to the GitHub repo.
 	mux.Handle("GET /{$}", http.RedirectHandler("https://github.com/typisttech/wpsecadv", http.StatusFound))

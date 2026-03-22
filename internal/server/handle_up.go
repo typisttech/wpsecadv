@@ -7,7 +7,6 @@ import (
 
 func handleUp(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Cache-Control", "no-store")
 	w.WriteHeader(http.StatusOK)
 
 	ts := time.Now().UTC().Format("2006-01-02T15:04:05Z")
