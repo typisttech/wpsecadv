@@ -12895,6 +12895,7 @@ func plugins() []string {
 		"woo-custom-checkout-fields",
 		"woo-custom-emails",
 		"woo-custom-product-addons",
+		"woo-custom-product-addons-pro",
 		"woo-custom-profile-picture",
 		"woo-customers-manager",
 		"woo-customers-order-history",
