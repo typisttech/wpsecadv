@@ -6,4 +6,4 @@ permissions: {}
 
 jobs:
   go:
-    uses: typisttech/.github/.github/workflows/go-proxy.yml@45c776c6114c7493626281d38635f0578b3b2c7d # v3.5.0
+    uses: typisttech/.github/.github/workflows/go-proxy.yml@154a3cb184890192d50962968de68a071b45870b # v4.0.0

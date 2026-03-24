@@ -21,30 +21,13 @@ env:
 
 jobs:
   actions:
-    uses: typisttech/.github/.github/workflows/lint-actions.yml@45c776c6114c7493626281d38635f0578b3b2c7d # v3.5.0
+    uses: typisttech/.github/.github/workflows/lint-actions.yml@154a3cb184890192d50962968de68a071b45870b # v4.0.0
 
   go:
-    uses: typisttech/.github/.github/workflows/lint-go.yml@45c776c6114c7493626281d38635f0578b3b2c7d # v3.5.0
+    uses: typisttech/.github/.github/workflows/lint-go.yml@154a3cb184890192d50962968de68a071b45870b # v4.0.0
     with:
-      golangci-lint: false
-
-  golangci-lint:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: read
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          persist-credentials: false
-      - uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6.3.0
-        with:
-          go-version-file: 'go.mod'
-
-      - uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v9.2.0
-        with:
-          version: v2.11
-          only-new-issues: true
+      go-experiment: jsonv2
+      golangci-lint-version: v2.11 # Must be kept in sync with mise.toml
 
   fly:
     runs-on: ubuntu-latest
@@ -62,9 +45,7 @@ jobs:
   wait-for-all-lint:
     needs:
       - actions
-      - pinact
       - go
-      - golangci-lint
       - fly
     runs-on: ubuntu-latest
     steps:

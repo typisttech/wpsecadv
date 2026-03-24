@@ -30,7 +30,7 @@ jobs:
         env:
           WORDFENCE_INTELLIGENCE_API_KEY: ${{ secrets.WORDFENCE_INTELLIGENCE_API_KEY }}
 
-      - uses: typisttech/.github/.github/actions/create-auto-merged-pull-request@45c776c6114c7493626281d38635f0578b3b2c7d # v3.5.0
+      - uses: typisttech/.github/.github/actions/create-auto-merged-pull-request@154a3cb184890192d50962968de68a071b45870b # v4.0.0
         with:
           app-id: ${{ vars.TASTENDRUCK_APP_ID }}
           private-key: ${{ secrets.TASTENDRUCK_PRIVATE_KEY }}
