@@ -18,11 +18,8 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  GOEXPERIMENT: jsonv2
-
 jobs:
   govulncheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: golang/govulncheck-action@b625fbe08f3bccbe446d94fbf87fcc875a4f50ee # v1.0.4
+    uses: typisttech/.github/.github/workflows/audit-go.yml@04cdd7b57745cee6082fa921de418e82209ef77a # v4.0.1
+    with:
+      go-experiment: jsonv2
