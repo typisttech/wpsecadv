@@ -21,10 +21,10 @@ env:
 
 jobs:
   actions:
-    uses: typisttech/.github/.github/workflows/lint-actions.yml@154a3cb184890192d50962968de68a071b45870b # v4.0.0
+    uses: typisttech/.github/.github/workflows/lint-actions.yml@04cdd7b57745cee6082fa921de418e82209ef77a # v4.0.1
 
   go:
-    uses: typisttech/.github/.github/workflows/lint-go.yml@154a3cb184890192d50962968de68a071b45870b # v4.0.0
+    uses: typisttech/.github/.github/workflows/lint-go.yml@04cdd7b57745cee6082fa921de418e82209ef77a # v4.0.1
     with:
       go-experiment: jsonv2
       golangci-lint-version: v2.11 # Must be kept in sync with mise.toml
