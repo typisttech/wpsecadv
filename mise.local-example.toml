@@ -2,6 +2,9 @@
 # https://podman-desktop.io/tutorial/testcontainers-with-podman
 # `true` for rootless Podman. Otherwise, `false`.
 TESTCONTAINERS_RYUK_DISABLED = "true"
+# Path to docker executable.
+# Set this to "podman" if you want to use Podman.
+DOCKER = "docker"
 
 # https://www.wordfence.com/help/wordfence-intelligence/v3-accessing-and-consuming-the-vulnerability-data-feed/#token_auth
 # You should load it via password managers.

@@ -11,18 +11,21 @@ permissions: {}
 
 jobs:
   build-and-push:
-    if: github.event_name != 'pull_request' && github.ref_name == 'main'
     permissions:
       contents: read
       id-token: write
       packages: write
+      attestations: write
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          persist-credentials: false
+      - run: |
+          t=$(gh api --jq .commit.author.date "${ENDPOINT}")
+          echo "mod-time=${t}" >> "${GITHUB_OUTPUT}"
+        id: mod-time
+        env:
+          ENDPOINT: /repos/${{ github.repository }}/commits/${{ github.sha }}
+          GH_TOKEN: ${{ github.token }}
 
-      - uses: sigstore/cosign-installer@ba7bc0a3fef59531c69a25acd34668d6d3fe6f22 # v4.1.0
       - uses: docker/setup-qemu-action@ce360397dd3f832beb865e1373c09c0e9f86d70a # v4.0.0
       - uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
 
@@ -34,9 +37,7 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
             type=raw,value={{commit_date 'YYYYMMDDHHmmss'}},enable={{is_default_branch}}
             type=sha
-
-      - name: Get Git commit timestamp
-        run: echo TIMESTAMP="$(git log -1 --pretty=%ct)" >> "$GITHUB_ENV"
+            type=ref,event=branch,enable={{is_not_default_branch}}
 
       - uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
         with:
@@ -48,21 +49,21 @@ jobs:
         id: build-and-push
         with:
           push: true
-          context: .
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           annotations: ${{ steps.meta.outputs.annotations }}
-        env:
-          SOURCE_DATE_EPOCH: ${{ env.TIMESTAMP }}
+          build-args: |
+            MOD_TIME=${{ steps.mod-time.outputs.mod-time }}
+            REVISION=${{ github.sha }}
 
-      - run: echo "${TAGS}" | xargs -I "{}" cosign sign --yes "{}@${DIGEST}"
-        env:
-          TAGS: ${{ steps.meta.outputs.tags }}
-          DIGEST: ${{ steps.build-and-push.outputs.digest }}
+      - uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
+        with:
+          subject-name: ghcr.io/${{ github.repository }}
+          subject-digest: ${{ steps.build-and-push.outputs.digest }}
+          push-to-registry: true
 
   dispatch:
-    if: github.event_name != 'pull_request' && github.ref_name == 'main'
     needs:
       - build-and-push
     permissions:

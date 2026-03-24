@@ -1,5 +1,6 @@
 [env]
 GOEXPERIMENT = "jsonv2"
+DOCKER = "docker"
 
 [tools]
 # Must be updated in GitHub Actions workflow as well.
@@ -16,6 +17,34 @@ run = [
 env.PORT = { value="{{ get_env(name='PORT', default='8080') }}" }
 depends = [{ task = "port:check", args = ["{{ get_env(name='PORT', default='8080') }}"] }]
 run = 'go run ./cmd/serve'
+
+[tasks.image]
+env.PORT = { value="{{ get_env(name='PORT', default='8080') }}" }
+depends = [
+    { task = "port:check", args = ["{{ get_env(name='PORT', default='8080') }}"] },
+    { task = "image:build" },
+]
+run = '${DOCKER} run --rm -p {{ env.PORT }}:8080 wpsecadv-dev'
+
+[tasks."image:build"]
+run = '''
+#!/usr/bin/env bash
+set -e
+
+mod=$(TZ=UTC git show -s --format=%cd --date=format:%Y-%m-%dT%H:%M:%SZ HEAD)
+rev=$(git rev-parse --short HEAD)
+
+if ! git diff --quiet --exit-code HEAD --; then
+    mod=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+    rev="${rev}-dirty"
+fi
+
+${DOCKER} build \
+    --build-arg MOD_TIME=${mod} \
+    --build-arg REVISION=${rev} \
+    --tag wpsecadv-dev \
+    .
+'''
 
 ####################################
 #

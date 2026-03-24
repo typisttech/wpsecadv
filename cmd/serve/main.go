@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"runtime/debug"
+	"runtime"
 	"strconv"
 	"syscall"
 	"time"
@@ -21,6 +21,15 @@ import (
 const (
 	defaultPort          = "8080"
 	defaultShutdownLimit = 8 * time.Second
+)
+
+var (
+	// ModTime is the RFC3339 timestamp to be used as the last modified
+	// header. It should be set at build time via -ldflags.
+	ModTime string //nolint:gochecknoglobals
+	// Revision is the VCS revision or other identifier of the build. It
+	// should be set at build time via -ldflags.
+	Revision = "devl" //nolint:gochecknoglobals
 )
 
 func main() {
@@ -39,7 +48,12 @@ func run(ctx context.Context, w io.Writer) error {
 	defer stop()
 
 	logger := log.New(w, "", log.LstdFlags|log.LUTC)
-	printInfo(logger)
+
+	logger.Println("==> Booting WP Sec Adv")
+	logger.Printf(" * %-15s%s", "Go Version:", runtime.Version())
+	logger.Printf(" * %-15s%s", "Go Arch:", runtime.GOARCH)
+	logger.Printf(" * %-15s%s", "Go OS:", runtime.GOOS)
+	logger.Printf(" * %-15s%s", "Revision:", Revision)
 
 	port, err := port()
 	if err != nil {
@@ -51,8 +65,17 @@ func run(ctx context.Context, w io.Writer) error {
 		return err
 	}
 
-	modTime := vcsTimeOrNow()
-
+	var modTime time.Time
+	if ModTime == "" {
+		logger.Printf("ModTime not set via linker. Falling back to now")
+		modTime = time.Now().UTC()
+	} else {
+		t, err := time.Parse(time.RFC3339, ModTime)
+		if err != nil {
+			return fmt.Errorf("parsing ModTime: %q is not RFC3339: %w", ModTime, err)
+		}
+		modTime = t.UTC()
+	}
 	logger.Printf(" * %-15s%s", "304 Mod Time:", modTime.Format(time.RFC3339))
 
 	srv := &http.Server{
@@ -118,58 +141,11 @@ func gracefulShutdownTimeout() (time.Duration, error) {
 
 	i, err := strconv.Atoi(n)
 	if err != nil {
-		return 0, fmt.Errorf("invalid WP_SEC_ADV_GRACEFUL_SHUTDOWN_TIMEOUT: %q is not an integer", n)
+		return 0, fmt.Errorf("parsing WP_SEC_ADV_GRACEFUL_SHUTDOWN_TIMEOUT: %q is not an integer", n)
 	}
 	if i <= 0 {
-		return 0, fmt.Errorf("invalid WP_SEC_ADV_GRACEFUL_SHUTDOWN_TIMEOUT: %d is not a positive integer", i)
+		return 0, fmt.Errorf("parsing WP_SEC_ADV_GRACEFUL_SHUTDOWN_TIMEOUT: %d is not a positive integer", i)
 	}
 
 	return time.Duration(i) * time.Second, nil
-}
-
-func vcsTimeOrNow() time.Time {
-	bi, ok := debug.ReadBuildInfo()
-	if !ok {
-		return time.Now().UTC()
-	}
-
-	for _, s := range bi.Settings {
-		if s.Key != "vcs.time" {
-			continue
-		}
-
-		t, err := time.Parse(time.RFC3339, s.Value)
-		if err != nil {
-			break
-		}
-
-		return t.UTC()
-	}
-
-	return time.Now().UTC()
-}
-
-func printInfo(logger *log.Logger) {
-	logger.Println("==> Booting WP Sec Adv")
-
-	keys := map[string]string{
-		"GOARCH":       "Go Arch",
-		"GOOS":         "Go OS",
-		"vcs.revision": "VCS Revision",
-		"vcs.time":     "VCS Time",
-		"vcs.modified": "VCS Dirty",
-	}
-	bi, ok := debug.ReadBuildInfo()
-	if ok {
-		logger.Printf(" * %-15s%s", "Go Version:", bi.GoVersion)
-
-		for _, s := range bi.Settings {
-			label, ok := keys[s.Key]
-			if !ok {
-				continue
-			}
-
-			logger.Printf(" * %-15s%s", label+":", s.Value)
-		}
-	}
 }
