@@ -19,27 +19,19 @@ jobs:
     runs-on: ubuntu-24.04
     environment: production-fly
     steps:
-      - uses: imjasonh/setup-crane@6da1ae018866400525525ce74ff892880c099987 # v0.5
-      - run: echo digest="$(crane digest "${IMAGE}")" >> "$GITHUB_OUTPUT"
-        id: crane
-        env:
-          IMAGE: ghcr.io/${{ github.repository }}:${{ github.event.inputs.tag }}
-
-      - uses: sigstore/cosign-installer@ba7bc0a3fef59531c69a25acd34668d6d3fe6f22 # v4.1.0
       - run: |
-          cosign verify \
-            --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-            --certificate-identity-regexp "${CERTIFICATE_IDENTITY_REGEXP}" \
-            --certificate-github-workflow-repository "${REPO}" \
-            "${IMAGE}"
+          digest=$(gh attestation verify --format json  --jq "${JQ}" --repo "${REPO}" "${IMAGE}")
+          echo "digest=${digest}" >> "${GITHUB_OUTPUT}"
+        id: verify
         env:
-          CERTIFICATE_IDENTITY_REGEXP: '^https://github.com/${{ github.repository }}/.github/workflows/publish.yml.*$'
+          IMAGE: oci://ghcr.io/${{ github.repository }}:${{ inputs.tag }}
           REPO: ${{ github.repository }}
-          IMAGE: ghcr.io/${{ github.repository }}@${{ steps.crane.outputs.digest }}
+          JQ: .[0].verificationResult.statement.subject[0].digest.sha256
+          GH_TOKEN: ${{ github.token }}
 
       - uses: superfly/flyctl-actions/setup-flyctl@fc53c09e1bc3be6f54706524e3b82c4f462f77be # 1.5
       - run: flyctl deploy --image "${IMAGE}"
         env:
-          IMAGE: ghcr.io/${{ github.repository }}@${{ steps.crane.outputs.digest }}
+          IMAGE: ghcr.io/${{ github.repository }}@sha256:${{ steps.verify.outputs.digest }}
           FLY_APP: ${{ vars.FLY_APP }}
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
