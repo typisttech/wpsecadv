@@ -29,7 +29,7 @@ var (
 	ModTime string //nolint:gochecknoglobals
 	// Revision is the VCS revision or other identifier of the build. It
 	// should be set at build time via -ldflags.
-	Revision = "devl" //nolint:gochecknoglobals
+	Revision = "devel" //nolint:gochecknoglobals
 )
 
 func main() {
