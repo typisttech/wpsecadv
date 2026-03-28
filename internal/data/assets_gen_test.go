@@ -11923,6 +11923,7 @@ func plugins() []string {
 		"tweetscribe",
 		"tweetscroll-widget",
 		"tweetthis-shortcode",
+		"twentig",
 		"twenty20",
 		"twentyfourth-wp-scraper",
 		"twentytwenty",
