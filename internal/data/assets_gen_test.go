@@ -9202,6 +9202,7 @@ func plugins() []string {
 		"qubely",
 		"qubotchat",
 		"quentn-wp",
+		"query-monitor",
 		"query-posts",
 		"query-wrangler",
 		"querywall",
