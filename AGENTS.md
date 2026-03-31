@@ -8,6 +8,13 @@ The role of this file is to describe common mistakes and confusion points that a
 
 - internal/data/assets/*_gen.json
 
+## Development Commands
+
+Test: `mise run test:unit`
+Lint: `mise run lint`
+Fix linting issues: `mise run lint --fix`
+Format source code: `mise run fmt`
+
 ## Go
 
 ### JSON v2
