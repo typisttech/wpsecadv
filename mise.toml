@@ -107,6 +107,9 @@ go test -tags=e2escripts -count=1 -shuffle=on ./e2e/scripts/... $@
 [tasks.lint]
 run = 'golangci-lint run'
 
+[tasks.fmt]
+run = 'golangci-lint fmt'
+
 ####################################
 #
 # Code Generation & Cleanup
