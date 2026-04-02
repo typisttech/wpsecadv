@@ -1,7 +1,7 @@
 {
   "metadata-url": "/p2/%package%.json",
   "security-advisories": {
-    "metadata": false,
+    "metadata": true,
     "api-url": "/api/security-advisories/"
   },
   "infos": [
