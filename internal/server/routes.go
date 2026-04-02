@@ -17,6 +17,8 @@ func addRoutes(mux *http.ServeMux, store AdvisoriesMarshaler, modTime time.Time)
 	mux.HandleFunc("GET /api/security-advisories/{$}", withCacheControl("max-age=3600")(m(hAdvs)))
 	mux.HandleFunc("POST /api/security-advisories/{$}", withCacheControl("max-age=3600")(hAdvs))
 
+	mux.HandleFunc("GET /p2/{vendor}/{file}", handleP2(store))
+
 	// Health check.
 	hUp := withCacheControl("no-store")(http.HandlerFunc(handleUp))
 	mux.HandleFunc("GET /up", hUp)
