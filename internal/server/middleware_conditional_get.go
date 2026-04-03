@@ -11,36 +11,36 @@ type lastModifiedWriter struct {
 	lastModified string
 }
 
-func (l *lastModifiedWriter) WriteHeader(statusCode int) {
+func (w *lastModifiedWriter) WriteHeader(statusCode int) {
 	if statusCode == http.StatusOK {
-		l.Header().Set("Last-Modified", l.lastModified)
+		w.Header().Set("Last-Modified", w.lastModified)
 	}
 
-	l.ResponseWriter.WriteHeader(statusCode)
+	w.ResponseWriter.WriteHeader(statusCode)
 }
 
-func withConditionalGet(modTime time.Time) func(http.Handler) http.HandlerFunc {
+func (w *lastModifiedWriter) Unwrap() http.ResponseWriter {
+	return w.ResponseWriter
+}
+
+func withConditionalGet(modTime time.Time, next http.Handler) http.HandlerFunc {
 	ours := modTime.UTC().Format(http.TimeFormat)
 
-	return func(next http.Handler) http.HandlerFunc {
-		return func(w http.ResponseWriter, r *http.Request) {
-			if r.Method != http.MethodGet && r.Method != http.MethodHead {
-				next.ServeHTTP(w, r)
-
-				return
-			}
-
-			w = &lastModifiedWriter{ResponseWriter: w, lastModified: ours}
-
-			theirs := r.Header.Get("If-Modified-Since")
-			if theirs == ours {
-				writeNotModified(w)
-
-				return
-			}
-
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet && r.Method != http.MethodHead {
 			next.ServeHTTP(w, r)
+			return
 		}
+
+		w = &lastModifiedWriter{ResponseWriter: w, lastModified: ours}
+
+		theirs := r.Header.Get("If-Modified-Since")
+		if theirs == ours {
+			writeNotModified(w)
+			return
+		}
+
+		next.ServeHTTP(w, r)
 	}
 }
 

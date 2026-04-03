@@ -82,6 +82,20 @@ func TestP2(t *testing.T) {
 			if tt.wantBody != "" && gotBody != tt.wantBody {
 				t.Errorf("body = %q, want %q", gotBody, tt.wantBody)
 			}
+
+			assertCacheControl(t, rec, defaultCacheControl)
+		})
+
+		t.Run(tt.name+"/conditional_get", func(t *testing.T) {
+			t.Parallel()
+
+			store := &stubStore{data: tt.data}
+
+			if tt.wantCode == http.StatusOK {
+				assertConditionalGet(t, tt.path, store)
+			} else {
+				assertNoConditionalGet(t, tt.path, store)
+			}
 		})
 	}
 }

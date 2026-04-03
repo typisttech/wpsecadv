@@ -42,12 +42,6 @@ func TestStatic(t *testing.T) {
 				t.Errorf("status code = %d, want %d", rec.Code, http.StatusOK)
 			}
 
-			gotCC := rec.Header().Get("Cache-Control")
-			wantCC := "max-age=86400"
-			if gotCC != wantCC {
-				t.Errorf("Cache-Control header = %q, want %q", gotCC, wantCC)
-			}
-
 			if got := rec.Header().Get("Content-Type"); got != tt.wantContentType {
 				t.Errorf("Content-Type header = %q, want %q", got, tt.wantContentType)
 			}
@@ -55,6 +49,14 @@ func TestStatic(t *testing.T) {
 			if got := rec.Body.String(); got != tt.wantBody {
 				t.Errorf("body = %q, want %q", got, tt.wantBody)
 			}
+
+			assertCacheControl(t, rec, defaultCacheControl)
+		})
+
+		t.Run(tt.name+"/conditional_get", func(t *testing.T) {
+			t.Parallel()
+
+			assertConditionalGet(t, tt.path, nil)
 		})
 	}
 }

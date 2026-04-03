@@ -26,7 +26,6 @@ func TestUpRoute(t *testing.T) {
 
 			synctest.Test(t, func(t *testing.T) {
 				dst := time.Date(2029, 12, 13, 14, 15, 16, 17, time.UTC)
-
 				time.Sleep(time.Until(dst))
 
 				srv := newTestServer()
@@ -37,10 +36,6 @@ func TestUpRoute(t *testing.T) {
 
 				if rec.Code != http.StatusOK {
 					t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
-				}
-
-				if lm := rec.Header().Get("Last-Modified"); lm != "" {
-					t.Errorf("Last-Modified header = %q, want empty", lm)
 				}
 
 				gotCC := rec.Header().Get("Cache-Control")
@@ -68,15 +63,28 @@ func TestUpRoute(t *testing.T) {
 					t.Errorf("status = %q, want %q", got.Status, "up")
 				}
 
-				gotT, err := time.Parse(time.RFC3339, got.Timestamp)
+				gotTS, err := time.Parse(time.RFC3339, got.Timestamp)
 				if err != nil {
 					t.Fatalf("time.Parse() unexpected error: %v", err)
 				}
 
-				wantT := dst.Truncate(time.Second)
-				if !gotT.Equal(wantT) {
-					t.Errorf("timestamp = %v, want %v", gotT, wantT)
+				wantTS := dst.Truncate(time.Second)
+				if !gotTS.Equal(wantTS) {
+					t.Errorf("timestamp = %v, want %v", gotTS, wantTS)
 				}
+
+				assertCacheControl(t, rec, "no-store")
+			})
+		})
+
+		t.Run(tt.name+"/no_conditional_get", func(t *testing.T) {
+			t.Parallel()
+
+			synctest.Test(t, func(t *testing.T) {
+				dst := time.Date(2029, 12, 13, 14, 15, 16, 17, time.UTC)
+				time.Sleep(time.Until(dst))
+
+				assertNoConditionalGet(t, "/up", nil)
 			})
 		})
 	}
