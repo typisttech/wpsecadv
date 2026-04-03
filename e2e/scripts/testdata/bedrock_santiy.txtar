@@ -1,10 +1,10 @@
-exec composer create-project --quiet roots/bedrock bedrock
+exec composer create-project --quiet --no-install roots/bedrock bedrock
 cd bedrock
 
 exec composer config --quiet secure-http false
-exec composer require --quiet wp-plugin/woocommerce:10.0.0
+exec composer require --quiet --no-install wp-plugin/woocommerce:10.0.0
 
-exec composer audit --format=json
+exec composer audit --locked --format=json
 cmp stdout ../stdout.golden
 
 -- stdout.golden --
