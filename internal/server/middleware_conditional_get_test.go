@@ -4,7 +4,6 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
-	"strings"
 	"testing"
 	"time"
 )
@@ -17,16 +16,6 @@ func TestConditionalGet(t *testing.T) {
 		data map[string][]byte
 		url  string
 	}{
-		{
-			name: "advisories/squared",
-			data: map[string][]byte{"any-vendor/woocommerce": []byte(`[{"advisoryId":"WPSECADV/1"}]`)},
-			url:  "/api/security-advisories/?packages[]=any-vendor/woocommerce",
-		},
-		{
-			name: "advisories/numbered",
-			data: map[string][]byte{"any-vendor/woocommerce": []byte(`[{"advisoryId":"WPSECADV/1"}]`)},
-			url:  "/api/security-advisories/?packages[0]=any-vendor/woocommerce",
-		},
 		{
 			name: "packages",
 			url:  "/packages.json",
@@ -126,30 +115,6 @@ func TestConditionalGet_NoLastModifiedOnError(t *testing.T) {
 			name: "p2/dev/not-found",
 			url:  "/p2/foo/bar~dev.json",
 		},
-		{
-			name: "advisories/no_parameters",
-			url:  "/api/security-advisories/",
-		},
-		{
-			name: "advisories/empty_packages/squared",
-			url:  "/api/security-advisories/?packages[]=",
-		},
-		{
-			name: "advisories/empty_packages/numbered",
-			url:  "/api/security-advisories/?packages[0]=",
-		},
-		{
-			name: "advisories/updated_since_only",
-			url:  "/api/security-advisories/?updatedSince=2026-01-01",
-		},
-		{
-			name: "advisories/updated_since_and_packages/squared",
-			url:  "/api/security-advisories/?updatedSince=2026-01-01&packages[]=any-vendor/woocommerce",
-		},
-		{
-			name: "advisories/updated_since_and_packages/numbered",
-			url:  "/api/security-advisories/?updatedSince=2026-01-01&packages[0]=any-vendor/woocommerce",
-		},
 	}
 
 	for _, tt := range tests {
@@ -164,54 +129,6 @@ func TestConditionalGet_NoLastModifiedOnError(t *testing.T) {
 
 			if rec.Code < 400 {
 				t.Errorf("status = %d, want >= 400", rec.Code)
-			}
-
-			if got := rec.Header().Get("Last-Modified"); got != "" {
-				t.Errorf("Last-Modified header = %q, want empty", got)
-			}
-		})
-	}
-}
-
-func TestConditionalGet_NoLastModifiedOnUnsafeMethod(t *testing.T) {
-	t.Parallel()
-
-	tests := []struct {
-		name        string
-		url         string
-		method      string
-		body        string
-		contentType string
-	}{
-		{
-			name:        "advisories/squared",
-			url:         "/api/security-advisories/",
-			method:      http.MethodPost,
-			body:        "packages%5B%5D=any-vendor%2Fwoocommerce",
-			contentType: "application/x-www-form-urlencoded",
-		},
-		{
-			name:        "advisories/numbered",
-			url:         "/api/security-advisories/",
-			method:      http.MethodPost,
-			body:        "packages%5B0%5D=any-vendor%2Fwoocommerce",
-			contentType: "application/x-www-form-urlencoded",
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			t.Parallel()
-
-			srv := newTestServer()
-			req := httptest.NewRequest(tt.method, tt.url, strings.NewReader(tt.body))
-			req.Header.Set("Content-Type", tt.contentType)
-			rec := httptest.NewRecorder()
-
-			srv.ServeHTTP(rec, req)
-
-			if rec.Code < 200 || rec.Code > 299 {
-				t.Errorf("status = %d, want between 200 and 299", rec.Code)
 			}
 
 			if got := rec.Header().Get("Last-Modified"); got != "" {

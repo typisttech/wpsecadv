@@ -1,8 +1,10 @@
 {
   "metadata-url": "/p2/%package%.json",
+  "available-package-patterns": [
+    "*/*"
+  ],
   "security-advisories": {
-    "metadata": true,
-    "api-url": "/api/security-advisories/"
+    "metadata": true
   },
   "infos": [
     {
