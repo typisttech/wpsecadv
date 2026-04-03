@@ -5,6 +5,10 @@ import (
 	"strings"
 )
 
+type AdvisoriesMarshaler interface {
+	MarshalAdvisoriesFor(vendor, slug string) ([]byte, error)
+}
+
 func handleP2(store AdvisoriesMarshaler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		vendor := r.PathValue("vendor")
