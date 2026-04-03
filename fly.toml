@@ -3,27 +3,26 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'wpsecadv'
-primary_region = 'iad'
-kill_timeout = '10s'
-swap_size_mb = 2048
+app = "wpsecadv"
+primary_region = "iad"
+kill_timeout = "10s"
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = 'stop'
+  auto_stop_machines = "suspend"
   auto_start_machines = true
   min_machines_running = 0
-  processes = ['app']
+  processes = ["app"]
 
   [[http_service.checks]]
-    interval = '1s'
-    timeout = '3s'
-    grace_period = '5s'
-    method = 'GET'
-    path = '/up'
+    interval = "1s"
+    timeout = "3s"
+    grace_period = "5s"
+    method = "GET"
+    path = "/up"
 
 [[vm]]
-  memory = '256mb'
-  cpu_kind = 'shared'
+  memory = "256mb"
+  cpu_kind = "shared"
   cpus = 1
