@@ -15,7 +15,7 @@
   "warnings": [
     {
       "versions": "*",
-      "message": "WP Sec Adv runs on a shoestring budget. For production environments, you should self-host it. Learn more at https://github.com/typisttech/wpsecadv"
+      "message": "WP Sec Adv runs on a shoestring budget. For production environments, you should self-host it. Learn more at https://github.com/typisttech/wpsecadv#self-host"
     }
   ]
 }

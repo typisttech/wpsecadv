@@ -632,7 +632,30 @@ jobs:
 
 ## Self-host
 
-TODO!
+### Fly.io
+
+First, install `fly` (aka `flyctl`) if you haven't, learn more at https://fly.io/docs/flyctl/install/
+
+Then, launch a new app via [fly.toml](fly.toml):
+
+```sh
+# Download fly.toml from GitHub
+curl -O https://raw.githubusercontent.com/typisttech/wpsecadv/refs/heads/main/fly.toml
+
+# Launch the App
+fly launch --copy-config
+
+# Verify
+fly apps open /packages.json
+```
+
+To update advisory data, re-deploy the [`latest`](https://github.com/typisttech/wpsecadv/pkgs/container/wpsecadv/latest) container image:
+
+```sh
+fly deploy
+```
+
+To auto-deploy via GitHub Actions, see [`deploy.yml`](.github/workflows/deploy.yml).
 
 ## Wordfence
 
