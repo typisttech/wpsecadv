@@ -7,6 +7,9 @@ app = "wpsecadv"
 primary_region = "iad"
 kill_timeout = "10s"
 
+[build]
+  image = "ghcr.io/typisttech/wpsecadv:latest"
+
 [http_service]
   internal_port = 8080
   force_https = true
