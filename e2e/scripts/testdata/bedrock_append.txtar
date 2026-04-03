@@ -1,14 +1,14 @@
 [!composer:2.9] skip 'Subcommand "repo" is added in Composer v2.9'
 
-exec composer create-project --quiet roots/bedrock bedrock
+exec composer create-project --quiet --no-install roots/bedrock bedrock
 cd bedrock
 
 exec composer config --quiet secure-http false
-exec composer require --quiet wp-plugin/woocommerce:10.0.0
-
 exec composer repo --append add wpsecadv composer $WPSECADV_SERVER_URL
 
-! exec composer audit --format=json
+exec composer require --quiet --no-install wp-plugin/woocommerce:10.0.0
+
+! exec composer audit --locked --format=json
 
 # Core
 stdout CVE-2017-14990
