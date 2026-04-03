@@ -4,12 +4,25 @@ import (
 	"net/http"
 )
 
-func withCacheControl(value string) func(http.Handler) http.HandlerFunc {
-	return func(next http.Handler) http.HandlerFunc {
-		return func(w http.ResponseWriter, r *http.Request) {
-			w.Header().Set("Cache-Control", value)
+type cacheControlWriter struct {
+	http.ResponseWriter
 
-			next.ServeHTTP(w, r)
-		}
+	cacheControl string
+}
+
+func (w *cacheControlWriter) WriteHeader(statusCode int) {
+	w.Header().Set("Cache-Control", w.cacheControl)
+	w.ResponseWriter.WriteHeader(statusCode)
+}
+
+func (w *cacheControlWriter) Unwrap() http.ResponseWriter {
+	return w.ResponseWriter
+}
+
+func withCacheControl(value string, next http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w = &cacheControlWriter{ResponseWriter: w, cacheControl: value}
+
+		next.ServeHTTP(w, r)
 	}
 }

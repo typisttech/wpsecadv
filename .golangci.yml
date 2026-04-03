@@ -147,11 +147,6 @@ linters:
         linters:
           - govet
 
-      - path: _test\.go
-        linters:
-          - cyclop
-          - dupl
-
       - path: (main|store|_gen)\.go
         linters:
           - cyclop
