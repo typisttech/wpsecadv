@@ -18,7 +18,6 @@ func New(store AdvisoriesMarshaler, modTime time.Time) http.Handler {
 	final.Handle("/", handler)
 
 	final.HandleFunc("GET /up", withCacheControl("no-store", http.HandlerFunc(handleUp)))
-	final.HandleFunc("POST /up", withCacheControl("no-store", http.HandlerFunc(handleUp)))
 
 	return final
 }
