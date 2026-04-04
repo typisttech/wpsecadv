@@ -11523,6 +11523,7 @@ func plugins() []string {
 		"text-hover",
 		"text-selection-color",
 		"text-to-audio",
+		"text-to-speech-tts",
 		"text-toggle",
 		"textboxes",
 		"textbuilder",
