@@ -1689,6 +1689,7 @@ func plugins() []string {
 		"bp-gallery",
 		"bp-greeting-message",
 		"bp-group-documents",
+		"bp-groupblog",
 		"bp-job-manager-integration",
 		"bp-member-type-manager",
 		"bp-messages-tool",
