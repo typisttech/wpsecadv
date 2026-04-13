@@ -2,11 +2,6 @@ name: Test (e2e Production)
 
 on:
   workflow_dispatch:
-    inputs:
-      url:
-        description: 'Composer repository URL'
-        required: true
-        default: 'https://repo-wpsecadv.typist.tech/'
   schedule:
     - cron: '34 6,18 * * *' # Twice a day, one hour after the Update Data workflow
 
@@ -23,6 +18,11 @@ env:
 jobs:
   e2e-test-prod:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        url: 
+          - 'https://repo-wpsecadv.typist.tech/'
+          - 'https://wpsecadv.fly.dev/'
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -34,4 +34,4 @@ jobs:
 
       - run: go test -tags=e2econtainer -count=1 -shuffle=on ./e2e/container/...
         env:
-          WPSECADV_SERVER_URL: ${{ github.event.inputs.url || 'https://repo-wpsecadv.typist.tech/' }}
+          WPSECADV_SERVER_URL: ${{ matrix.url }}
