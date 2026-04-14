@@ -127,7 +127,7 @@ func bootServer(t *testing.T, ctx context.Context, out io.Writer) (string, int) 
 	// TODO: The containers are in the same network.
 	// There should be a way for them to connect without hopping to the host.
 	// Maybe using compose? Maybe using custom networks? Maybe using the container name as the hostname?
-	return "http://" + net.JoinHostPort(testcontainers.HostInternal, outerPort.Port()), outerPort.Int()
+	return "http://" + net.JoinHostPort(testcontainers.HostInternal, outerPort.Port()), int(outerPort.Num())
 }
 
 func exec(t *testing.T, ctx context.Context, c testcontainers.Container, cmd []string, opts ...tcexec.ProcessOption) {
