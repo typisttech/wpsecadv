@@ -1130,6 +1130,8 @@ var (
 	theme_656c6567616e742d6772756e6765811c9dc5 []byte
 	//go:embed assets/theme_656c6567616e742d70696e6b811c9dc5_gen.json
 	theme_656c6567616e742d70696e6b811c9dc5 []byte
+	//go:embed assets/theme_656c6567616e7a6f811c9dc5_gen.json
+	theme_656c6567616e7a6f811c9dc5 []byte
 	//go:embed assets/theme_656c656d656e747261811c9dc5_gen.json
 	theme_656c656d656e747261811c9dc5 []byte
 	//go:embed assets/theme_656c656d696e811c9dc5_gen.json
@@ -3668,6 +3670,8 @@ var (
 	theme_7765622d6d696e696d616c6973742d323030393031811c9dc5 []byte
 	//go:embed assets/theme_776562666f6c696f811c9dc5_gen.json
 	theme_776562666f6c696f811c9dc5 []byte
+	//go:embed assets/theme_776562737461636b811c9dc5_gen.json
+	theme_776562737461636b811c9dc5 []byte
 	//go:embed assets/theme_776565646c6573811c9dc5_gen.json
 	theme_776565646c6573811c9dc5 []byte
 	//go:embed assets/theme_7765656b6c796e657773811c9dc5_gen.json
@@ -4992,6 +4996,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_656c6567616e742d6772756e6765811c9dc5, nil
 	case "elegant-pink":
 		return theme_656c6567616e742d70696e6b811c9dc5, nil
+	case "eleganzo":
+		return theme_656c6567616e7a6f811c9dc5, nil
 	case "elementra":
 		return theme_656c656d656e747261811c9dc5, nil
 	case "elemin":
@@ -7530,6 +7536,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_7765622d6d696e696d616c6973742d323030393031811c9dc5, nil
 	case "webfolio":
 		return theme_776562666f6c696f811c9dc5, nil
+	case "webstack":
+		return theme_776562737461636b811c9dc5, nil
 	case "weedles":
 		return theme_776565646c6573811c9dc5, nil
 	case "weeklynews":
