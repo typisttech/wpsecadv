@@ -454,6 +454,8 @@ var (
 	theme_626c6f73736f6d2d737061811c9dc5 []byte
 	//go:embed assets/theme_626c75652d6d656d6f72696573811c9dc5_gen.json
 	theme_626c75652d6d656d6f72696573811c9dc5 []byte
+	//go:embed assets/theme_626c75657072696e74811c9dc5_gen.json
+	theme_626c75657072696e74811c9dc5 []byte
 	//go:embed assets/theme_626f647963656e746572811c9dc5_gen.json
 	theme_626f647963656e746572811c9dc5 []byte
 	//go:embed assets/theme_626f6c6479811c9dc5_gen.json
@@ -4314,6 +4316,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_626c6f73736f6d2d737061811c9dc5, nil
 	case "blue-memories":
 		return theme_626c75652d6d656d6f72696573811c9dc5, nil
+	case "blueprint":
+		return theme_626c75657072696e74811c9dc5, nil
 	case "bodycenter":
 		return theme_626f647963656e746572811c9dc5, nil
 	case "boldy":
