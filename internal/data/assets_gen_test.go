@@ -15514,6 +15514,7 @@ func themes() []string {
 		"blossom-shop",
 		"blossom-spa",
 		"blue-memories",
+		"blueprint",
 		"bodycenter",
 		"boldy",
 		"boliin",
