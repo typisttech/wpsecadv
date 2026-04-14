@@ -35,3 +35,20 @@ jobs:
           IMAGE: ghcr.io/${{ github.repository }}@sha256:${{ steps.verify.outputs.digest }}
           FLY_APP: ${{ vars.FLY_APP }}
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+  dispatch:
+    needs:
+      - fly
+    permissions:
+      actions: write
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Dispatch Test (e2e Production) Workflow
+        run: |
+          gh workflow run test-e2e-prod.yml \
+            --repo "${REPO}" \
+            --ref "${REF}"
+        env:
+          REPO: ${{ github.repository }}
+          REF: ${{ github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
