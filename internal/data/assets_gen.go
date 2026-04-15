@@ -3566,6 +3566,8 @@ var (
 	theme_76616e64616e612d6c697465811c9dc5 []byte
 	//go:embed assets/theme_76616e676f811c9dc5_gen.json
 	theme_76616e676f811c9dc5 []byte
+	//go:embed assets/theme_76616e74616765811c9dc5_gen.json
+	theme_76616e74616765811c9dc5 []byte
 	//go:embed assets/theme_7661706573746572811c9dc5_gen.json
 	theme_7661706573746572811c9dc5 []byte
 	//go:embed assets/theme_766179766f2d70726f6772657373696f6e811c9dc5_gen.json
@@ -7432,6 +7434,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_76616e64616e612d6c697465811c9dc5, nil
 	case "vango":
 		return theme_76616e676f811c9dc5, nil
+	case "vantage":
+		return theme_76616e74616765811c9dc5, nil
 	case "vapester":
 		return theme_7661706573746572811c9dc5, nil
 	case "vayvo-progression":
