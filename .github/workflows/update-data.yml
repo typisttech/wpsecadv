@@ -30,9 +30,9 @@ jobs:
         env:
           WORDFENCE_INTELLIGENCE_API_KEY: ${{ secrets.WORDFENCE_INTELLIGENCE_API_KEY }}
 
-      - uses: typisttech/create-auto-merged-pull-request-action@42c8119c5e4397506847dc4d27168e98ce69dfc7 # v0.1.0
+      - uses: typisttech/create-auto-merged-pull-request-action@05e85fff478e9ff9dfbb4b6d95622b6a8ebafe78 # v0.2.0
         with:
-          app-id: ${{ vars.TASTENDRUCK_APP_ID }}
+          client-id: ${{ vars.TASTENDRUCK_CLIENT_ID }}
           private-key: ${{ secrets.TASTENDRUCK_PRIVATE_KEY }}
           branch: "tastendruck/github_actions/go-generate/${{ github.ref_name }}"
           title: ":robot: `go generate ./...`"
