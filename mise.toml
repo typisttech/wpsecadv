@@ -121,7 +121,6 @@ env.WORDFENCE_INTELLIGENCE_API_KEY = { required = true, redact = true }
 run = 'go generate ./...'
 
 [tasks."gen:data:fixture"]
-# TODO: Use npx serve instead.
 env.FEED_FIXTURE = { required = true }
 env.PORT = { value="{{ get_env(name='FIXTURE_PORT', default='8082') }}" }
 depends = [{ task = "port:check", args = ["{{ get_env(name='FIXTURE_PORT', default='8082') }}"] }]
@@ -130,15 +129,18 @@ run = '''
 #!/usr/bin/env bash
 set -e
 
-export WORDFENCE_FEED_URL="http://localhost:${PORT}"
 export WORDFENCE_INTELLIGENCE_API_KEY="dummy"
+export FEED_FIXTURE_DIR=$(dirname "${FEED_FIXTURE}")
+export FEED_FIXTURE_BASENAME=$(basename "${FEED_FIXTURE}")
+export WORDFENCE_FEED_URL="http://localhost:${PORT}/${FEED_FIXTURE_BASENAME}"
 
-echo "==> Starting fixture server on '"${WORDFENCE_FEED_URL}"' in the background..."
-go run ./internal/data/gen/fixture > /dev/null 2>&1 &
+echo "==> Starting fixture server for '${FEED_FIXTURE}' on port ${PORT}..."
+npx --yes serve "${FEED_FIXTURE_DIR}" -p "${PORT}" > /dev/null 2>&1 &
 
-echo "==> Waiting for server ready..."
+echo "==> Waiting for server '"${WORDFENCE_FEED_URL}"' ready..."
 curl --silent --out-null -X GET --retry 10 --retry-connrefused --retry-delay 1 "${WORDFENCE_FEED_URL}"
 
+echo "==> Generating data from fixture..."
 go generate ./internal/data $@
 '''
 
