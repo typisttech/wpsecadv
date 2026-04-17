@@ -2083,6 +2083,7 @@ func plugins() []string {
 		"catchers-helpdesk",
 		"categories-gallery",
 		"categories-gallery-woocommerce",
+		"categories-images",
 		"categorify",
 		"categorized-gallery",
 		"category-ajax-filter",
