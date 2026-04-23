@@ -3581,6 +3581,7 @@ func plugins() []string {
 		"dracula-dark-mode",
 		"draft-notify",
 		"drag-and-drop-custom-sidebar",
+		"drag-and-drop-file-upload-for-contact-form-7",
 		"drag-and-drop-file-upload-for-elementor-forms",
 		"drag-and-drop-file-uploads-wc-pro",
 		"drag-and-drop-form-builder-for-contact-form-7",
