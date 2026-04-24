@@ -2922,8 +2922,6 @@ var (
 	theme_72657374617572616e7465811c9dc5 []byte
 	//go:embed assets/theme_7265737461757274811c9dc5_gen.json
 	theme_7265737461757274811c9dc5 []byte
-	//go:embed assets/theme_726573747269637465642d736974652d616363657373811c9dc5_gen.json
-	theme_726573747269637465642d736974652d616363657373811c9dc5 []byte
 	//go:embed assets/theme_72657468696e6b811c9dc5_gen.json
 	theme_72657468696e6b811c9dc5 []byte
 	//go:embed assets/theme_7265766976656e657773811c9dc5_gen.json
@@ -3846,8 +3844,6 @@ var (
 	theme_776f726b7570811c9dc5 []byte
 	//go:embed assets/theme_776f7461687562811c9dc5_gen.json
 	theme_776f7461687562811c9dc5 []byte
-	//go:embed assets/theme_77702d666f6f6462616b657279811c9dc5_gen.json
-	theme_77702d666f6f6462616b657279811c9dc5 []byte
 	//go:embed assets/theme_77702d666f726765811c9dc5_gen.json
 	theme_77702d666f726765811c9dc5 []byte
 	//go:embed assets/theme_77702d6d6f6f7365811c9dc5_gen.json
@@ -6884,8 +6880,6 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_72657374617572616e7465811c9dc5, nil
 	case "restaurt":
 		return theme_7265737461757274811c9dc5, nil
-	case "restricted-site-access":
-		return theme_726573747269637465642d736974652d616363657373811c9dc5, nil
 	case "rethink":
 		return theme_72657468696e6b811c9dc5, nil
 	case "revivenews":
@@ -7808,8 +7802,6 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_776f726b7570811c9dc5, nil
 	case "wotahub":
 		return theme_776f7461687562811c9dc5, nil
-	case "wp-foodbakery":
-		return theme_77702d666f6f6462616b657279811c9dc5, nil
 	case "wp-forge":
 		return theme_77702d666f726765811c9dc5, nil
 	case "wp-moose":
