@@ -5652,6 +5652,7 @@ func plugins() []string {
 		"hide_my_wp",
 		"hidepost",
 		"high-compress",
+		"highland-software-custom-role-manager",
 		"highlight",
 		"highlight-and-share",
 		"highlight-focus",
