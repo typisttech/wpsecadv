@@ -11587,6 +11587,7 @@ func plugins() []string {
 		"templazee",
 		"templines-helper-core",
 		"temporarily-hidden-content",
+		"temporary-login",
 		"temporary-login-without-password",
 		"tencentcloud-cos",
 		"tennis-court-bookings",
