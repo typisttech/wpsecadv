@@ -1,0 +1,24 @@
+name: Test (Production)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '34 6,18 * * *' # Twice a day, one hour after the Update Data workflow
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    strategy:
+      matrix:
+        url:
+          - 'https://repo-wpsecadv.typist.tech/'
+          - 'https://wpsecadv.fly.dev/'
+    uses: ./.github/workflows/test-e2e.yml
+    with:
+      url: ${{ matrix.url }}

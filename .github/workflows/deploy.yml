@@ -43,9 +43,9 @@ jobs:
       actions: write
     runs-on: ubuntu-24.04
     steps:
-      - name: Dispatch Test (e2e Production) Workflow
+      - name: Dispatch Test (Production) Workflow
         run: |
-          gh workflow run test-e2e-prod.yml \
+          gh workflow run test-prod.yml \
             --repo "${REPO}" \
             --ref "${REF}"
         env:
