@@ -4,7 +4,7 @@ DOCKER = "docker"
 
 [tools]
 # Must be kept in sync with .github/workflows/lint.yml
-golangci-lint = "2.11"
+golangci-lint = "2.12"
 
 [tasks.upgrade]
 run = [
