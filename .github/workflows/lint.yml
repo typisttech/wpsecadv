@@ -28,7 +28,7 @@ jobs:
     with:
       go-experiment: jsonv2
       golangci-lint: true
-      golangci-lint-version: v2.11 # Must be kept in sync with mise.toml
+      golangci-lint-version: v2.12 # Must be kept in sync with mise.toml
 
   fly:
     runs-on: ubuntu-latest
