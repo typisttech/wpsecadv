@@ -12,9 +12,6 @@ import (
 var slugPattern = regexp.MustCompile(`^[a-z0-9](([_.]|-{1,2})?[a-z0-9]+)*$`)
 
 func TestPluginsAndThemesDisjoint(t *testing.T) {
-	// TODO: Re-enable this test.
-	t.Skip("Something wrong on Wordfence side. Awaiting replies.")
-
 	t.Parallel()
 
 	tms := themes()
