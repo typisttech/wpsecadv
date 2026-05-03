@@ -3,6 +3,8 @@ ARG COMPOSER_VERSION
 FROM docker.io/library/golang:1.26.2-alpine3.23@sha256:f85330846cde1e57ca9ec309382da3b8e6ae3ab943d2739500e08c86393a21b1 AS build
 WORKDIR /app
 
+ENV GOEXPERIMENT=jsonv2
+
 COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 
