@@ -3,6 +3,7 @@
 package main
 
 import (
+	"encoding/json/v2"
 	"fmt"
 	"os"
 	"strings"
@@ -17,7 +18,34 @@ func TestScripts(t *testing.T) {
 	if srvURL == "" {
 		t.Fatal("WPSECADV_SERVER_URL environment variable is not set")
 	}
-	t.Logf("server URL: %s", srvURL)
+	t.Logf("server URL: %q", srvURL)
+
+	caFile := os.Getenv("TESTSCRIPT_COMPOSER_CAFILE")
+	t.Logf("ca file: %q", caFile)
+
+	type repo struct {
+		Type    string `json:"type"`
+		URL     string `json:"url"`
+		Options struct {
+			SSL struct {
+				CAFile string `json:"cafile,omitzero"`
+			} `json:"ssl,omitzero"`
+		} `json:"options,omitzero"`
+	}
+
+	r := repo{
+		Type: "composer",
+		URL:  srvURL,
+	}
+	if caFile != "" {
+		r.Options.SSL.CAFile = caFile
+	}
+
+	rb, err := json.Marshal(r)
+	if err != nil {
+		t.Fatalf("json.Marshal error: %v", err)
+	}
+	t.Logf("repo: %s", rb)
 
 	testscript.Run(t, testscript.Params{
 		Dir: "testdata",
@@ -27,7 +55,7 @@ func TestScripts(t *testing.T) {
 				"COMPOSER_NO_AUDIT=true",
 				"COMPOSER_NO_SECURITY_BLOCKING=true",
 				"COMPOSER_ROOT_VERSION=0.0.1",
-				"WPSECADV_SERVER_URL="+srvURL,
+				"REPO="+string(rb),
 			)
 
 			dir := os.Getenv("TESTSCRIPT_COMPOSER_CACHE_DIR")

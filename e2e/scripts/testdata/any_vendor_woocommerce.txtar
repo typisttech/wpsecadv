@@ -1,4 +1,4 @@
-exec composer config --quiet repositories.wpsecadv composer $WPSECADV_SERVER_URL
+exec composer config --quiet repositories.wpsecadv ${REPO}
 exec composer update --quiet
 ! exec composer audit --format=json
 stdout CVE-2025-15033

@@ -4,7 +4,7 @@ exec composer create-project --quiet --no-install roots/bedrock bedrock
 cd bedrock
 
 exec composer config --quiet secure-http false
-exec composer repo --append add wpsecadv composer $WPSECADV_SERVER_URL
+exec composer repo --append add wpsecadv $REPO
 
 exec composer require --quiet --no-install wp-plugin/woocommerce:10.0.0
 
