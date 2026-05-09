@@ -6979,6 +6979,7 @@ func plugins() []string {
 		"logo-slider",
 		"logo-slider-wp",
 		"logs-de-connexion",
+		"logtivity",
 		"logwpmail",
 		"loi-hamon",
 		"lokalyze-call-now",
