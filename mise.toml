@@ -1,5 +1,4 @@
 [tools]
-golangci-lint = "2.12" # Must be kept in sync with .github/workflows/lint.yml
 "npm:portless" = "latest"
 "npm:serve" = "latest"
 

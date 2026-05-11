@@ -24,11 +24,11 @@ jobs:
     uses: typisttech/.github/.github/workflows/lint-actions.yml@3b989be3639ac84acd7770ad0795ffbfc6193b2b # v5.2.2
 
   go:
-    uses: typisttech/.github/.github/workflows/lint-go.yml@3b989be3639ac84acd7770ad0795ffbfc6193b2b # v5.2.2
+    uses: typisttech/.github/.github/workflows/lint-go.yml@86c07906e5ad8ccd4bab27975f7f67e348498f82 # v5.4.0
     with:
       go-experiment: jsonv2
       golangci-lint: true
-      golangci-lint-version: v2.12 # Must be kept in sync with mise.toml
+      golangci-lint-version-file: .tool-versions
 
   fly:
     runs-on: ubuntu-latest
