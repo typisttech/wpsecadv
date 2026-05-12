@@ -318,6 +318,8 @@ var (
 	theme_6176616e6978811c9dc5 []byte
 	//go:embed assets/theme_6176616e74616765811c9dc5_gen.json
 	theme_6176616e74616765811c9dc5 []byte
+	//go:embed assets/theme_6176616e7465811c9dc5_gen.json
+	theme_6176616e7465811c9dc5 []byte
 	//go:embed assets/theme_617669616e61811c9dc5_gen.json
 	theme_617669616e61811c9dc5 []byte
 	//go:embed assets/theme_617676656e74757265811c9dc5_gen.json
@@ -4392,6 +4394,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6176616e6978811c9dc5, nil
 	case "avantage":
 		return theme_6176616e74616765811c9dc5, nil
+	case "avante":
+		return theme_6176616e7465811c9dc5, nil
 	case "aviana":
 		return theme_617669616e61811c9dc5, nil
 	case "avventure":
