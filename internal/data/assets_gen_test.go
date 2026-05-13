@@ -5747,6 +5747,7 @@ func plugins() []string {
 		"hostel",
 		"hostfact-bestelformulier-integratie",
 		"hostinger",
+		"hostinger-reach",
 		"hot-linked-image-cacher",
 		"hot-random-image",
 		"hotel-listing",
