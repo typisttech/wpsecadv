@@ -4887,6 +4887,7 @@ func plugins() []string {
 		"form-generator-powered-by-jotform",
 		"form-lightbox",
 		"form-maker",
+		"form-notify",
 		"form-to-chat",
 		"form-to-json",
 		"form-vibes",
