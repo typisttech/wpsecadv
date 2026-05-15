@@ -4261,6 +4261,7 @@ func plugins() []string {
 		"essential-blocks",
 		"essential-blocks-pro",
 		"essential-breadcrumbs",
+		"essential-chat-support",
 		"essential-content-types",
 		"essential-grid",
 		"essential-real-estate",
