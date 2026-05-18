@@ -8703,6 +8703,7 @@ func plugins() []string {
 		"piotnet-addons-for-elementor",
 		"piotnet-addons-for-elementor-pro",
 		"piotnetforms",
+		"piotnetforms-pro",
 		"pipdisqus",
 		"pirate-forms",
 		"pit-login-welcome",
