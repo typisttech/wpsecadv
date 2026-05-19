@@ -6507,6 +6507,7 @@ func plugins() []string {
 		"kiotvietsync",
 		"kirilkirkov-pdf-invoice-manager",
 		"kirimemail-woocommerce-integration",
+		"kirki",
 		"kish-guest-posting",
 		"kitestudio-core",
 		"kivicare-clinic-management-system",
