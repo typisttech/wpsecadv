@@ -14946,6 +14946,7 @@ func plugins() []string {
 		"wpavatar",
 		"wpb-advanced-faq",
 		"wpb-elementor-addons",
+		"wpb-floating-menu-or-categories",
 		"wpb-image-widget",
 		"wpb-popup-for-contact-form-7",
 		"wpb-show-core",
