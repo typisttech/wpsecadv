@@ -1,11 +1,6 @@
-# fly.toml app configuration file generated for wpsecadv on 2026-03-16T13:43:47Z
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
 app = "wpsecadv"
 primary_region = "iad"
-kill_timeout = "10s"
+kill_timeout = "60s"
 
 [build]
   image = "ghcr.io/typisttech/wpsecadv:latest"
@@ -13,7 +8,7 @@ kill_timeout = "10s"
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = "suspend"
+  auto_stop_machines = "off"
   auto_start_machines = true
   min_machines_running = 1
   processes = ["app"]
