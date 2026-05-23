@@ -23,3 +23,5 @@ updates:
       interval: daily
     cooldown:
       default-days: 3
+      exclude:
+        - "typisttech/*"
