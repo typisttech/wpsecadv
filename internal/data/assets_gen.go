@@ -2488,6 +2488,8 @@ var (
 	theme_6e6577736461696c79811c9dc5 []byte
 	//go:embed assets/theme_6e65777365716f811c9dc5_gen.json
 	theme_6e65777365716f811c9dc5 []byte
+	//go:embed assets/theme_6e6577736573811c9dc5_gen.json
+	theme_6e6577736573811c9dc5 []byte
 	//go:embed assets/theme_6e65777365786f811c9dc5_gen.json
 	theme_6e65777365786f811c9dc5 []byte
 	//go:embed assets/theme_6e6577736d6167811c9dc5_gen.json
@@ -6566,6 +6568,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6e6577736461696c79811c9dc5, nil
 	case "newseqo":
 		return theme_6e65777365716f811c9dc5, nil
+	case "newses":
+		return theme_6e6577736573811c9dc5, nil
 	case "newsexo":
 		return theme_6e65777365786f811c9dc5, nil
 	case "newsmag":
