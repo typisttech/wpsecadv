@@ -2434,6 +2434,8 @@ var (
 	theme_6e372d676f6c662d636c7562811c9dc5 []byte
 	//go:embed assets/theme_6e616d616861811c9dc5_gen.json
 	theme_6e616d616861811c9dc5 []byte
+	//go:embed assets/theme_6e616e6f63617265811c9dc5_gen.json
+	theme_6e616e6f63617265811c9dc5 []byte
 	//go:embed assets/theme_6e616e6f736f6674811c9dc5_gen.json
 	theme_6e616e6f736f6674811c9dc5 []byte
 	//go:embed assets/theme_6e6174697665636875726368811c9dc5_gen.json
@@ -2572,6 +2574,8 @@ var (
 	theme_6e7574726965811c9dc5 []byte
 	//go:embed assets/theme_6e757473811c9dc5_gen.json
 	theme_6e757473811c9dc5 []byte
+	//go:embed assets/theme_6e796c61811c9dc5_gen.json
+	theme_6e796c61811c9dc5 []byte
 	//go:embed assets/theme_6f61736973811c9dc5_gen.json
 	theme_6f61736973811c9dc5 []byte
 	//go:embed assets/theme_6f626572811c9dc5_gen.json
@@ -6514,6 +6518,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6e372d676f6c662d636c7562811c9dc5, nil
 	case "namaha":
 		return theme_6e616d616861811c9dc5, nil
+	case "nanocare":
+		return theme_6e616e6f63617265811c9dc5, nil
 	case "nanosoft":
 		return theme_6e616e6f736f6674811c9dc5, nil
 	case "nativechurch":
@@ -6652,6 +6658,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6e7574726965811c9dc5, nil
 	case "nuts":
 		return theme_6e757473811c9dc5, nil
+	case "nyla":
+		return theme_6e796c61811c9dc5, nil
 	case "oasis":
 		return theme_6f61736973811c9dc5, nil
 	case "ober":
