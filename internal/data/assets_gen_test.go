@@ -2739,6 +2739,7 @@ func plugins() []string {
 		"content-template-engine",
 		"content-text-slider-on-post",
 		"content-views-query-and-display-post-page",
+		"content-visibility-for-divi-builder",
 		"content-warning-v2",
 		"content-writer",
 		"content_timeline",
