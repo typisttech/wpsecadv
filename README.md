@@ -589,39 +589,62 @@ Adjust the `only` array to suit your situation.
 
 ### GitHub Actions
 
+Audit daily and upload the report as [GitHub code scanning alerts](https://docs.github.com/en/code-security/concepts/code-scanning/code-scanning-alerts) via [`composer-audit-to-sarif-action`](https://github.com/typisttech/composer-audit-to-sarif-action).
+
 ```yml
-name: Audit Dependencies
+name: Audit
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 9 * * *' # Once a day
+    - cron: '0 9 * * *' # Daily
   pull_request:
+    branches:
+      - main
   push:
+    branches:
+      - main
 
 permissions:
+  # Required for all workflows
+  security-events: write
+  # Required for private repositories
+  actions: read
   contents: read
 
 jobs:
-  build:
+  composer-audit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout composer.json & composer.lock
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
           sparse-checkout: |
             composer.json
             composer.lock
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # v2.37.0
+      - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.5'
+          coverage: none
 
-      - name: Checks for security vulnerability advisories
-        run: composer audit --locked
+      - run: composer audit --locked --format json > audit.json
+        continue-on-error: true
+
+      - uses: typisttech/composer-audit-to-sarif-action@v0
+        id: comsarif
+        with:
+          audit: audit.json
+
+      - uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: ${{ steps.comsarif.outputs.sarif }}
 ```
+
+> [!NOTE]
+> If you are using [`typisttech/wp-org-closed-plugin`](https://github.com/typisttech/wp-org-closed-plugin), `composer install` is essential.
+>
+> See https://github.com/typisttech/composer-audit-to-sarif-action/tree/main#audit-based-on-installed-packages
 
 ## Best Practices
 
@@ -656,6 +679,17 @@ fly deploy
 ```
 
 To auto-deploy via GitHub Actions, see [`deploy.yml`](.github/workflows/deploy.yml).
+
+## People Also Use
+
+- [WP Org Closed Plugin](https://github.com/typisttech/wp-org-closed-plugin)
+  Composer plugin to mark packages as abandoned if closed on WordPress.org
+- [Composer Audit to SARIF Action](https://github.com/typisttech/composer-audit-to-sarif-action)
+  Convert Composer audit reports to SARIF files in GitHub Actions
+- [PHP Matrix Action](https://github.com/typisttech/php-matrix-action)
+  Generate PHP version matrix according to `composer.json` for GitHub Actions
+- [Wordfence API](https://github.com/typisttech/wordfence-api)
+  PHP client to  Fetch WordPress vulnerability information from Wordfence vulnerability data feed
 
 ## Wordfence
 
