@@ -4127,6 +4127,7 @@ func plugins() []string {
 		"email-customizer-woocommerce",
 		"email-download-link",
 		"email-encoder-bundle",
+		"email-encoder-premium",
 		"email-form-under-post",
 		"email-header-footer",
 		"email-keep",
