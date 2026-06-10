@@ -2410,6 +2410,8 @@ var (
 	theme_6d6f6465726e686f75736577696665811c9dc5 []byte
 	//go:embed assets/theme_6d6f6465726e697a65811c9dc5_gen.json
 	theme_6d6f6465726e697a65811c9dc5 []byte
+	//go:embed assets/theme_6d6f6465726e6f811c9dc5_gen.json
+	theme_6d6f6465726e6f811c9dc5 []byte
 	//go:embed assets/theme_6d6f64696e73811c9dc5_gen.json
 	theme_6d6f64696e73811c9dc5 []byte
 	//go:embed assets/theme_6d6f64756c6172811c9dc5_gen.json
@@ -6618,6 +6620,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6d6f6465726e686f75736577696665811c9dc5, nil
 	case "modernize":
 		return theme_6d6f6465726e697a65811c9dc5, nil
+	case "moderno":
+		return theme_6d6f6465726e6f811c9dc5, nil
 	case "modins":
 		return theme_6d6f64696e73811c9dc5, nil
 	case "modular":
