@@ -2020,6 +2020,7 @@ func plugins() []string {
 		"canto",
 		"canto-testimonials",
 		"canva",
+		"canvas",
 		"canvasflow",
 		"canvasio3d-light",
 		"capa",
