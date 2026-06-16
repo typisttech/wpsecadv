@@ -11019,6 +11019,7 @@ func plugins() []string {
 		"smart-recent-posts-widget",
 		"smart-seo-tool",
 		"smart-shopify-product",
+		"smart-show-post-pro",
 		"smart-slide-show",
 		"smart-slider-2",
 		"smart-slider-3",
