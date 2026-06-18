@@ -2016,6 +2016,8 @@ var (
 	theme_6b6172676f811c9dc5 []byte
 	//go:embed assets/theme_6b61727a6f811c9dc5_gen.json
 	theme_6b61727a6f811c9dc5 []byte
+	//go:embed assets/theme_6b617374656c6c811c9dc5_gen.json
+	theme_6b617374656c6c811c9dc5 []byte
 	//go:embed assets/theme_6b6174656c796e811c9dc5_gen.json
 	theme_6b6174656c796e811c9dc5 []byte
 	//go:embed assets/theme_6b61746572696f811c9dc5_gen.json
@@ -6228,6 +6230,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6b6172676f811c9dc5, nil
 	case "karzo":
 		return theme_6b61727a6f811c9dc5, nil
+	case "kastell":
+		return theme_6b617374656c6c811c9dc5, nil
 	case "katelyn":
 		return theme_6b6174656c796e811c9dc5, nil
 	case "katerio":
