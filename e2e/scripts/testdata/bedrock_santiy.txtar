@@ -5,9 +5,17 @@ exec composer config --quiet secure-http false
 exec composer require --quiet --no-install wp-plugin/woocommerce:10.0.0
 
 exec composer audit --locked --format=json
-cmp stdout ../stdout.golden
+
+[composer:2.10] cmp stdout ../stdout.golden
+[!composer:2.10] cmp stdout ../stdout-2.9.golden
 
 -- stdout.golden --
+{
+    "advisories": [],
+    "abandoned": [],
+    "filter": []
+}
+-- stdout-2.9.golden --
 {
     "advisories": [],
     "abandoned": []

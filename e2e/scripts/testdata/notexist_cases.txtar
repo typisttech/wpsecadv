@@ -1,7 +1,9 @@
 exec composer config --quiet repositories.wpsecadv ${REPO}
 exec composer update --quiet
 exec composer audit --format=json
-cmp stdout stdout.golden
+
+[composer:2.10] cmp stdout stdout.golden
+[!composer:2.10] cmp stdout stdout-2.9.golden
 
 -- composer.json --
 {
@@ -65,6 +67,12 @@ cmp stdout stdout.golden
 }
 
 -- stdout.golden --
+{
+    "advisories": [],
+    "abandoned": [],
+    "filter": []
+}
+-- stdout-2.9.golden --
 {
     "advisories": [],
     "abandoned": []
