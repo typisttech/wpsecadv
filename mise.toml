@@ -87,7 +87,7 @@ cleanup () {
 trap 'cleanup' EXIT
 
 echo "==> Waiting for server '"${WPSECADV_SERVER_URL}/packages.json"' ready..."
-curl --silent --output /dev/null -X GET --fail --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 "${WPSECADV_SERVER_URL}/packages.json"
+curl --silent --output /dev/null --head --fail --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 "${WPSECADV_SERVER_URL}/packages.json"
 
 echo "==> Running e2e tests with system composer. This could take a while..."
 go test -tags=e2escripts -count=1 -shuffle=on ./e2e/scripts/... $@
@@ -100,7 +100,7 @@ run = '''
 set -e
 
 echo "==> Waiting for server '"${WPSECADV_SERVER_URL}/packages.json"' ready..."
-curl --silent --output /dev/null -X GET --fail --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 "${WPSECADV_SERVER_URL}/packages.json"
+curl --silent --output /dev/null --head --fail --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 "${WPSECADV_SERVER_URL}/packages.json"
 
 echo "==> Running e2e tests with system composer. This could take a while..."
 go test -tags=e2escripts -count=1 -shuffle=on ./e2e/scripts/... $@
@@ -156,7 +156,7 @@ cleanup () {
 trap 'cleanup' EXIT
 
 echo "==> Waiting for server '"${WORDFENCE_FEED_URL}"' ready..."
-curl --silent --output /dev/null -X GET --fail --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 "${WORDFENCE_FEED_URL}"
+curl --silent --output /dev/null --head --fail --retry 10 --retry-all-errors --retry-connrefused --retry-delay 1 "${WORDFENCE_FEED_URL}"
 
 echo "==> Generating data from fixture..."
 go generate ./internal/data $@
