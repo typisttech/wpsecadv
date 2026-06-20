@@ -93,6 +93,9 @@ echo "==> Running e2e tests with system composer. This could take a while..."
 go test -tags=e2escripts -count=1 -shuffle=on ./e2e/scripts/... $@
 '''
 
+[tasks."test:e2e:update"]
+run = 'UPDATE_SCRIPTS=1 mise run test:e2e:local'
+
 [tasks."test:e2e:prod"]
 env.WPSECADV_SERVER_URL = { value = "{{ get_env(name='WPSECADV_SERVER_URL', default='https://repo-wpsecadv.typist.tech') }}" }
 run = '''

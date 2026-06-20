@@ -40,9 +40,9 @@ func TestE2E(t *testing.T) {
 		name            string
 		composerVersion string
 	}{
+		{"composer_2.10", "2.10"},
 		{"composer_2.9", "2.9"},
 		{"composer_2.8", "2.8"},
-		{"composer_2.7", "2.7"},
 	}
 
 	for _, tt := range tests {

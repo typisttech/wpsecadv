@@ -6,6 +6,7 @@ import (
 	"encoding/json/v2"
 	"fmt"
 	"os"
+	"slices"
 	"strings"
 	"testing"
 
@@ -47,8 +48,15 @@ func TestScripts(t *testing.T) {
 	}
 	t.Logf("repo: %s", rb)
 
+	var us bool
+	if slices.Contains([]string{"1", "true"}, os.Getenv("UPDATE_SCRIPTS")) {
+		t.Log("Updating test scripts")
+		us = true
+	}
+
 	testscript.Run(t, testscript.Params{
-		Dir: "testdata",
+		Dir:           "testdata",
+		UpdateScripts: us,
 		Setup: func(e *testscript.Env) error {
 			e.Vars = append(e.Vars,
 				"COMPOSER_NO_INTERACTION=true",
