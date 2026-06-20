@@ -115,13 +115,22 @@ go test -tags=e2escripts -count=1 -shuffle=on ./e2e/scripts/... $@
 #
 ####################################
 [tasks.lint]
+depends = ['lint:*']
+
+[tasks."lint:go"]
 run = ['go mod tidy -diff', 'golangci-lint run']
 
-[tasks."lint:fix"]
+[tasks."lint:mise"]
+run = ['mise fmt --check']
+
+[tasks."fix"]
+depends = ['fix:*']
+
+[tasks."fix:go"]
 run = ['go mod tidy', 'golangci-lint run --fix']
 
-[tasks.fmt]
-run = ['mise fmt', 'golangci-lint fmt']
+[tasks."fix:mise"]
+run = ['mise fmt']
 
 ####################################
 #
