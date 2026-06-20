@@ -13,11 +13,8 @@ mise run test:unit
 # Lint
 mise run lint
 
-# Fix linting issues
-mise run lint:fix
-
-# Format source code
-mise run fmt
+# Format & fix linting issues, including gofmt & gofumpt
+mise run fix
 ```
 
 ## Go
