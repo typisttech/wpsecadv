@@ -22,6 +22,6 @@ permissions:
 
 jobs:
   go:
-    uses: typisttech/.github/.github/workflows/audit-go.yml@d7196e1892ee4696e067a314645873982ea6046e # v6.0.1
+    uses: typisttech/.github/.github/workflows/audit-go.yml@84a542186b401cc272eeec5c9c077c3cb3c910e2 # v6.1.0
     with:
       go-experiment: jsonv2
