@@ -2387,6 +2387,7 @@ func plugins() []string {
 		"clearfy",
 		"clearout-email-validator",
 		"clearpay-gateway-for-woocommerce",
+		"clearsale-total",
 		"clerkio",
 		"clever-fox",
 		"clevernode-related-content",
