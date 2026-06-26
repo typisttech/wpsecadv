@@ -3488,6 +3488,8 @@ var (
 	theme_7370656369616c697374811c9dc5 []byte
 	//go:embed assets/theme_73706563756c6f72811c9dc5_gen.json
 	theme_73706563756c6f72811c9dc5 []byte
+	//go:embed assets/theme_737065786f811c9dc5_gen.json
+	theme_737065786f811c9dc5 []byte
 	//go:embed assets/theme_73706963652d736f667477617265811c9dc5_gen.json
 	theme_73706963652d736f667477617265811c9dc5 []byte
 	//go:embed assets/theme_73706963657072657373811c9dc5_gen.json
@@ -7702,6 +7704,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_7370656369616c697374811c9dc5, nil
 	case "speculor":
 		return theme_73706563756c6f72811c9dc5, nil
+	case "spexo":
+		return theme_737065786f811c9dc5, nil
 	case "spice-software":
 		return theme_73706963652d736f667477617265811c9dc5, nil
 	case "spicepress":
