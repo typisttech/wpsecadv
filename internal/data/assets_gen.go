@@ -3506,6 +3506,8 @@ var (
 	theme_7370696b6f811c9dc5 []byte
 	//go:embed assets/theme_7370696e811c9dc5_gen.json
 	theme_7370696e811c9dc5 []byte
+	//go:embed assets/theme_73706c617368811c9dc5_gen.json
+	theme_73706c617368811c9dc5 []byte
 	//go:embed assets/theme_73706c656e646f7572811c9dc5_gen.json
 	theme_73706c656e646f7572811c9dc5 []byte
 	//go:embed assets/theme_73706f636b811c9dc5_gen.json
@@ -7722,6 +7724,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_7370696b6f811c9dc5, nil
 	case "spin":
 		return theme_7370696e811c9dc5, nil
+	case "splash":
+		return theme_73706c617368811c9dc5, nil
 	case "splendour":
 		return theme_73706c656e646f7572811c9dc5, nil
 	case "spock":
