@@ -3164,6 +3164,7 @@ func plugins() []string {
 		"custom-order-statuses-woocommerce",
 		"custom-page-extensions",
 		"custom-page-templates-by-vegacorp",
+		"custom-payment-gateways-woocommerce",
 		"custom-pc-builder-lite-for-woocommerce",
 		"custom-permalinks",
 		"custom-php-settings",
