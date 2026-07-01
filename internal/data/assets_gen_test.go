@@ -7783,6 +7783,7 @@ func plugins() []string {
 		"most-popular-posts-widget-lite",
 		"motionger-elementor",
 		"motive-commerce-search",
+		"motopress-appointment-lite",
 		"motopress-hotel-booking-lite",
 		"motopress-slider-lite",
 		"motor-racing-league",
