@@ -2288,6 +2288,8 @@ var (
 	theme_6d617263656c6c811c9dc5 []byte
 	//go:embed assets/theme_6d61727261811c9dc5_gen.json
 	theme_6d61727261811c9dc5 []byte
+	//go:embed assets/theme_6d61727466757279811c9dc5_gen.json
+	theme_6d61727466757279811c9dc5 []byte
 	//go:embed assets/theme_6d617276656c616e64811c9dc5_gen.json
 	theme_6d617276656c616e64811c9dc5 []byte
 	//go:embed assets/theme_6d6173736976652d64796e616d6963811c9dc5_gen.json
@@ -2518,6 +2520,8 @@ var (
 	theme_6e616d616861811c9dc5 []byte
 	//go:embed assets/theme_6e616e6f63617265811c9dc5_gen.json
 	theme_6e616e6f63617265811c9dc5 []byte
+	//go:embed assets/theme_6e616e6f6d6167811c9dc5_gen.json
+	theme_6e616e6f6d6167811c9dc5 []byte
 	//go:embed assets/theme_6e616e6f736f6674811c9dc5_gen.json
 	theme_6e616e6f736f6674811c9dc5 []byte
 	//go:embed assets/theme_6e6174697665636875726368811c9dc5_gen.json
@@ -2554,6 +2558,8 @@ var (
 	theme_6e6574776f726b6572811c9dc5 []byte
 	//go:embed assets/theme_6e6575726f6e6574811c9dc5_gen.json
 	theme_6e6575726f6e6574811c9dc5 []byte
+	//go:embed assets/theme_6e6576652d70726f2d6164646f6e811c9dc5_gen.json
+	theme_6e6576652d70726f2d6164646f6e811c9dc5 []byte
 	//go:embed assets/theme_6e657773811c9dc5_gen.json
 	theme_6e657773811c9dc5 []byte
 	//go:embed assets/theme_6e6577732d6576656e74811c9dc5_gen.json
@@ -3684,6 +3690,8 @@ var (
 	theme_7468656373811c9dc5 []byte
 	//go:embed assets/theme_746865666c617368811c9dc5_gen.json
 	theme_746865666c617368811c9dc5 []byte
+	//go:embed assets/theme_746865666f78811c9dc5_gen.json
+	theme_746865666f78811c9dc5 []byte
 	//go:embed assets/theme_74686567656d811c9dc5_gen.json
 	theme_74686567656d811c9dc5 []byte
 	//go:embed assets/theme_74686567656d2d656c656d656e746f72811c9dc5_gen.json
@@ -6506,6 +6514,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6d617263656c6c811c9dc5, nil
 	case "marra":
 		return theme_6d61727261811c9dc5, nil
+	case "martfury":
+		return theme_6d61727466757279811c9dc5, nil
 	case "marveland":
 		return theme_6d617276656c616e64811c9dc5, nil
 	case "massive-dynamic":
@@ -6736,6 +6746,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6e616d616861811c9dc5, nil
 	case "nanocare":
 		return theme_6e616e6f63617265811c9dc5, nil
+	case "nanomag":
+		return theme_6e616e6f6d6167811c9dc5, nil
 	case "nanosoft":
 		return theme_6e616e6f736f6674811c9dc5, nil
 	case "nativechurch":
@@ -6772,6 +6784,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6e6574776f726b6572811c9dc5, nil
 	case "neuronet":
 		return theme_6e6575726f6e6574811c9dc5, nil
+	case "neve-pro-addon":
+		return theme_6e6576652d70726f2d6164646f6e811c9dc5, nil
 	case "news":
 		return theme_6e657773811c9dc5, nil
 	case "news-event":
@@ -7902,6 +7916,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_7468656373811c9dc5, nil
 	case "theflash":
 		return theme_746865666c617368811c9dc5, nil
+	case "thefox":
+		return theme_746865666f78811c9dc5, nil
 	case "thegem":
 		return theme_74686567656d811c9dc5, nil
 	case "thegem-elementor":
