@@ -9331,6 +9331,7 @@ func plugins() []string {
 		"product-tabs-for-woocommerce",
 		"product-tabs-manager-for-woocommerce",
 		"product-variation-swatches-for-woocommerce",
+		"product-video-gallery-slider-for-woocommerce",
 		"product-visibility-by-country-for-woocommerce",
 		"product-watermark-for-woocommerce",
 		"product-websites-showcase",
