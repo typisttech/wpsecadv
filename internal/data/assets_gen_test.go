@@ -1669,6 +1669,7 @@ func plugins() []string {
 		"book-previewer-for-woocommerce",
 		"bookalet",
 		"booked",
+		"bookeropl",
 		"bookify",
 		"booking",
 		"booking-activities",
