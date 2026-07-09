@@ -20,6 +20,8 @@ var (
 	theme_3573746172811c9dc5 []byte
 	//go:embed assets/theme_612d6d617274811c9dc5_gen.json
 	theme_612d6d617274811c9dc5 []byte
+	//go:embed assets/theme_61616c746f811c9dc5_gen.json
+	theme_61616c746f811c9dc5 []byte
 	//go:embed assets/theme_6161706e61811c9dc5_gen.json
 	theme_6161706e61811c9dc5 []byte
 	//go:embed assets/theme_616172647661726b811c9dc5_gen.json
@@ -2076,6 +2078,8 @@ var (
 	theme_6b696e736c6579811c9dc5 []byte
 	//go:embed assets/theme_6b6970736f811c9dc5_gen.json
 	theme_6b6970736f811c9dc5 []byte
+	//go:embed assets/theme_6b697463686f72811c9dc5_gen.json
+	theme_6b697463686f72811c9dc5 []byte
 	//go:embed assets/theme_6b697472696e67811c9dc5_gen.json
 	theme_6b697472696e67811c9dc5 []byte
 	//go:embed assets/theme_6b6c656f811c9dc5_gen.json
@@ -2136,6 +2140,8 @@ var (
 	theme_6c6561726e6d6f7265811c9dc5 []byte
 	//go:embed assets/theme_6c65626c6978811c9dc5_gen.json
 	theme_6c65626c6978811c9dc5 []byte
+	//go:embed assets/theme_6c6565646f811c9dc5_gen.json
+	theme_6c6565646f811c9dc5 []byte
 	//go:embed assets/theme_6c6567616379811c9dc5_gen.json
 	theme_6c6567616379811c9dc5 []byte
 	//go:embed assets/theme_6c6567616c2d73746f6e65811c9dc5_gen.json
@@ -3740,6 +3746,8 @@ var (
 	theme_746f62656c811c9dc5 []byte
 	//go:embed assets/theme_746f676f811c9dc5_gen.json
 	theme_746f676f811c9dc5 []byte
+	//go:embed assets/theme_746f6e6461811c9dc5_gen.json
+	theme_746f6e6461811c9dc5 []byte
 	//go:embed assets/theme_746f6f6c626f78811c9dc5_gen.json
 	theme_746f6f6c626f78811c9dc5 []byte
 	//go:embed assets/theme_746f6f74682d6661697279811c9dc5_gen.json
@@ -4254,6 +4262,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_3573746172811c9dc5, nil
 	case "a-mart":
 		return theme_612d6d617274811c9dc5, nil
+	case "aalto":
+		return theme_61616c746f811c9dc5, nil
 	case "aapna":
 		return theme_6161706e61811c9dc5, nil
 	case "aardvark":
@@ -6310,6 +6320,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6b696e736c6579811c9dc5, nil
 	case "kipso":
 		return theme_6b6970736f811c9dc5, nil
+	case "kitchor":
+		return theme_6b697463686f72811c9dc5, nil
 	case "kitring":
 		return theme_6b697472696e67811c9dc5, nil
 	case "kleo":
@@ -6370,6 +6382,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6c6561726e6d6f7265811c9dc5, nil
 	case "leblix":
 		return theme_6c65626c6978811c9dc5, nil
+	case "leedo":
+		return theme_6c6565646f811c9dc5, nil
 	case "legacy":
 		return theme_6c6567616379811c9dc5, nil
 	case "legal-stone":
@@ -7974,6 +7988,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_746f62656c811c9dc5, nil
 	case "togo":
 		return theme_746f676f811c9dc5, nil
+	case "tonda":
+		return theme_746f6e6461811c9dc5, nil
 	case "toolbox":
 		return theme_746f6f6c626f78811c9dc5, nil
 	case "tooth-fairy":
