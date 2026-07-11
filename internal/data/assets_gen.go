@@ -944,6 +944,8 @@ var (
 	theme_637265616d2d6d6167617a696e65811c9dc5 []byte
 	//go:embed assets/theme_637265617465811c9dc5_gen.json
 	theme_637265617465811c9dc5 []byte
+	//go:embed assets/theme_6372656174696679811c9dc5_gen.json
+	theme_6372656174696679811c9dc5 []byte
 	//go:embed assets/theme_6372656469742d63617264811c9dc5_gen.json
 	theme_6372656469742d63617264811c9dc5 []byte
 	//go:embed assets/theme_637265776f726b811c9dc5_gen.json
@@ -2126,6 +2128,8 @@ var (
 	theme_6c616274656368636f811c9dc5 []byte
 	//go:embed assets/theme_6c61666b61811c9dc5_gen.json
 	theme_6c61666b61811c9dc5 []byte
+	//go:embed assets/theme_6c61676f6d811c9dc5_gen.json
+	theme_6c61676f6d811c9dc5 []byte
 	//go:embed assets/theme_6c6172736f6e811c9dc5_gen.json
 	theme_6c6172736f6e811c9dc5 []byte
 	//go:embed assets/theme_6c617361811c9dc5_gen.json
@@ -5202,6 +5206,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_637265616d2d6d6167617a696e65811c9dc5, nil
 	case "create":
 		return theme_637265617465811c9dc5, nil
+	case "creatify":
+		return theme_6372656174696679811c9dc5, nil
 	case "credit-card":
 		return theme_6372656469742d63617264811c9dc5, nil
 	case "crework":
@@ -6384,6 +6390,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6c616274656368636f811c9dc5, nil
 	case "lafka":
 		return theme_6c61666b61811c9dc5, nil
+	case "lagom":
+		return theme_6c61676f6d811c9dc5, nil
 	case "larson":
 		return theme_6c6172736f6e811c9dc5, nil
 	case "lasa":
