@@ -4963,6 +4963,7 @@ func plugins() []string {
 		"food-recipes",
 		"food-store",
 		"foodbakery-sticky-cart",
+		"foodbook-light-online-food-ordering-system",
 		"fooevents",
 		"foogallery",
 		"foogallery-captions",
