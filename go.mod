@@ -7,7 +7,7 @@ require (
 	github.com/rogpeppe/go-internal v1.15.0
 	github.com/testcontainers/testcontainers-go v0.43.0
 	github.com/typisttech/comver v0.3.2
-	golang.org/x/mod v0.37.0
+	golang.org/x/mod v0.38.0
 	golang.org/x/sync v0.22.0
 )
 
