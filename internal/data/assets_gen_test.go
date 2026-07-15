@@ -10110,6 +10110,7 @@ func plugins() []string {
 		"royal-elementor-addons",
 		"royal-mcp",
 		"royal-slider",
+		"rpb-chessboard",
 		"rps-include-content",
 		"rrdevs-for-elementor",
 		"rrssb",
