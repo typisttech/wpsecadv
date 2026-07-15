@@ -11973,6 +11973,7 @@ func plugins() []string {
 		"thanks-you-counter-button",
 		"the-bucketlister",
 		"the-buffer-button",
+		"the-cache-purger",
 		"the-casengo-chat-widget",
 		"the-countdown",
 		"the-events-calendar",
