@@ -2740,6 +2740,8 @@ var (
 	theme_6f6e6c65617368811c9dc5 []byte
 	//go:embed assets/theme_6f6e6c696e652d6573746f7265811c9dc5_gen.json
 	theme_6f6e6c696e652d6573746f7265811c9dc5 []byte
+	//go:embed assets/theme_6f70656e2d73686f70811c9dc5_gen.json
+	theme_6f70656e2d73686f70811c9dc5 []byte
 	//go:embed assets/theme_6f706f722d6179616d811c9dc5_gen.json
 	theme_6f706f722d6179616d811c9dc5 []byte
 	//go:embed assets/theme_6f7073746f7265811c9dc5_gen.json
@@ -7002,6 +7004,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6f6e6c65617368811c9dc5, nil
 	case "online-estore":
 		return theme_6f6e6c696e652d6573746f7265811c9dc5, nil
+	case "open-shop":
+		return theme_6f70656e2d73686f70811c9dc5, nil
 	case "opor-ayam":
 		return theme_6f706f722d6179616d811c9dc5, nil
 	case "opstore":
