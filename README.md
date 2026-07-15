@@ -616,9 +616,10 @@ jobs:
   composer-audit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
+          sparse-checkout-cone-mode: false
           sparse-checkout: |
             composer.json
             composer.lock
