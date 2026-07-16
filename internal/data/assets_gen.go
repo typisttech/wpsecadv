@@ -808,6 +808,8 @@ var (
 	theme_636c75622d7468656d65811c9dc5 []byte
 	//go:embed assets/theme_636f616368696679811c9dc5_gen.json
 	theme_636f616368696679811c9dc5 []byte
+	//go:embed assets/theme_636f616368696e67811c9dc5_gen.json
+	theme_636f616368696e67811c9dc5 []byte
 	//go:embed assets/theme_636f616c6974696f6e811c9dc5_gen.json
 	theme_636f616c6974696f6e811c9dc5 []byte
 	//go:embed assets/theme_636f62626c65811c9dc5_gen.json
@@ -5072,6 +5074,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_636c75622d7468656d65811c9dc5, nil
 	case "coachify":
 		return theme_636f616368696679811c9dc5, nil
+	case "coaching":
+		return theme_636f616368696e67811c9dc5, nil
 	case "coalition":
 		return theme_636f616c6974696f6e811c9dc5, nil
 	case "cobble":
