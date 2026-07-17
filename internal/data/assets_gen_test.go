@@ -1468,6 +1468,7 @@ func plugins() []string {
 		"better-font-awesome",
 		"better-messages-wc-vendors-integration",
 		"better-messages-wcfm-integration",
+		"better-payment",
 		"better-post-filter-widgets-for-elementor",
 		"better-protected-pages",
 		"better-random-redirect",
