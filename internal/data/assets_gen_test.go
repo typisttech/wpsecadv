@@ -12957,6 +12957,7 @@ func plugins() []string {
 		"w2s-migrate-woo-to-shopify",
 		"w3-total-cache",
 		"w3s-cf7-zoho",
+		"w3sc-elementor-to-zoho",
 		"w3speedster-wp",
 		"w4-post-list",
 		"wa-chatbox-manager",
