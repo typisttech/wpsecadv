@@ -8653,6 +8653,7 @@ func plugins() []string {
 		"pay-per-media-player",
 		"pay-with-contact-form-7",
 		"pay-with-tweet",
+		"pay-wp",
 		"payamito-sms-woocommerce",
 		"payaza",
 		"payday",
