@@ -7834,6 +7834,7 @@ func plugins() []string {
 		"motordesk",
 		"motors-car-dealership-classified-listings",
 		"motta-addons",
+		"mountdev-ai-mcp-connector",
 		"mousewheel-smooth-scroll",
 		"move-addons",
 		"moveto",

@@ -41,11 +41,6 @@ func IsCoreImplementation(vendor, project string) bool {
 		case "wordpress-composer":
 			return true
 		}
-	case "plott":
-		switch project {
-		case "plottcore-wordpress-no-content":
-			return true
-		}
 	case "roots":
 		switch project {
 		case "wordpress-full":
@@ -76,7 +71,6 @@ func CoreImplementations() []string {
 		"mythic/wordpress-starter-project",
 		"onepress/wordpress-no-content",
 		"pantheon-systems/wordpress-composer",
-		"plott/plottcore-wordpress-no-content",
 		"roots/wordpress-full",
 		"roots/wordpress-no-content",
 	}
