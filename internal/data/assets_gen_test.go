@@ -4417,6 +4417,7 @@ func plugins() []string {
 		"eventkoi-lite",
 		"eventlist",
 		"eventon",
+		"eventon-action-user",
 		"eventon-lite",
 		"eventon-rsvp",
 		"eventprime-event-calendar-management",
