@@ -2308,6 +2308,8 @@ var (
 	theme_6d616e6f6972811c9dc5 []byte
 	//go:embed assets/theme_6d616e747261811c9dc5_gen.json
 	theme_6d616e747261811c9dc5 []byte
+	//go:embed assets/theme_6d616e75616c811c9dc5_gen.json
+	theme_6d616e75616c811c9dc5 []byte
 	//go:embed assets/theme_6d616e75666163746f7279811c9dc5_gen.json
 	theme_6d616e75666163746f7279811c9dc5 []byte
 	//go:embed assets/theme_6d616e7566616b747572736f6c7574696f6e73811c9dc5_gen.json
@@ -3976,6 +3978,8 @@ var (
 	theme_76696c6c6172811c9dc5 []byte
 	//go:embed assets/theme_76696c7661811c9dc5_gen.json
 	theme_76696c7661811c9dc5 []byte
+	//go:embed assets/theme_76696e6f811c9dc5_gen.json
+	theme_76696e6f811c9dc5 []byte
 	//go:embed assets/theme_76696e74776f6f64811c9dc5_gen.json
 	theme_76696e74776f6f64811c9dc5 []byte
 	//go:embed assets/theme_766972616c811c9dc5_gen.json
@@ -6574,6 +6578,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6d616e6f6972811c9dc5, nil
 	case "mantra":
 		return theme_6d616e747261811c9dc5, nil
+	case "manual":
+		return theme_6d616e75616c811c9dc5, nil
 	case "manufactory":
 		return theme_6d616e75666163746f7279811c9dc5, nil
 	case "manufaktursolutions":
@@ -8242,6 +8248,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_76696c6c6172811c9dc5, nil
 	case "vilva":
 		return theme_76696c7661811c9dc5, nil
+	case "vino":
+		return theme_76696e6f811c9dc5, nil
 	case "vintwood":
 		return theme_76696e74776f6f64811c9dc5, nil
 	case "viral":
