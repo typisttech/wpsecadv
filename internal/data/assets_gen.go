@@ -222,6 +222,8 @@ var (
 	theme_6170706f696e746d656e74811c9dc5 []byte
 	//go:embed assets/theme_6170707a656e64811c9dc5_gen.json
 	theme_6170707a656e64811c9dc5 []byte
+	//go:embed assets/theme_617075736c697374696e67811c9dc5_gen.json
+	theme_617075736c697374696e67811c9dc5 []byte
 	//go:embed assets/theme_61717561811c9dc5_gen.json
 	theme_61717561811c9dc5 []byte
 	//go:embed assets/theme_617175616c6f7473811c9dc5_gen.json
@@ -1280,6 +1282,8 @@ var (
 	theme_6571756573747269616e2d63656e747265811c9dc5 []byte
 	//go:embed assets/theme_65726f73811c9dc5_gen.json
 	theme_65726f73811c9dc5 []byte
+	//go:embed assets/theme_6573636f72747770811c9dc5_gen.json
+	theme_6573636f72747770811c9dc5 []byte
 	//go:embed assets/theme_65736d65811c9dc5_gen.json
 	theme_65736d65811c9dc5 []byte
 	//go:embed assets/theme_65736f74657261811c9dc5_gen.json
@@ -1572,6 +1576,8 @@ var (
 	theme_67686f7374777269746572811c9dc5 []byte
 	//go:embed assets/theme_6769617264696e6f811c9dc5_gen.json
 	theme_6769617264696e6f811c9dc5 []byte
+	//go:embed assets/theme_67696c6c696f6e811c9dc5_gen.json
+	theme_67696c6c696f6e811c9dc5 []byte
 	//go:embed assets/theme_67696f6961811c9dc5_gen.json
 	theme_67696f6961811c9dc5 []byte
 	//go:embed assets/theme_67697461811c9dc5_gen.json
@@ -4494,6 +4500,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6170706f696e746d656e74811c9dc5, nil
 	case "appzend":
 		return theme_6170707a656e64811c9dc5, nil
+	case "apuslisting":
+		return theme_617075736c697374696e67811c9dc5, nil
 	case "aqua":
 		return theme_61717561811c9dc5, nil
 	case "aqualots":
@@ -5552,6 +5560,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6571756573747269616e2d63656e747265811c9dc5, nil
 	case "eros":
 		return theme_65726f73811c9dc5, nil
+	case "escortwp":
+		return theme_6573636f72747770811c9dc5, nil
 	case "esme":
 		return theme_65736d65811c9dc5, nil
 	case "esotera":
@@ -5844,6 +5854,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_67686f7374777269746572811c9dc5, nil
 	case "giardino":
 		return theme_6769617264696e6f811c9dc5, nil
+	case "gillion":
+		return theme_67696c6c696f6e811c9dc5, nil
 	case "gioia":
 		return theme_67696f6961811c9dc5, nil
 	case "gita":
