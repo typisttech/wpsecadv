@@ -728,6 +728,8 @@ var (
 	theme_636861726974792d7a6f6e65811c9dc5 []byte
 	//go:embed assets/theme_63686174656175811c9dc5_gen.json
 	theme_63686174656175811c9dc5 []byte
+	//go:embed assets/theme_6368657272796672616d65776f726b811c9dc5_gen.json
+	theme_6368657272796672616d65776f726b811c9dc5 []byte
 	//go:embed assets/theme_636869632d6c6966657374796c65811c9dc5_gen.json
 	theme_636869632d6c6966657374796c65811c9dc5 []byte
 	//go:embed assets/theme_636869632d6c697465811c9dc5_gen.json
@@ -4998,6 +5000,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_636861726974792d7a6f6e65811c9dc5, nil
 	case "chateau":
 		return theme_63686174656175811c9dc5, nil
+	case "cherryframework":
+		return theme_6368657272796672616d65776f726b811c9dc5, nil
 	case "chic-lifestyle":
 		return theme_636869632d6c6966657374796c65811c9dc5, nil
 	case "chic-lite":
