@@ -291,7 +291,7 @@ func (s *store) genGoFiles() error {
 		Path    string
 	}
 
-	pAssets := make([]asset, 0, 16000)
+	pAssets := make([]asset, 0, 17000)
 	s.pluginJSONs.Range(func(k, _ any) bool {
 		slug := k.(string) //nolint:forcetypeassert
 
@@ -306,7 +306,7 @@ func (s *store) genGoFiles() error {
 		return cmp.Compare(a.Slug, b.Slug)
 	})
 
-	tAssets := make([]asset, 0, 2000)
+	tAssets := make([]asset, 0, 2500)
 	s.themeJSONs.Range(func(k, _ any) bool {
 		slug := k.(string) //nolint:forcetypeassert
 
