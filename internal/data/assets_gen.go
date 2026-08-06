@@ -36,6 +36,8 @@ var (
 	theme_61636164656d697374811c9dc5 []byte
 	//go:embed assets/theme_616363616c6961811c9dc5_gen.json
 	theme_616363616c6961811c9dc5 []byte
+	//go:embed assets/theme_616363656c6572617465811c9dc5_gen.json
+	theme_616363656c6572617465811c9dc5 []byte
 	//go:embed assets/theme_61636365737370726573732d6261736963811c9dc5_gen.json
 	theme_61636365737370726573732d6261736963811c9dc5 []byte
 	//go:embed assets/theme_61636365737370726573732d6c697465811c9dc5_gen.json
@@ -4314,6 +4316,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_61636164656d697374811c9dc5, nil
 	case "accalia":
 		return theme_616363616c6961811c9dc5, nil
+	case "accelerate":
+		return theme_616363656c6572617465811c9dc5, nil
 	case "accesspress-basic":
 		return theme_61636365737370726573732d6261736963811c9dc5, nil
 	case "accesspress-lite":
