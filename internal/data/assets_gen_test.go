@@ -11182,6 +11182,7 @@ func plugins() []string {
 		"small-package-quotes-usps-edition",
 		"small-package-quotes-wwe-edition",
 		"smallerik-file-browser",
+		"smart-admin-assistant",
 		"smart-agenda-prise-de-rendez-vous-en-ligne",
 		"smart-agreements",
 		"smart-app-banner",
