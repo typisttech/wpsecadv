@@ -5036,6 +5036,7 @@ func plugins() []string {
 		"formidable",
 		"formidable-kinetic",
 		"formidable-registration",
+		"formidable-signature",
 		"formidable-sms",
 		"formidablepro-2-pdf",
 		"formilla-chat-and-marketing",
