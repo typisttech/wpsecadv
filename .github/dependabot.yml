@@ -5,8 +5,6 @@ updates:
     directory: /
     schedule:
       interval: daily
-    cooldown:
-      default-days: 3
 
   - package-ecosystem: docker
     directories:
@@ -14,14 +12,19 @@ updates:
       - /e2e/scripts/
     schedule:
       interval: daily
-    cooldown:
-      default-days: 3
+    groups:
+      docker-images:
+        group-by: dependency-name
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: daily
     cooldown:
-      default-days: 3
-      exclude:
+      default-days: 0
+      include:
         - "typisttech/*"
+    groups:
+      typisttech:
+        patterns:
+          - "typisttech/*"
