@@ -1057,6 +1057,7 @@ func plugins() []string {
 		"astra-pro-sites",
 		"astra-sites",
 		"astra-widgets",
+		"astro-booking-engine",
 		"async-javascript",
 		"asynchronous-javascript",
 		"at-internet",
