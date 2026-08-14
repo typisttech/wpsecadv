@@ -686,6 +686,8 @@ var (
 	theme_63617273706f74811c9dc5 []byte
 	//go:embed assets/theme_63617274696679811c9dc5_gen.json
 	theme_63617274696679811c9dc5 []byte
+	//go:embed assets/theme_636172746966792d6d756c7469707572706f73652d776f6f636f6d6d657263652d776f726470726573732d7468656d65811c9dc5_gen.json
+	theme_636172746966792d6d756c7469707572706f73652d776f6f636f6d6d657263652d776f726470726573732d7468656d65811c9dc5 []byte
 	//go:embed assets/theme_6361727a811c9dc5_gen.json
 	theme_6361727a811c9dc5 []byte
 	//go:embed assets/theme_6361727a696e65811c9dc5_gen.json
@@ -4972,6 +4974,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_63617273706f74811c9dc5, nil
 	case "cartify":
 		return theme_63617274696679811c9dc5, nil
+	case "cartify-multipurpose-woocommerce-wordpress-theme":
+		return theme_636172746966792d6d756c7469707572706f73652d776f6f636f6d6d657263652d776f726470726573732d7468656d65811c9dc5, nil
 	case "carz":
 		return theme_6361727a811c9dc5, nil
 	case "carzine":
