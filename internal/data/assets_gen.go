@@ -86,6 +86,8 @@ var (
 	theme_61676f7261811c9dc5 []byte
 	//go:embed assets/theme_61677269636f6c61811c9dc5_gen.json
 	theme_61677269636f6c61811c9dc5 []byte
+	//go:embed assets/theme_616772696f6e811c9dc5_gen.json
+	theme_616772696f6e811c9dc5 []byte
 	//go:embed assets/theme_61677269746f757269736d6f2d7468656d65811c9dc5_gen.json
 	theme_61677269746f757269736d6f2d7468656d65811c9dc5 []byte
 	//go:embed assets/theme_6167726f666f6f64811c9dc5_gen.json
@@ -368,6 +370,8 @@ var (
 	theme_626172647770811c9dc5 []byte
 	//go:embed assets/theme_626172656c79636f72706f72617465811c9dc5_gen.json
 	theme_626172656c79636f72706f72617465811c9dc5 []byte
+	//go:embed assets/theme_62617269737461811c9dc5_gen.json
+	theme_62617269737461811c9dc5 []byte
 	//go:embed assets/theme_626172746572811c9dc5_gen.json
 	theme_626172746572811c9dc5 []byte
 	//go:embed assets/theme_626173656c811c9dc5_gen.json
@@ -2182,6 +2186,8 @@ var (
 	theme_6c656d6d6f6e79811c9dc5 []byte
 	//go:embed assets/theme_6c656e64697a811c9dc5_gen.json
 	theme_6c656e64697a811c9dc5 []byte
+	//go:embed assets/theme_6c656e78656c2d7770811c9dc5_gen.json
+	theme_6c656e78656c2d7770811c9dc5 []byte
 	//go:embed assets/theme_6c65726f7578811c9dc5_gen.json
 	theme_6c65726f7578811c9dc5 []byte
 	//go:embed assets/theme_6c657374696e811c9dc5_gen.json
@@ -4366,6 +4372,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_61676f7261811c9dc5, nil
 	case "agricola":
 		return theme_61677269636f6c61811c9dc5, nil
+	case "agrion":
+		return theme_616772696f6e811c9dc5, nil
 	case "agritourismo-theme":
 		return theme_61677269746f757269736d6f2d7468656d65811c9dc5, nil
 	case "agrofood":
@@ -4648,6 +4656,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_626172647770811c9dc5, nil
 	case "barelycorporate":
 		return theme_626172656c79636f72706f72617465811c9dc5, nil
+	case "barista":
+		return theme_62617269737461811c9dc5, nil
 	case "barter":
 		return theme_626172746572811c9dc5, nil
 	case "basel":
@@ -6462,6 +6472,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6c656d6d6f6e79811c9dc5, nil
 	case "lendiz":
 		return theme_6c656e64697a811c9dc5, nil
+	case "lenxel-wp":
+		return theme_6c656e78656c2d7770811c9dc5, nil
 	case "leroux":
 		return theme_6c65726f7578811c9dc5, nil
 	case "lestin":
