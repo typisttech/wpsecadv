@@ -458,7 +458,7 @@ Allow specific advisories to be installed, edit `composer.json`:
         ],
         "ignore-id": {
           "CVE-2026-3589": {
-            "on-block": false,
+            "on-audit": false,
             "reason": "Waiting for upstream fix in v1.2.3. Allow during updates but still report in audits"
           }
         }
