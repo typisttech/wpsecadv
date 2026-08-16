@@ -243,7 +243,7 @@ Using version ^4.1 for wp-theme/twentyfifteen
 However, there may not be a patch yet or never will be (as the two WordPress core CVEs).
 
 > [!WARNING]
-> Blindly ignoring packages from secutiy blockings is **dangerous**.
+> Blindly ignoring packages from security blocking is **dangerous**.
 >
 > You should do so only in exceptional cases.
 
@@ -252,8 +252,10 @@ Ignore `roots/wordpress-no-content` from auditing, edit `composer.json`:
 ```json
 {
   "config": {
-    "audit": {
-      "ignore": ["roots/wordpress-no-content"]
+    "policy": {
+      "advisories": {
+        "ignore": ["roots/wordpress-no-content"]
+      }
     }
   }
 }
@@ -449,15 +451,16 @@ Allow specific advisories to be installed, edit `composer.json`:
 ```json
 {
   "config": {
-    "audit": {
-      "ignore": {
-        "roots/wordpress-no-content": {
-          "apply": "all",
-          "reason": "We live dangerously and don't care about this one"
-        },
-        "CVE-2026-3589": {
-          "apply": "block",
-          "reason": "Waiting for FooBar add-on v1.2.3 to be released. Allow during updates but still report in audits"
+    "policy": {
+      "advisories": {
+        "ignore": [
+          "roots/wordpress-no-content"
+        ],
+        "ignore-id": {
+          "CVE-2026-3589": {
+            "on-audit": false,
+            "reason": "Waiting for upstream fix in v1.2.3. Allow during updates but still report in audits"
+          }
         }
       }
     }
@@ -469,8 +472,9 @@ All of the above are Composer features. WP Sec Adv merely makes Wordfence vulner
 
 Learn more at:
 
-- https://getcomposer.org/doc/06-config.md#audit
+- https://getcomposer.org/doc/06-config.md#policy
 - https://getcomposer.org/doc/03-cli.md#audit
+- https://blog.packagist.com/composer-2-10-release/#dependency-policy-configuration
 - https://blog.packagist.com/discover-security-advisories-with-composers-audit-command/
 - https://www.wordfence.com/help/wordfence-intelligence/v3-accessing-and-consuming-the-vulnerability-data-feed/
 
@@ -489,7 +493,7 @@ Learn more at:
 Besides the one-off `--no-security-blocking` flag, you can persistently disable security blocking by:
 
 ```sh
-composer config audit.block-insecure false
+composer config policy.advisories.block false
 ```
 
 Or, manually edit `composer.json`:
@@ -497,8 +501,10 @@ Or, manually edit `composer.json`:
 ```json
 {
   "config": {
-    "audit": {
-      "block-insecure": false
+    "policy": {
+      "advisories": {
+        "block": false
+      }
     }
   }
 }
