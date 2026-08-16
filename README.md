@@ -458,7 +458,7 @@ Allow specific advisories to be installed, edit `composer.json`:
         ],
         "ignore-id": {
           "CVE-2026-3589": {
-            "on-audit": false,
+            "on-block": false,
             "reason": "Waiting for upstream fix in v1.2.3. Allow during updates but still report in audits"
           }
         }
@@ -655,8 +655,8 @@ jobs:
 
 ## Best Practices
 
-- Prefer the detailed `config.audit.ignore` object with [`apply` and `reason`](https://getcomposer.org/doc/06-config.md#detailed-format-with-apply-scope-) so you can review the decisions in the future
-- Unless you have [continuous monitoring](#continuous-monitoring) set up, use [`config.audit.block-insecure`](https://getcomposer.org/doc/06-config.md#block-insecure) only as an emergency or short-term measure
+- Prefer the detailed `config.policy.advisories.ignore-id` or `config.policy.advisories.ignore` object with [`on-block` / `on-audit` and `reason`](https://getcomposer.org/doc/06-config.md#ignore-format) so you can review the decisions in the future
+- Unless you have [continuous monitoring](#continuous-monitoring) set up, use [`config.policy.advisories.block`](https://getcomposer.org/doc/06-config.md#block) only as an emergency or short-term measure
 - Narrow [`only`](#only) just enough to cover your WordPress core, plugins and themes
 - Check the vulnerability advisory details. Even though it gets patched, the damage might already be done
 
