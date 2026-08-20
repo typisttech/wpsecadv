@@ -16,9 +16,6 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  GOEXPERIMENT: jsonv2
-
 jobs:
   actions:
     uses: typisttech/.github/.github/workflows/lint-actions.yml@8b4b5df1a715953dfcd5053b6cd47b9c1095ca20 # v6.1.5
@@ -26,7 +23,6 @@ jobs:
   go:
     uses: typisttech/.github/.github/workflows/lint-go.yml@8b4b5df1a715953dfcd5053b6cd47b9c1095ca20 # v6.1.5
     with:
-      go-experiment: jsonv2
       golangci-lint: true
       golangci-lint-version-file: .tool-versions
 

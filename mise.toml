@@ -1,5 +1,4 @@
 [env]
-GOEXPERIMENT = "jsonv2"
 DOCKER = "docker"
 
 [tasks.upgrade]

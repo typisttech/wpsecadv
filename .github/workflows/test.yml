@@ -16,9 +16,6 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  GOEXPERIMENT: jsonv2
-
 jobs:
   test:
     runs-on: ubuntu-latest
