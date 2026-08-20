@@ -4153,6 +4153,7 @@ func plugins() []string {
 		"elastik-page-builder",
 		"ele-blog",
 		"ele-conditions",
+		"ele-custom-skin",
 		"electio-core",
 		"electric-enquiries",
 		"electric-studio-client-login",
