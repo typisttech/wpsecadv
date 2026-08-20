@@ -42,7 +42,8 @@ func mustParseFlags(args []string, stderr io.Writer) config {
 		"run `n` workers simultaneously."+`
 If n is 0 or less, GOMAXPROCS is used. Setting -parallel to values higher
  than GOMAXPROCS may cause degraded performance due to CPU contention.
-(default GOMAXPROCS)`)
+(default GOMAXPROCS)`,
+	)
 
 	flags.DurationVar(
 		&cfg.timeout,
