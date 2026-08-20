@@ -7214,6 +7214,7 @@ func plugins() []string {
 		"login-with-ajax",
 		"login-with-azure",
 		"login-with-cognito",
+		"login-with-google",
 		"login-with-phone-number",
 		"login-with-salesforce",
 		"login-with-vipps",
