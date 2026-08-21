@@ -842,6 +842,8 @@ var (
 	theme_636f6c6c656765811c9dc5 []byte
 	//go:embed assets/theme_636f6c6f72626f6c64811c9dc5_gen.json
 	theme_636f6c6f72626f6c64811c9dc5 []byte
+	//go:embed assets/theme_636f6c6f72666f6c696f811c9dc5_gen.json
+	theme_636f6c6f72666f6c696f811c9dc5 []byte
 	//go:embed assets/theme_636f6c6f726d6167811c9dc5_gen.json
 	theme_636f6c6f726d6167811c9dc5 []byte
 	//go:embed assets/theme_636f6c6f726d6978811c9dc5_gen.json
@@ -5130,6 +5132,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_636f6c6c656765811c9dc5, nil
 	case "colorbold":
 		return theme_636f6c6f72626f6c64811c9dc5, nil
+	case "colorfolio":
+		return theme_636f6c6f72666f6c696f811c9dc5, nil
 	case "colormag":
 		return theme_636f6c6f726d6167811c9dc5, nil
 	case "colormix":
