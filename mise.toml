@@ -71,17 +71,22 @@ port="$(go run ./cmd/freeport)"
 export WPSECADV_SERVER_URL="http://127.0.0.1:${port}"
 
 echo "==> Starting server in the background..."
-# Enable job control so the background server gets its own process group,
-# letting cleanup kill `go run` and its compiled child in one shot.
-set -m
-PORT="${port}" go run ./cmd/serve > /dev/null 2>&1 &
-pgid=$!
-set +m
+bin_dir="$(mktemp -d "${TMPDIR:-/tmp}/wpsecadv-XXXXXX")"
+bin="${bin_dir}/serve"
+go build -o "${bin}" ./cmd/serve
+PORT="${port}" "${bin}" > /dev/null 2>&1 &
+pid=$!
 
 cleanup () {
   echo "==> Cleaning up..."
-  echo "Terminating the server (pgid: '"${pgid}"')..."
-  kill -- -"${pgid}" 2>/dev/null || true
+  if [ -n "${pid:-}" ]; then
+    if kill -0 "${pid}" 2>/dev/null; then
+      echo "Terminating the server (pid: '"${pid}"')..."
+      kill "${pid}" 2>/dev/null || true
+    fi
+    wait "${pid}" 2>/dev/null || true
+  fi
+  rm -rf "${bin_dir}"
 }
 trap 'cleanup' EXIT
 
@@ -154,15 +159,22 @@ port="$(go run ./cmd/freeport)"
 export WORDFENCE_FEED_URL="http://127.0.0.1:${port}/${FEED_FIXTURE_BASENAME}"
 
 echo "==> Starting fixture server in the background..."
-set -m
-go run ./cmd/servefixture "127.0.0.1:${port}" "${FEED_FIXTURE_DIR}" > /dev/null 2>&1 &
-pgid=$!
-set +m
+bin_dir="$(mktemp -d "${TMPDIR:-/tmp}/wpsecadv-XXXXXX")"
+bin="${bin_dir}/servefixture"
+go build -o "${bin}" ./cmd/servefixture
+"${bin}" "127.0.0.1:${port}" "${FEED_FIXTURE_DIR}" > /dev/null 2>&1 &
+pid=$!
 
 cleanup () {
   echo "==> Cleaning up..."
-  echo "Terminating the server (pgid: '"${pgid}"')..."
-  kill -- -"${pgid}" 2>/dev/null || true
+  if [ -n "${pid:-}" ]; then
+    if kill -0 "${pid}" 2>/dev/null; then
+      echo "Terminating the server (pid: '"${pid}"')..."
+      kill "${pid}" 2>/dev/null || true
+    fi
+    wait "${pid}" 2>/dev/null || true
+  fi
+  rm -rf "${bin_dir}"
 }
 trap 'cleanup' EXIT
 
