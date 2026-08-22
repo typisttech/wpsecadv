@@ -10488,6 +10488,7 @@ func plugins() []string {
 		"securimage-wp-fixed",
 		"security-antivirus-firewall",
 		"security-force",
+		"security-hardener",
 		"security-malware-firewall",
 		"security-ninja",
 		"security-ninja-premium",
