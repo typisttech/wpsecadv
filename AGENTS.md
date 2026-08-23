@@ -16,9 +16,3 @@ mise run lint
 # Format & fix linting issues, including gofmt & gofumpt
 mise run fix
 ```
-
-## Go
-
-### JSON v2
-
-This repository always the Go experimental JSON v2 APIs. Import `encoding/json/v2` and `encoding/json/jsontext` instead of `encoding/json` (v1).
