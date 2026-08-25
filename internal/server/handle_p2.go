@@ -16,16 +16,11 @@ func handleP2(store AdvisoriesMarshaler) http.HandlerFunc {
 
 		file := r.PathValue("file")
 		file = strings.ToLower(file)
-		if !strings.HasSuffix(file, ".json") {
+		slug, ok := strings.CutSuffix(file, ".json")
+		if !ok || strings.HasSuffix(slug, "~dev") {
 			http.NotFound(w, r)
 			return
 		}
-		if strings.HasSuffix(file, "~dev.json") {
-			http.NotFound(w, r)
-			return
-		}
-
-		slug := strings.TrimSuffix(file, ".json")
 
 		advisories, err := store.MarshalAdvisoriesFor(vendor, slug)
 		if err != nil {

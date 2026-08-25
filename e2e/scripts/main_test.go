@@ -75,7 +75,8 @@ func TestScripts(t *testing.T) {
 			return nil
 		},
 		Condition: func(cond string) (bool, error) {
-			if !strings.HasPrefix(cond, "composer:") {
+			targ, ok := strings.CutPrefix(cond, "composer:")
+			if !ok {
 				return false, fmt.Errorf("unknown condition: %s", cond)
 			}
 
@@ -87,7 +88,6 @@ func TestScripts(t *testing.T) {
 				return true, nil
 			}
 
-			targ := strings.TrimPrefix(cond, "composer:")
 			targ = "v" + targ + ".0"
 
 			if !semver.IsValid(targ) {
