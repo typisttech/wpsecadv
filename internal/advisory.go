@@ -14,9 +14,9 @@ type Advisory struct {
 	Sources []Source `json:"sources"`
 
 	// Link is a URL to issue disclosure.
-	Link string `json:"link,omitempty"`
+	Link string `json:"link,omitzero"`
 
-	CVE string `json:"cve,omitempty"`
+	CVE string `json:"cve,omitzero"`
 
 	// AffectedVersions is a string in form of a composer constraint.
 	// For example, ">=1.0.0,<2.0.0|>3.0.0,<=3.4.0|=5.0.0".
@@ -24,7 +24,7 @@ type Advisory struct {
 
 	// Severity is the lowercased CVSS3 severity rating scale.
 	// Possible values: "none", "low", "medium", "high", "critical".
-	Severity string `json:"severity,omitempty"`
+	Severity string `json:"severity,omitzero"`
 }
 
 type Source struct {
