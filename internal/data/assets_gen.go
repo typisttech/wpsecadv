@@ -1828,6 +1828,8 @@ var (
 	theme_686f6d6576696c6c61732d7265616c2d657374617465811c9dc5 []byte
 	//go:embed assets/theme_686f6d6579811c9dc5_gen.json
 	theme_686f6d6579811c9dc5 []byte
+	//go:embed assets/theme_686f6d6c69737469811c9dc5_gen.json
+	theme_686f6d6c69737469811c9dc5 []byte
 	//go:embed assets/theme_686f6e65797072657373811c9dc5_gen.json
 	theme_686f6e65797072657373811c9dc5 []byte
 	//go:embed assets/theme_686f6e6f72811c9dc5_gen.json
@@ -3402,6 +3404,8 @@ var (
 	theme_73686f7574626f78811c9dc5 []byte
 	//go:embed assets/theme_73687562616e811c9dc5_gen.json
 	theme_73687562616e811c9dc5 []byte
+	//go:embed assets/theme_73687566666c65811c9dc5_gen.json
+	theme_73687566666c65811c9dc5 []byte
 	//go:embed assets/theme_73687574746c65811c9dc5_gen.json
 	theme_73687574746c65811c9dc5 []byte
 	//go:embed assets/theme_7369646570616e65811c9dc5_gen.json
@@ -6132,6 +6136,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_686f6d6576696c6c61732d7265616c2d657374617465811c9dc5, nil
 	case "homey":
 		return theme_686f6d6579811c9dc5, nil
+	case "homlisti":
+		return theme_686f6d6c69737469811c9dc5, nil
 	case "honeypress":
 		return theme_686f6e65797072657373811c9dc5, nil
 	case "honor":
@@ -7706,6 +7712,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_73686f7574626f78811c9dc5, nil
 	case "shuban":
 		return theme_73687562616e811c9dc5, nil
+	case "shuffle":
+		return theme_73687566666c65811c9dc5, nil
 	case "shuttle":
 		return theme_73687574746c65811c9dc5, nil
 	case "sidepane":
