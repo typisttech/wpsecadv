@@ -9266,6 +9266,7 @@ func plugins() []string {
 		"post-saint",
 		"post-shortcode",
 		"post-slider-and-carousel",
+		"post-slider-and-carousel-pro",
 		"post-slider-carousel",
 		"post-slides",
 		"post-smtp",
