@@ -12665,6 +12665,7 @@ func plugins() []string {
 		"ultimate-coming-soon",
 		"ultimate-custom-scrollbar",
 		"ultimate-dashboard",
+		"ultimate-dashboard-pro",
 		"ultimate-elementor",
 		"ultimate-events",
 		"ultimate-facebook-comments",
