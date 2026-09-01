@@ -3489,6 +3489,7 @@ func plugins() []string {
 		"device-theme-switcher",
 		"device-wrapper",
 		"devices",
+		"devkit",
 		"devnex-addons-for-elementor",
 		"devoluciones-packback",
 		"devrix-dark-site",
