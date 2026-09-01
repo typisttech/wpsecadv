@@ -15036,6 +15036,7 @@ func plugins() []string {
 		"wp-recaptcha-integration",
 		"wp-recentcomments",
 		"wp-recipe-maker",
+		"wp-recipe-maker-premium",
 		"wp-recipe-manager",
 		"wp-record",
 		"wp-redirection",
