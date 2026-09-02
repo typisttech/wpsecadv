@@ -2658,6 +2658,8 @@ var (
 	theme_6e65777370617065722d6c697465811c9dc5 []byte
 	//go:embed assets/theme_6e65777370617065722d78811c9dc5_gen.json
 	theme_6e65777370617065722d78811c9dc5 []byte
+	//go:embed assets/theme_6e6577737061706572732d78811c9dc5_gen.json
+	theme_6e6577737061706572732d78811c9dc5 []byte
 	//go:embed assets/theme_6e6577737570811c9dc5_gen.json
 	theme_6e6577737570811c9dc5 []byte
 	//go:embed assets/theme_6e657773787072657373811c9dc5_gen.json
@@ -6966,6 +6968,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6e65777370617065722d6c697465811c9dc5, nil
 	case "newspaper-x":
 		return theme_6e65777370617065722d78811c9dc5, nil
+	case "newspapers-x":
+		return theme_6e6577737061706572732d78811c9dc5, nil
 	case "newsup":
 		return theme_6e6577737570811c9dc5, nil
 	case "newsxpress":
