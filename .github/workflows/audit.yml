@@ -22,4 +22,4 @@ permissions:
 
 jobs:
   go:
-    uses: typisttech/.github/.github/workflows/audit-go.yml@7988918764384c842ba3204778ad2b51b33be9c3 # v6.1.7
+    uses: typisttech/.github/.github/workflows/audit-go.yml@0b2203a1b57639582d089d0b14e909d5817161b9 # v6.1.8
