@@ -3764,8 +3764,6 @@ var (
 	theme_746865666c617368811c9dc5 []byte
 	//go:embed assets/theme_746865666f78811c9dc5_gen.json
 	theme_746865666f78811c9dc5 []byte
-	//go:embed assets/theme_74686567656d811c9dc5_gen.json
-	theme_74686567656d811c9dc5 []byte
 	//go:embed assets/theme_74686567656d2d656c656d656e746f72811c9dc5_gen.json
 	theme_74686567656d2d656c656d656e746f72811c9dc5 []byte
 	//go:embed assets/theme_746865676967811c9dc5_gen.json
@@ -8074,8 +8072,6 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_746865666c617368811c9dc5, nil
 	case "thefox":
 		return theme_746865666f78811c9dc5, nil
-	case "thegem":
-		return theme_74686567656d811c9dc5, nil
 	case "thegem-elementor":
 		return theme_74686567656d2d656c656d656e746f72811c9dc5, nil
 	case "thegig":
