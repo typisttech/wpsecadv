@@ -8342,6 +8342,8 @@ func plugins() []string {
 		"ninja-countdown",
 		"ninja-forms",
 		"ninja-forms-excel-export",
+		"ninja-forms-save-progress",
+		"ninja-forms-scheduled-exports",
 		"ninja-forms-uploads",
 		"ninja-forms-webhooks",
 		"ninja-gdpr-compliance",
