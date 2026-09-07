@@ -14617,6 +14617,7 @@ func plugins() []string {
 		"wp-fundraising-donation",
 		"wp-funeral-press",
 		"wp-funnel-manager",
+		"wp-fusion",
 		"wp-fusion-lite",
 		"wp-galleria",
 		"wp-gallery-exporter",
