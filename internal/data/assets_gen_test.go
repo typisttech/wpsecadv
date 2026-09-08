@@ -4110,6 +4110,7 @@ func plugins() []string {
 		"edd-pdf-stamper",
 		"edd-per-product-emails",
 		"edd-product-reviews",
+		"edd-products-feed-pro",
 		"edd-pushover-notifications",
 		"edd-qr-codes",
 		"edd-recent-purchases",
