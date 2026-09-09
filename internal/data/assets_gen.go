@@ -3130,6 +3130,8 @@ var (
 	theme_7261796f666c696768742d7468656d65811c9dc5 []byte
 	//go:embed assets/theme_7265616c2d6573746174652d6469726563746f7279811c9dc5_gen.json
 	theme_7265616c2d6573746174652d6469726563746f7279811c9dc5 []byte
+	//go:embed assets/theme_7265616c2d6573746174652d70617069811c9dc5_gen.json
+	theme_7265616c2d6573746174652d70617069811c9dc5 []byte
 	//go:embed assets/theme_7265616c2d737061636573811c9dc5_gen.json
 	theme_7265616c2d737061636573811c9dc5 []byte
 	//go:embed assets/theme_7265616c65732d77702d7265616c2d6573746174652d776f726470726573732d7468656d65811c9dc5_gen.json
@@ -7438,6 +7440,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_7261796f666c696768742d7468656d65811c9dc5, nil
 	case "real-estate-directory":
 		return theme_7265616c2d6573746174652d6469726563746f7279811c9dc5, nil
+	case "real-estate-papi":
+		return theme_7265616c2d6573746174652d70617069811c9dc5, nil
 	case "real-spaces":
 		return theme_7265616c2d737061636573811c9dc5, nil
 	case "reales-wp-real-estate-wordpress-theme":
