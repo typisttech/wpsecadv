@@ -3784,6 +3784,7 @@ func plugins() []string {
 		"dsp_dating",
 		"dssearchagent-wordpress-edition",
 		"dsubscribers",
+		"dt-lms-lite",
 		"dt-reservation-plugin",
 		"dt-the7-core",
 		"dtabs",
