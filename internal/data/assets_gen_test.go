@@ -7694,6 +7694,7 @@ func plugins() []string {
 		"memberlite-shortcodes",
 		"membermouse",
 		"memberpress",
+		"memberpress-corporate",
 		"memberpress-downloads",
 		"members",
 		"members-import",
