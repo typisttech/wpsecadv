@@ -18,10 +18,10 @@ permissions:
 
 jobs:
   actions:
-    uses: typisttech/.github/.github/workflows/lint-actions.yml@0b2203a1b57639582d089d0b14e909d5817161b9 # v6.1.8
+    uses: typisttech/.github/.github/workflows/lint-actions.yml@34f0697e0ba455a427ea7103acc927fe3f7ec299 # v6.1.9
 
   go:
-    uses: typisttech/.github/.github/workflows/lint-go.yml@0b2203a1b57639582d089d0b14e909d5817161b9 # v6.1.8
+    uses: typisttech/.github/.github/workflows/lint-go.yml@34f0697e0ba455a427ea7103acc927fe3f7ec299 # v6.1.9
     with:
       golangci-lint: true
       golangci-lint-version-file: .tool-versions
