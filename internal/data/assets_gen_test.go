@@ -181,6 +181,7 @@ func plugins() []string {
 		"acf-city-selector",
 		"acf-cpt-options-pages",
 		"acf-extended",
+		"acf-extended-pro",
 		"acf-field-blocks",
 		"acf-flexible-layouts-manager",
 		"acf-for-woocommerce-product",
