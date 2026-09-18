@@ -2712,10 +2712,14 @@ var (
 	theme_6e6f746172697573811c9dc5 []byte
 	//go:embed assets/theme_6e6f76612d6c697465811c9dc5_gen.json
 	theme_6e6f76612d6c697465811c9dc5 []byte
+	//go:embed assets/theme_6e726762617262657273686f70811c9dc5_gen.json
+	theme_6e726762617262657273686f70811c9dc5 []byte
 	//go:embed assets/theme_6e7267627573696e657373811c9dc5_gen.json
 	theme_6e7267627573696e657373811c9dc5 []byte
 	//go:embed assets/theme_6e726766617368696f6e811c9dc5_gen.json
 	theme_6e726766617368696f6e811c9dc5 []byte
+	//go:embed assets/theme_6e7267686f73706974616c811c9dc5_gen.json
+	theme_6e7267686f73706974616c811c9dc5 []byte
 	//go:embed assets/theme_6e726772657374617572616e74811c9dc5_gen.json
 	theme_6e726772657374617572616e74811c9dc5 []byte
 	//go:embed assets/theme_6e7363811c9dc5_gen.json
@@ -3104,6 +3108,8 @@ var (
 	theme_726164636c696666652d32811c9dc5 []byte
 	//go:embed assets/theme_72616469616c2d7468656d65811c9dc5_gen.json
 	theme_72616469616c2d7468656d65811c9dc5 []byte
+	//go:embed assets/theme_726169646572737069726974811c9dc5_gen.json
+	theme_726169646572737069726974811c9dc5 []byte
 	//go:embed assets/theme_7261696e626f776e657773811c9dc5_gen.json
 	theme_7261696e626f776e657773811c9dc5 []byte
 	//go:embed assets/theme_7261696e64726f7073811c9dc5_gen.json
@@ -3364,6 +3370,8 @@ var (
 	theme_73656e7369626c652d7770811c9dc5 []byte
 	//go:embed assets/theme_73656e7469656e74811c9dc5_gen.json
 	theme_73656e7469656e74811c9dc5 []byte
+	//go:embed assets/theme_73656f7770811c9dc5_gen.json
+	theme_73656f7770811c9dc5 []byte
 	//go:embed assets/theme_73657074657261811c9dc5_gen.json
 	theme_73657074657261811c9dc5 []byte
 	//go:embed assets/theme_7365747361696c811c9dc5_gen.json
@@ -3772,6 +3780,8 @@ var (
 	theme_746865676967811c9dc5 []byte
 	//go:embed assets/theme_7468656973737565811c9dc5_gen.json
 	theme_7468656973737565811c9dc5 []byte
+	//go:embed assets/theme_7468656d65626f78811c9dc5_gen.json
+	theme_7468656d65626f78811c9dc5 []byte
 	//go:embed assets/theme_7468656d69612d6c697465811c9dc5_gen.json
 	theme_7468656d69612d6c697465811c9dc5 []byte
 	//go:embed assets/theme_7468656d6966792d756c747261811c9dc5_gen.json
@@ -4076,6 +4086,8 @@ var (
 	theme_76772d73746f726566726f6e74811c9dc5 []byte
 	//go:embed assets/theme_76772d77656464696e67811c9dc5_gen.json
 	theme_76772d77656464696e67811c9dc5 []byte
+	//go:embed assets/theme_76772d7772697465722d626c6f67811c9dc5_gen.json
+	theme_76772d7772697465722d626c6f67811c9dc5 []byte
 	//go:embed assets/theme_776162692d73616269811c9dc5_gen.json
 	theme_776162692d73616269811c9dc5 []byte
 	//go:embed assets/theme_77616c6c737472656574811c9dc5_gen.json
@@ -4260,6 +4272,8 @@ var (
 	theme_796f6b6f6f811c9dc5 []byte
 	//go:embed assets/theme_796f6c6f78811c9dc5_gen.json
 	theme_796f6c6f78811c9dc5 []byte
+	//go:embed assets/theme_796f6f7468656d65811c9dc5_gen.json
+	theme_796f6f7468656d65811c9dc5 []byte
 	//go:embed assets/theme_796f74746973811c9dc5_gen.json
 	theme_796f74746973811c9dc5 []byte
 	//go:embed assets/theme_796f75726a6f75726e6579811c9dc5_gen.json
@@ -7022,10 +7036,14 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6e6f746172697573811c9dc5, nil
 	case "nova-lite":
 		return theme_6e6f76612d6c697465811c9dc5, nil
+	case "nrgbarbershop":
+		return theme_6e726762617262657273686f70811c9dc5, nil
 	case "nrgbusiness":
 		return theme_6e7267627573696e657373811c9dc5, nil
 	case "nrgfashion":
 		return theme_6e726766617368696f6e811c9dc5, nil
+	case "nrghospital":
+		return theme_6e7267686f73706974616c811c9dc5, nil
 	case "nrgrestaurant":
 		return theme_6e726772657374617572616e74811c9dc5, nil
 	case "nsc":
@@ -7414,6 +7432,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_726164636c696666652d32811c9dc5, nil
 	case "radial-theme":
 		return theme_72616469616c2d7468656d65811c9dc5, nil
+	case "raiderspirit":
+		return theme_726169646572737069726974811c9dc5, nil
 	case "rainbownews":
 		return theme_7261696e626f776e657773811c9dc5, nil
 	case "raindrops":
@@ -7674,6 +7694,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_73656e7369626c652d7770811c9dc5, nil
 	case "sentient":
 		return theme_73656e7469656e74811c9dc5, nil
+	case "seowp":
+		return theme_73656f7770811c9dc5, nil
 	case "septera":
 		return theme_73657074657261811c9dc5, nil
 	case "setsail":
@@ -8082,6 +8104,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_746865676967811c9dc5, nil
 	case "theissue":
 		return theme_7468656973737565811c9dc5, nil
+	case "themebox":
+		return theme_7468656d65626f78811c9dc5, nil
 	case "themia-lite":
 		return theme_7468656d69612d6c697465811c9dc5, nil
 	case "themify-ultra":
@@ -8386,6 +8410,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_76772d73746f726566726f6e74811c9dc5, nil
 	case "vw-wedding":
 		return theme_76772d77656464696e67811c9dc5, nil
+	case "vw-writer-blog":
+		return theme_76772d7772697465722d626c6f67811c9dc5, nil
 	case "wabi-sabi":
 		return theme_776162692d73616269811c9dc5, nil
 	case "wallstreet":
@@ -8570,6 +8596,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_796f6b6f6f811c9dc5, nil
 	case "yolox":
 		return theme_796f6c6f78811c9dc5, nil
+	case "yootheme":
+		return theme_796f6f7468656d65811c9dc5, nil
 	case "yottis":
 		return theme_796f74746973811c9dc5, nil
 	case "yourjourney":
