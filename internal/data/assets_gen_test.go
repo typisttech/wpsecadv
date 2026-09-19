@@ -12405,6 +12405,7 @@ func plugins() []string {
 		"tier-pricing-table",
 		"tiger-form",
 		"tigris-flexplatform",
+		"tiktok-for-business",
 		"tilda-publishing",
 		"tiled-gallery-carousel-without-jetpack",
 		"timber-library",
