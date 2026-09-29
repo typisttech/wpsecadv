@@ -22,6 +22,9 @@ type Advisory struct {
 	// For example, ">=1.0.0,<2.0.0|>3.0.0,<=3.4.0|=5.0.0".
 	AffectedVersions string `json:"affectedVersions"`
 
+	// PatchedVersions lists releases Wordfence reports as patched.
+	PatchedVersions []string `json:"patchedVersions,omitzero"`
+
 	// Severity is the lowercased CVSS3 severity rating scale.
 	// Possible values: "none", "low", "medium", "high", "critical".
 	Severity string `json:"severity,omitzero"`

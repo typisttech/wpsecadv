@@ -147,17 +147,19 @@ func TestVulnerabilities(t *testing.T) {
 					Title: "Multiple Plugins <= (Various Versions) - Authenticated (Contributor+) Stored DOM-Based Cross-Site Scripting via ThickBox JavaScript Library",
 					Software: []Software{
 						{
-							Type: SoftwareTypePlugin,
-							Name: "Foo Bar",
-							Slug: "foo-bar",
+							Type:            SoftwareTypePlugin,
+							Name:            "Foo Bar",
+							Slug:            "foo-bar",
+							PatchedVersions: []string{},
 							AffectedVersions: map[string]AffectedVersion{
 								"* - 3.5": {FromVersion: "*", FromInclusive: true, ToVersion: "3.5", ToInclusive: true},
 							},
 						},
 						{
-							Type: SoftwareTypeTheme,
-							Name: "baz quux – WPBaz",
-							Slug: "wpbaz",
+							Type:            SoftwareTypeTheme,
+							Name:            "baz quux – WPBaz",
+							Slug:            "wpbaz",
+							PatchedVersions: []string{"4.9.1", "4.9.3"},
 							AffectedVersions: map[string]AffectedVersion{
 								"* - 4.8.9": {FromVersion: "*", FromInclusive: true, ToVersion: "4.8.9", ToInclusive: true},
 								"4.9.2":     {FromVersion: "4.9.2", FromInclusive: true, ToVersion: "4.9.2", ToInclusive: true},

@@ -34,8 +34,9 @@ func TestMakeRecords(t *testing.T) {
 				ID: "abc-123",
 				Software: []vuln.Software{
 					{
-						Type: vuln.SoftwareTypePlugin,
-						Slug: "my-plugin",
+						Type:            vuln.SoftwareTypePlugin,
+						Slug:            "my-plugin",
+						PatchedVersions: []string{"1.2", "1.1", "1.1"},
 						AffectedVersions: map[string]vuln.AffectedVersion{
 							"*-1.0": {FromVersion: "*", FromInclusive: true, ToVersion: "1.0", ToInclusive: true},
 						},
@@ -50,6 +51,7 @@ func TestMakeRecords(t *testing.T) {
 						ID:               "WPSECADV/WF/abc-123/my-plugin",
 						Sources:          []internal.Source{{Name: "Wordfence", ID: "abc-123"}},
 						AffectedVersions: "<=1.0",
+						PatchedVersions:  []string{"1.1", "1.2"},
 					},
 				},
 			},

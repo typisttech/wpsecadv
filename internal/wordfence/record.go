@@ -54,9 +54,13 @@ func makeRecords(logger logger, v vuln.Vulnerability) []internal.Record {
 			}
 
 			var vavs []vuln.AffectedVersion
+			var patchedVersions []string
 			for _, s := range ss {
 				vavs = append(vavs, slices.Collect(maps.Values(s.AffectedVersions))...)
+				patchedVersions = append(patchedVersions, s.PatchedVersions...)
 			}
+			slices.Sort(patchedVersions)
+			patchedVersions = slices.Compact(patchedVersions)
 
 			avs := makeConstraints(warn, vavs)
 			if avs == "" {
@@ -75,6 +79,7 @@ func makeRecords(logger logger, v vuln.Vulnerability) []internal.Record {
 					Link:             l,
 					CVE:              v.CVE,
 					AffectedVersions: avs,
+					PatchedVersions:  patchedVersions,
 					Severity:         sev,
 				},
 			})
