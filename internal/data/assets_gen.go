@@ -4042,6 +4042,8 @@ var (
 	theme_766972656f811c9dc5 []byte
 	//go:embed assets/theme_766972747565811c9dc5_gen.json
 	theme_766972747565811c9dc5 []byte
+	//go:embed assets/theme_7669727475655f7072656d69756d811c9dc5_gen.json
+	theme_7669727475655f7072656d69756d811c9dc5 []byte
 	//go:embed assets/theme_76697374657265642d6c6974746c65811c9dc5_gen.json
 	theme_76697374657265642d6c6974746c65811c9dc5 []byte
 	//go:embed assets/theme_76697375616c2d61727473811c9dc5_gen.json
@@ -8366,6 +8368,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_766972656f811c9dc5, nil
 	case "virtue":
 		return theme_766972747565811c9dc5, nil
+	case "virtue_premium":
+		return theme_7669727475655f7072656d69756d811c9dc5, nil
 	case "vistered-little":
 		return theme_76697374657265642d6c6974746c65811c9dc5, nil
 	case "visual-arts":
