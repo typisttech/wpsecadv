@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   dependabot:
-    uses: typisttech/.github/.github/workflows/dependabot-auto-merge.yml@52cc7747485743e49558048373a12ac4539fbbb8 # v6.1.10
+    uses: typisttech/.github/.github/workflows/dependabot-auto-merge.yml@7d52d83d95443935fa21910a2b227d12946902dc # v6.1.11
     with:
       minor: true
       patch: true
