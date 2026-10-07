@@ -1125,6 +1125,7 @@ func plugins() []string {
 		"augmented-reality",
 		"aumenu",
 		"auphonic-importer",
+		"aurora-heatmap",
 		"auros-core",
 		"auth0",
 		"authentication-and-xmlrpc-log-writer",
