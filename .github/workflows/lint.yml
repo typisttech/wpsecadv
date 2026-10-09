@@ -13,20 +13,27 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref_name }}-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: true
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   actions:
-    uses: typisttech/.github/.github/workflows/lint-actions.yml@d16ec3549bdab47d10e9863e52ac148e5edd348e # v6.2.0
+    permissions:
+      security-events: write
+      contents: read
+      actions: read
+    uses: typisttech/.github/.github/workflows/lint-actions.yml@d16ec3549bdab47d10e9863e52ac148e5edd348e
 
   go:
-    uses: typisttech/.github/.github/workflows/lint-go.yml@d16ec3549bdab47d10e9863e52ac148e5edd348e # v6.2.0
+    permissions:
+      contents: read
+    uses: typisttech/.github/.github/workflows/lint-go.yml@d16ec3549bdab47d10e9863e52ac148e5edd348e
     with:
       golangci-lint: true
       golangci-lint-version-file: .tool-versions
 
   fly:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
