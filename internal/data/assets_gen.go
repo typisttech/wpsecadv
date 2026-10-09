@@ -1726,6 +1726,8 @@ var (
 	theme_67796d2d65787072657373811c9dc5 []byte
 	//go:embed assets/theme_67796d626173655f636c6173736573811c9dc5_gen.json
 	theme_67796d626173655f636c6173736573811c9dc5 []byte
+	//go:embed assets/theme_6861616b656e811c9dc5_gen.json
+	theme_6861616b656e811c9dc5 []byte
 	//go:embed assets/theme_68616c706573811c9dc5_gen.json
 	theme_68616c706573811c9dc5 []byte
 	//go:embed assets/theme_68616c737465696e811c9dc5_gen.json
@@ -3986,6 +3988,8 @@ var (
 	theme_76616e74616765811c9dc5 []byte
 	//go:embed assets/theme_7661706573746572811c9dc5_gen.json
 	theme_7661706573746572811c9dc5 []byte
+	//go:embed assets/theme_766179752d78811c9dc5_gen.json
+	theme_766179752d78811c9dc5 []byte
 	//go:embed assets/theme_766179766f2d70726f6772657373696f6e811c9dc5_gen.json
 	theme_766179766f2d70726f6772657373696f6e811c9dc5 []byte
 	//go:embed assets/theme_76656461811c9dc5_gen.json
@@ -4300,6 +4304,8 @@ var (
 	theme_7a6567656e811c9dc5 []byte
 	//go:embed assets/theme_7a656b61811c9dc5_gen.json
 	theme_7a656b61811c9dc5 []byte
+	//go:embed assets/theme_7a656c6c612d7468656d65811c9dc5_gen.json
+	theme_7a656c6c612d7468656d65811c9dc5 []byte
 	//go:embed assets/theme_7a656e6c697465811c9dc5_gen.json
 	theme_7a656e6c697465811c9dc5 []byte
 	//go:embed assets/theme_7a656e6f6e2d6c697465811c9dc5_gen.json
@@ -6052,6 +6058,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_67796d2d65787072657373811c9dc5, nil
 	case "gymbase_classes":
 		return theme_67796d626173655f636c6173736573811c9dc5, nil
+	case "haaken":
+		return theme_6861616b656e811c9dc5, nil
 	case "halpes":
 		return theme_68616c706573811c9dc5, nil
 	case "halstein":
@@ -8312,6 +8320,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_76616e74616765811c9dc5, nil
 	case "vapester":
 		return theme_7661706573746572811c9dc5, nil
+	case "vayu-x":
+		return theme_766179752d78811c9dc5, nil
 	case "vayvo-progression":
 		return theme_766179766f2d70726f6772657373696f6e811c9dc5, nil
 	case "veda":
@@ -8626,6 +8636,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_7a6567656e811c9dc5, nil
 	case "zeka":
 		return theme_7a656b61811c9dc5, nil
+	case "zella-theme":
+		return theme_7a656c6c612d7468656d65811c9dc5, nil
 	case "zenlite":
 		return theme_7a656e6c697465811c9dc5, nil
 	case "zenon-lite":
