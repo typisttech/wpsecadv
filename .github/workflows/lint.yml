@@ -21,12 +21,12 @@ jobs:
       security-events: write
       contents: read
       actions: read
-    uses: typisttech/.github/.github/workflows/lint-actions.yml@d16ec3549bdab47d10e9863e52ac148e5edd348e
+    uses: typisttech/.github/.github/workflows/lint-actions.yml@68b2ff84a9d7b58ee3943e697f76cd9a3a51f8cc
 
   go:
     permissions:
       contents: read
-    uses: typisttech/.github/.github/workflows/lint-go.yml@d16ec3549bdab47d10e9863e52ac148e5edd348e
+    uses: typisttech/.github/.github/workflows/lint-go.yml@68b2ff84a9d7b58ee3943e697f76cd9a3a51f8cc
     with:
       golangci-lint: true
       golangci-lint-version-file: .tool-versions
