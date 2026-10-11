@@ -1,6 +1,7 @@
 name: Go Proxy
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
