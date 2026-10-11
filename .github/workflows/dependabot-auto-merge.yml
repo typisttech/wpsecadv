@@ -19,5 +19,6 @@ jobs:
     with:
       minor: true
       patch: true
+    secrets:
       client-id: ${{ vars.TASTENDRUCK_CLIENT_ID }}
       private-key: ${{ secrets.TASTENDRUCK_PRIVATE_KEY }}
