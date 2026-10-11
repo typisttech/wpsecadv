@@ -27,7 +27,7 @@ jobs:
         env:
           WORDFENCE_INTELLIGENCE_API_KEY: ${{ secrets.WORDFENCE_INTELLIGENCE_API_KEY }}
 
-      - uses: typisttech/create-auto-merged-pull-request-action@22b38db196d8c7945e1580e3b10a92651fb73b07 # v0.2.4
+      - uses: typisttech/create-auto-merged-pull-request-action@f0a86ebee40d6cbeeb68e29ec01240fe955b5a17 # v0.2.5
         with:
           client-id: ${{ vars.TASTENDRUCK_CLIENT_ID }}
           private-key: ${{ secrets.TASTENDRUCK_PRIVATE_KEY }}
