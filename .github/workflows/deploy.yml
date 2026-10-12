@@ -2,13 +2,23 @@ name: Deploy
 
 on:
   workflow_call:
-    inputs: &inputs
+    inputs:
       tag:
-        description: 'Container image tag to deploy'
-        type: string
-        default: latest
+        description: &tag-description Container image tag to deploy.
+        type: &tag-type string
+        default: &tag-default latest
+    secrets:
+      FLY_API_TOKEN:
+        description: Fly deploy token to use for authentication.
+        required: true
+
   workflow_dispatch:
-    inputs: *inputs
+    inputs:
+      tag:
+        description: *tag-description
+        type: *tag-type
+        default: *tag-default
+        required: true
 
 concurrency:
   group: deploy-${{ github.workflow }}-${{ github.ref_name }}-${{ inputs.tag || 'latest' }}
