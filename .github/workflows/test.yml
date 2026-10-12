@@ -76,7 +76,8 @@ jobs:
       - e2e
     permissions:
       contents: read
-      id-token: write
       packages: write
+      id-token: write
       attestations: write
+      artifact-metadata: write
     uses: $/.github/workflows/publish.yml
