@@ -34,12 +34,13 @@ jobs:
   fly:
     permissions:
       contents: read
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           sparse-checkout: fly.toml
+          sparse-checkout-cone-mode: false
 
       - uses: superfly/flyctl-actions/setup-flyctl@ed8efb33836e8b2096c7fd3ba1c8afe303ebbff1 # 1.6
       - run: flyctl config validate --strict
@@ -52,7 +53,7 @@ jobs:
       - actions
       - go
       - fly
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Assert no required jobs were cancelled or failed
         run: exit 1

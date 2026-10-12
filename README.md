@@ -55,7 +55,7 @@ Found 2 security vulnerability advisories affecting 1 package:
 
 <summary>Command "repo" is not defined.</summary>
 
-The `composer repo` subcommand is added since Composer v2.9.0. 
+The `composer repo` subcommand is added since Composer v2.9.0.
 If you are using an older Composer version, manually **append** it to your `composer.json`:
 
 ```diff
@@ -611,29 +611,29 @@ on:
     branches:
       - main
 
-permissions:
-  # Required for all workflows
-  security-events: write
-  # Required for private repositories
-  actions: read
-  contents: read
+permissions: {}
 
 jobs:
   composer-audit:
-    runs-on: ubuntu-latest
+    permissions:
+      security-events: write # For uploading sarif
+      actions: read # For non-public repositories
+      contents: read # For non-public repositories
+    runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v7
-        with:
-          persist-credentials: false
-          sparse-checkout-cone-mode: false
-          sparse-checkout: |
-            composer.json
-            composer.lock
+      - parallel:
+        - uses: actions/checkout@v7
+          with:
+            persist-credentials: false
+            sparse-checkout: |
+              composer.json
+              composer.lock
+            sparse-checkout-cone-mode: false
 
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.5'
-          coverage: none
+        - uses: shivammathur/setup-php@v2
+          with:
+            php-version: '8.5'
+            coverage: none
 
       - run: composer audit --locked --format json > audit.json
         continue-on-error: true
