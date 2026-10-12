@@ -14,9 +14,12 @@ jobs:
   build-and-push:
     permissions:
       contents: read
-      id-token: write
+      # For docker/build-push-action
       packages: write
+      # For actions/attest
+      id-token: write
       attestations: write
+      artifact-metadata: write
     runs-on: ubuntu-26.04
     steps:
       - run: |
