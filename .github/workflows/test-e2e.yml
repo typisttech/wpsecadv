@@ -9,21 +9,30 @@ on:
   workflow_dispatch:
     inputs: *inputs
 
-permissions:
-  contents: read
+concurrency:
+  group: test-e2e-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref_name }}-${{ github.event.pull_request.number || github.sha }}-${{ inputs.url || 'Local' }}
+  cancel-in-progress: true
+
+permissions: {}
 
 jobs:
   test:
     name: ${{ inputs.url || 'Local' }}
-    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    runs-on: ubuntu-26.04
     steps:
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+        background: true
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: 'go.mod'
-      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+
+      - wait-all:
 
       - run: go test -tags=e2econtainer -count=1 -shuffle=on ./e2e/container/...
         env:

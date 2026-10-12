@@ -3,18 +3,19 @@ name: Update Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: '34 5,17 * * *' # Twice a day
+    - cron: '34 5,17 * * 1-5'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
   cancel-in-progress: true
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   update-data:
-    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -27,7 +28,7 @@ jobs:
         env:
           WORDFENCE_INTELLIGENCE_API_KEY: ${{ secrets.WORDFENCE_INTELLIGENCE_API_KEY }}
 
-      - uses: typisttech/create-auto-merged-pull-request-action@f0a86ebee40d6cbeeb68e29ec01240fe955b5a17 # v0.2.5
+      - uses: typisttech/.github/.github/actions/create-auto-merged-pull-request@94847736fbf18a5052dc7936b1afd3e3f61a04a3 # v8.0.0
         with:
           client-id: ${{ vars.TASTENDRUCK_CLIENT_ID }}
           private-key: ${{ secrets.TASTENDRUCK_PRIVATE_KEY }}
