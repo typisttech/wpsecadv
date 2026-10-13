@@ -299,10 +299,10 @@ Installation failed, reverting ./composer.json and ./composer.lock to their orig
 
 Unfortunately, a WooCommerce add-on compatibility issue forces us to stay with WooCommerce v10.5.0.
 
-To disable security blocking during install:
+To disable all policy blocking during install:
 
 ```sh
-composer require wp-plugin/woocommerce:10.5.0 --no-security-blocking
+composer require wp-plugin/woocommerce:10.5.0 --no-blocking
 // ...
 // Found 2 ignored security vulnerability advisories affecting 1 package.
 // Found 1 security vulnerability advisory affecting 1 package.
@@ -314,7 +314,7 @@ composer require wp-plugin/woocommerce:10.5.0 --no-security-blocking
 <summary>Full console output</summary>
 
 ```console
-$ composer require wp-plugin/woocommerce:10.5.0 --no-security-blocking
+$ composer require wp-plugin/woocommerce:10.5.0 --no-blocking
 ./composer.json has been updated
 Running composer update wp-plugin/woocommerce
 Loading composer repositories with package information
@@ -333,7 +333,7 @@ Run "composer audit" for a full list of advisories.
 
 </details>
 
-The `--no-security-blocking` flag allows installing packages with security advisories but it is one-off.
+The `--no-blocking` flag allows installing packages with policy violations but it is one-off.
 Future `composer update|require` will be blocked.
 
 Once you have it installed, get the CVE IDs via:
@@ -488,9 +488,9 @@ Learn more at:
 > If you are hiring PHP / Ruby / Go developers,
 > contact me at https://typist.tech/contact/
 
-## Disable Security Blocking
+## Disable Policy Blocking
 
-Besides the one-off `--no-security-blocking` flag, you can persistently disable security blocking by:
+Besides the one-off `--no-blocking` flag, you can persistently disable all policy blocking by:
 
 ```sh
 composer config policy.advisories.block false
