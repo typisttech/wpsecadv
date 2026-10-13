@@ -1,9 +1,8 @@
-exec composer config --quiet repositories.wpsecadv ${REPO}
+exec composer repo --quiet add wpsecadv composer ${WPSECADV_SERVER_URL}
 exec composer update --quiet
 exec composer audit --format=json
 
-[composer:2.10] cmp stdout stdout.golden
-[!composer:2.10] cmp stdout stdout-2.9.golden
+cmp stdout stdout.golden
 
 -- composer.json --
 {
@@ -71,11 +70,6 @@ exec composer audit --format=json
     "advisories": [],
     "abandoned": [],
     "filter": []
-}
--- stdout-2.9.golden --
-{
-    "advisories": [],
-    "abandoned": []
 }
 -- dummy.txt --
 I am dummy
