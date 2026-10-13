@@ -332,7 +332,12 @@ func (s *store) genGoFiles() error {
 		PluginAssets []asset
 		ThemeAssets  []asset
 	}{
-		Initiator: fmt.Sprintf("go generate in %s/%s:%s", os.Getenv("GOPACKAGE"), os.Getenv("GOFILE"), os.Getenv("GOLINE")),
+		Initiator: fmt.Sprintf(
+			"go generate in %s/%s:%s",
+			os.Getenv("GOPACKAGE"),
+			os.Getenv("GOFILE"),
+			os.Getenv("GOLINE"),
+		),
 		GoPackage: os.Getenv("GOPACKAGE"),
 
 		AssetsDir: filepath.Base(s.assetsRoot.Name()),

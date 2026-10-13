@@ -97,7 +97,11 @@ func TestCoreImplementations_Format(t *testing.T) {
 			}
 
 			if !pattern.MatchString(parts[1]) {
-				t.Errorf("CoreImplementations() contains malformed project name %q, want %s", parts[1], pattern.String())
+				t.Errorf(
+					"CoreImplementations() contains malformed project name %q, want %s",
+					parts[1],
+					pattern.String(),
+				)
 			}
 		})
 	}

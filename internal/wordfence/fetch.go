@@ -13,7 +13,13 @@ type logger interface {
 	Warn(msg string, args ...any)
 }
 
-func Fetch(ctx context.Context, logger logger, client *http.Client, url string, token vuln.Token) (<-chan internal.Record, <-chan error) {
+func Fetch(
+	ctx context.Context,
+	logger logger,
+	client *http.Client,
+	url string,
+	token vuln.Token,
+) (<-chan internal.Record, <-chan error) {
 	logger.Info("Fetching Wordfence vulnerability data feed", "feed", url, "token", token)
 
 	errc := make(chan error, 1)

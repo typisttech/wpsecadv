@@ -26,7 +26,7 @@ var ErrMalformedJSON = errors.New("malformed JSON")
 //		}
 //		// Use v.
 //	}
-func Vulnerabilities(r io.Reader) func(yield func(Vulnerability, error) bool) { //nolint:cyclop
+func Vulnerabilities(r io.Reader) func(yield func(Vulnerability, error) bool) { //nolint:cyclop,gocyclo
 	return func(yield func(Vulnerability, error) bool) {
 		dec := jsontext.NewDecoder(r)
 
@@ -77,7 +77,10 @@ func Vulnerabilities(r io.Reader) func(yield func(Vulnerability, error) bool) { 
 		}
 
 		if err == nil {
-			yield(Vulnerability{}, fmt.Errorf("expected nothing after JSON object trailing `}`, got %v: %w", t, ErrMalformedJSON))
+			yield(
+				Vulnerability{},
+				fmt.Errorf("expected nothing after JSON object trailing `}`, got %v: %w", t, ErrMalformedJSON),
+			)
 
 			return
 		}

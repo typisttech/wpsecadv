@@ -48,7 +48,7 @@ func Get(ctx context.Context, client *http.Client, url string, token Token) (io.
 	return resp.Body, nil
 }
 
-type Token string
+type Token string //nolint:recvcheck
 
 func (t Token) String() string {
 	if t == "" {

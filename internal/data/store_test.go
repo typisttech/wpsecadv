@@ -166,7 +166,12 @@ func TestStore_MarshalAdvisoriesFor_NotExist(t *testing.T) {
 				t.Fatalf("MarshalAdvisoriesFor(%q, %q) unexpected success", tt.vendor, tt.slug)
 			}
 			if !errors.Is(err, errPackageNotFound) {
-				t.Fatalf("MarshalAdvisoriesFor(%q, %q) error = %[3]T %[3]q, want errPackageNotFound", tt.vendor, tt.slug, err)
+				t.Fatalf(
+					"MarshalAdvisoriesFor(%q, %q) error = %[3]T %[3]q, want errPackageNotFound",
+					tt.vendor,
+					tt.slug,
+					err,
+				)
 			}
 		})
 	}
