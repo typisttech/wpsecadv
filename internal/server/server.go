@@ -5,13 +5,11 @@ import (
 	"time"
 )
 
-const defaultCacheControl = "max-age=86400"
-
 func New(store AdvisoriesMarshaler, modTime time.Time) http.Handler {
 	mux := http.NewServeMux()
 	addRoutes(mux, store)
 	var handler http.Handler = mux
-	handler = withConditionalGet(modTime, handler)
+	handler = withLastModified(modTime, handler)
 	handler = withCacheControl(defaultCacheControl, handler)
 
 	final := http.NewServeMux()

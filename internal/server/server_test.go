@@ -22,13 +22,13 @@ func (s *stubStore) MarshalAdvisoriesFor(vendor, slug string) ([]byte, error) {
 	return nil, errors.New("not found")
 }
 
-func newTestServer() http.Handler {
+func newTestServer() (http.Handler, time.Time) {
 	return newTestServerWithData(nil)
 }
 
-func newTestServerWithData(data map[string][]byte) http.Handler {
+func newTestServerWithData(data map[string][]byte) (http.Handler, time.Time) {
 	store := &stubStore{data: data}
 	modTime := time.Date(2000, 1, 1, 0, 0, 0, 0, time.UTC)
 
-	return New(store, modTime)
+	return New(store, modTime), modTime
 }

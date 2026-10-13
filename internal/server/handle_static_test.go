@@ -32,7 +32,7 @@ func TestStatic(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			srv := newTestServer()
+			srv, modTime := newTestServer()
 			req := httptest.NewRequest(http.MethodGet, tt.path, http.NoBody)
 			rec := httptest.NewRecorder()
 
@@ -51,12 +51,7 @@ func TestStatic(t *testing.T) {
 			}
 
 			assertCacheControl(t, rec, defaultCacheControl)
-		})
-
-		t.Run(tt.name+"/conditional_get", func(t *testing.T) {
-			t.Parallel()
-
-			assertConditionalGet(t, tt.path, nil)
+			assertLastModified(t, rec, modTime)
 		})
 	}
 }

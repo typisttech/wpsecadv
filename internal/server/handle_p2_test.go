@@ -63,7 +63,7 @@ func TestP2(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			srv := newTestServerWithData(tt.data)
+			srv, modTime := newTestServerWithData(tt.data)
 			req := httptest.NewRequest(http.MethodGet, tt.path, http.NoBody)
 			rec := httptest.NewRecorder()
 
@@ -84,18 +84,7 @@ func TestP2(t *testing.T) {
 			}
 
 			assertCacheControl(t, rec, defaultCacheControl)
-		})
-
-		t.Run(tt.name+"/conditional_get", func(t *testing.T) {
-			t.Parallel()
-
-			store := &stubStore{data: tt.data}
-
-			if tt.wantCode == http.StatusOK {
-				assertConditionalGet(t, tt.path, store)
-			} else {
-				assertNoConditionalGet(t, tt.path, store)
-			}
+			assertLastModified(t, rec, modTime)
 		})
 	}
 }
