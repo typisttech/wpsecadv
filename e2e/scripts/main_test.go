@@ -33,7 +33,7 @@ func TestScripts(t *testing.T) {
 			e.Vars = append(e.Vars,
 				"COMPOSER_NO_INTERACTION=true",
 				"COMPOSER_NO_AUDIT=true",
-				"COMPOSER_NO_SECURITY_BLOCKING=true",
+				"COMPOSER_NO_BLOCKING=true",
 				"COMPOSER_ROOT_VERSION=0.0.1",
 				"WPSECADV_SERVER_URL="+srvURL,
 			)
