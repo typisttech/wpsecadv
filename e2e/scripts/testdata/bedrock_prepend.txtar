@@ -2,7 +2,7 @@ exec composer create-project --quiet --no-install roots/bedrock bedrock
 cd bedrock
 
 exec composer config --quiet secure-http false
-[composer:2.9] exec composer repo add wpsecadv ${REPO}
+[composer:2.9] exec composer repo add wpsecadv composer ${REPO}
 [!composer:2.9] exec composer config --quiet repositories.wpsecadv ${REPO}
 
 exec composer require --quiet --no-install wp-plugin/woocommerce:10.0.0
