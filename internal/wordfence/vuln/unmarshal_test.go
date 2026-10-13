@@ -159,17 +159,29 @@ func TestVulnerabilities(t *testing.T) {
 							Name: "baz quux – WPBaz",
 							Slug: "wpbaz",
 							AffectedVersions: map[string]AffectedVersion{
-								"* - 4.8.9": {FromVersion: "*", FromInclusive: true, ToVersion: "4.8.9", ToInclusive: true},
-								"4.9.2":     {FromVersion: "4.9.2", FromInclusive: true, ToVersion: "4.9.2", ToInclusive: true},
+								"* - 4.8.9": {
+									FromVersion:   "*",
+									FromInclusive: true,
+									ToVersion:     "4.8.9",
+									ToInclusive:   true,
+								},
+								"4.9.2": {
+									FromVersion:   "4.9.2",
+									FromInclusive: true,
+									ToVersion:     "4.9.2",
+									ToInclusive:   true,
+								},
 							},
 						},
 					},
-					References: []string{"https://www.example.com/threat-intel/vulnerabilities/id/59ea7390-3587-4fce-b267-bf525dbe3e27?source=api-prod"},
-					CVSS:       CVSS{Rating: CVSSRatingMedium},
-					CVE:        "CVE-2025-2537",
-					CVELink:    "https://www.example.org/CVERecord?id=CVE-2025-2537",
-					Published:  "2025-07-03 00:20:54",
-					Updated:    "2025-08-19 05:27:14",
+					References: []string{
+						"https://www.example.com/threat-intel/vulnerabilities/id/59ea7390-3587-4fce-b267-bf525dbe3e27?source=api-prod",
+					},
+					CVSS:      CVSS{Rating: CVSSRatingMedium},
+					CVE:       "CVE-2025-2537",
+					CVELink:   "https://www.example.org/CVERecord?id=CVE-2025-2537",
+					Published: "2025-07-03 00:20:54",
+					Updated:   "2025-08-19 05:27:14",
 					Copyrights: Copyrights{
 						"ACME": {
 							Notice:     "Copyright 2012-2025 ACME Inc.",
@@ -358,9 +370,17 @@ func TestCopyrights_UnmarshalJSON(t *testing.T) {
 				}
 			}`,
 			wantValues: Copyrights{
-				"ACME":     {Notice: "Copyright 2012-2025 ACME Inc.", License: "some license", LicenseURL: "https://www.example.com/terms-and-conditions/"},
-				"umbrella": {Notice: "Copyright 1999-2025 The Umbrella Corporation", License: "CVE Usage: Umbrella license", LicenseURL: "https://www.example.org/Legal/TermsOfUse"},
-				"zebra":    {Notice: "Copyright Z", License: "license Z", LicenseURL: "https://z.example.com"},
+				"ACME": {
+					Notice:     "Copyright 2012-2025 ACME Inc.",
+					License:    "some license",
+					LicenseURL: "https://www.example.com/terms-and-conditions/",
+				},
+				"umbrella": {
+					Notice:     "Copyright 1999-2025 The Umbrella Corporation",
+					License:    "CVE Usage: Umbrella license",
+					LicenseURL: "https://www.example.org/Legal/TermsOfUse",
+				},
+				"zebra": {Notice: "Copyright Z", License: "license Z", LicenseURL: "https://z.example.com"},
 			},
 		},
 		{

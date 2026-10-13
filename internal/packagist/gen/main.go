@@ -110,7 +110,12 @@ func main() {
 		GoPackage string
 		Vendors   []datum
 	}{
-		Initiator: fmt.Sprintf("go generate in %s/%s:%s", os.Getenv("GOPACKAGE"), os.Getenv("GOFILE"), os.Getenv("GOLINE")),
+		Initiator: fmt.Sprintf(
+			"go generate in %s/%s:%s",
+			os.Getenv("GOPACKAGE"),
+			os.Getenv("GOFILE"),
+			os.Getenv("GOLINE"),
+		),
 		GoPackage: os.Getenv("GOPACKAGE"),
 		Vendors:   vData,
 	}

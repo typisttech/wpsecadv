@@ -114,7 +114,7 @@ func makeLink(refs []string, cveLink string) string {
 	return cveLink
 }
 
-func makeConstraints(warn func(string, ...any), avs []vuln.AffectedVersion) string { //nolint:cyclop
+func makeConstraints(warn func(string, ...any), avs []vuln.AffectedVersion) string { //nolint:cyclop,gocyclo
 	cs := make([]string, 0, len(avs))
 
 	var c strings.Builder

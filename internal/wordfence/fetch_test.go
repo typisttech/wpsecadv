@@ -115,7 +115,7 @@ func TestFetch(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 				w.Write([]byte(tt.body))
 			}))
 			t.Cleanup(srv.Close)
@@ -141,7 +141,7 @@ func TestFetch(t *testing.T) {
 func TestFetch_Non200Response(t *testing.T) {
 	t.Parallel()
 
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 	}))
 	t.Cleanup(srv.Close)
@@ -157,7 +157,7 @@ func TestFetch_Non200Response(t *testing.T) {
 func TestFetch_ContextCancelled_BeforeFetch(t *testing.T) {
 	t.Parallel()
 
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.Write([]byte(`{"abc-123": {"id": "abc-123"}}`))
 	}))
@@ -184,7 +184,7 @@ func TestFetch_ContextCancelled_MidStream(t *testing.T) {
 		"id-c": {"id": "id-c", "software": [{"type": "plugin", "slug": "plugin-c", "affected_versions": {"*-3.0": {"from_version": "*", "from_inclusive": true, "to_version": "3.0", "to_inclusive": true}}}]}
 	}`
 
-	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.Write([]byte(body))
 	}))

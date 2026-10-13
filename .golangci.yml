@@ -4,6 +4,8 @@ run:
   build-tags:
     - e2econtainer
     - e2escripts
+  modules-download-mode: readonly
+  tests: true
 
 linters:
   enable:
@@ -18,10 +20,12 @@ linters:
     - asciicheck
     - bidichk
     - bodyclose
+    # - canonicalheader # Wait for https://github.com/golangci/golangci-lint/issues/6829
     - containedctx
     - contextcheck
     - copyloopvar
     - cyclop
+    - decorder
     - depguard
     - dogsled
     - dupl
@@ -38,17 +42,57 @@ linters:
     - gocheckcompilerdirectives
     - gochecknoglobals
     - gochecknoinits
+    - gochecksumtype
+    - gocognit
+    - goconst
     - gocritic
+    - gocyclo
     - godoclint
     - godot
+    - gomoddirectives
+    - goprintffuncname
     - gosec
+    - gosmopolitan
+    - grouper
+    - iface
+    - importas
+    - inamedparam
+    - ineffassign
+    - interfacebloat
+    - intrange
+    - iotamixing
+    - loggercheck
+    - makezero
+    - mirror
     - misspell
+    - modernize
+    - musttag
+    - nestif
+    - nilerr
+    - nilnesserr
+    - nilnil
+    # - noctx # TODO!
     - nolintlint
     - nonamedreturns
+    - nosprintfhostport
+    - perfsprint
+    - predeclared
+    - promlinter
+    - reassign
+    - recvcheck
     - revive
     - sloglint
+    - spancheck
+    - tagalign
+    - testableexamples
+    - thelper
+    - unconvert
     - unparam
+    - unused
     - usestdlibvars
+    - usetesting
+    - wastedassign
+    - whitespace
     - wrapcheck
 
   settings:
@@ -104,6 +148,9 @@ linters:
         - httpNoBody
         - preferStringWriter
 
+    gocyclo:
+      min-complexity: 10
+
     godoclint:
       enable:
         - max-len
@@ -118,12 +165,28 @@ linters:
       excludes:
         - G104 # Handled by errcheck
 
+    iface:
+      enable:
+        - identical
+        - unused
+        - opaque
+        - unusedmethod
+
     nolintlint:
       require-specific: true
 
     revive:
+      enable-default-rules: true
       rules:
+        - name: context-as-argument
+          disabled: false
+          arguments:
+            - allow-types-before: "*testing.T"
+
         - name: exported
+          disabled: true
+
+        - name: package-comments
           disabled: true
 
     wrapcheck:
@@ -135,6 +198,10 @@ linters:
     generated: disable
     warn-unused: true
     rules:
+      - path: _test\.go
+        linters:
+          - goconst
+
       - source: "^\\s*defer\\s+"
         linters:
           - errcheck
@@ -150,6 +217,7 @@ linters:
       - path: (main|store|_gen)\.go
         linters:
           - cyclop
+          - gocyclo
 
       - path: internal/packagist/core_gen.go
         text: singleCaseSwitch
@@ -174,6 +242,7 @@ formatters:
     - gofmt
     - gofumpt
     - goimports
+    - golines
 
   settings:
     gofumpt:
@@ -181,3 +250,5 @@ formatters:
         group-params: true
         clothe-returns: true
         balance-calls: true
+    golines:
+      max-len: 120

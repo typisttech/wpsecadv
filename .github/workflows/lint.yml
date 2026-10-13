@@ -25,8 +25,10 @@ jobs:
 
   go:
     permissions:
+      security-events: write
       contents: read
-    uses: typisttech/.github/.github/workflows/lint-go.yml@94847736fbf18a5052dc7936b1afd3e3f61a04a3 # v8.0.0
+      actions: read
+    uses: typisttech/.github/.github/workflows/lint-go.yml@ba4e7de660323116418d8f16ee100399c51773e9 # v9.0.0
     with:
       golangci-lint: true
       golangci-lint-version-file: .tool-versions

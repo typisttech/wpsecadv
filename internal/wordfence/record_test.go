@@ -281,7 +281,12 @@ func TestMakeRecords(t *testing.T) {
 						Slug: "my-plugin",
 						AffectedVersions: map[string]vuln.AffectedVersion{
 							"*-1.0": {FromVersion: "*", FromInclusive: true, ToVersion: "1.0", ToInclusive: true},
-							"bad":   {FromVersion: "not-valid", FromInclusive: true, ToVersion: "also-bad", ToInclusive: true},
+							"bad": {
+								FromVersion:   "not-valid",
+								FromInclusive: true,
+								ToVersion:     "also-bad",
+								ToInclusive:   true,
+							},
 						},
 					},
 					{
@@ -355,7 +360,12 @@ func TestMakeRecords(t *testing.T) {
 						Type: vuln.SoftwareTypePlugin,
 						Slug: "my-plugin",
 						AffectedVersions: map[string]vuln.AffectedVersion{
-							"bad": {FromVersion: "not-valid", FromInclusive: true, ToVersion: "also-bad", ToInclusive: true},
+							"bad": {
+								FromVersion:   "not-valid",
+								FromInclusive: true,
+								ToVersion:     "also-bad",
+								ToInclusive:   true,
+							},
 						},
 					},
 				},
@@ -381,14 +391,24 @@ func TestMakeRecords(t *testing.T) {
 						Type: vuln.SoftwareTypePlugin,
 						Slug: "my-plugin",
 						AffectedVersions: map[string]vuln.AffectedVersion{
-							"bad": {FromVersion: "not-valid", FromInclusive: true, ToVersion: "also-bad", ToInclusive: true},
+							"bad": {
+								FromVersion:   "not-valid",
+								FromInclusive: true,
+								ToVersion:     "also-bad",
+								ToInclusive:   true,
+							},
 						},
 					},
 					{
 						Type: vuln.SoftwareTypePlugin,
 						Slug: "my-plugin",
 						AffectedVersions: map[string]vuln.AffectedVersion{
-							"also-bad": {FromVersion: "not-valid", FromInclusive: true, ToVersion: "also-bad", ToInclusive: true},
+							"also-bad": {
+								FromVersion:   "not-valid",
+								FromInclusive: true,
+								ToVersion:     "also-bad",
+								ToInclusive:   true,
+							},
 						},
 					},
 				},
@@ -479,7 +499,12 @@ func TestMakeRecords(t *testing.T) {
 						Type: vuln.SoftwareTypePlugin,
 						Slug: "bad-plugin",
 						AffectedVersions: map[string]vuln.AffectedVersion{
-							"bad": {FromVersion: "not-valid", FromInclusive: true, ToVersion: "also-bad", ToInclusive: true},
+							"bad": {
+								FromVersion:   "not-valid",
+								FromInclusive: true,
+								ToVersion:     "also-bad",
+								ToInclusive:   true,
+							},
 						},
 					},
 				},
@@ -980,7 +1005,9 @@ func TestMakeConstraints(t *testing.T) {
 		},
 		{
 			name: "exact_version_uses_equals_prefix",
-			avs:  []vuln.AffectedVersion{{FromVersion: "1.0.0", FromInclusive: true, ToVersion: "1.0.0", ToInclusive: true}},
+			avs: []vuln.AffectedVersion{
+				{FromVersion: "1.0.0", FromInclusive: true, ToVersion: "1.0.0", ToInclusive: true},
+			},
 			want: "=1.0.0",
 		},
 		{
@@ -1005,12 +1032,16 @@ func TestMakeConstraints(t *testing.T) {
 		},
 		{
 			name: "range_inclusive_both_ends",
-			avs:  []vuln.AffectedVersion{{FromVersion: "1.0.3", FromInclusive: true, ToVersion: "2.0", ToInclusive: true}},
+			avs: []vuln.AffectedVersion{
+				{FromVersion: "1.0.3", FromInclusive: true, ToVersion: "2.0", ToInclusive: true},
+			},
 			want: ">=1.0.3,<=2.0",
 		},
 		{
 			name: "range_exclusive_both_ends",
-			avs:  []vuln.AffectedVersion{{FromVersion: "1.0", FromInclusive: false, ToVersion: "2.0.3", ToInclusive: false}},
+			avs: []vuln.AffectedVersion{
+				{FromVersion: "1.0", FromInclusive: false, ToVersion: "2.0.3", ToInclusive: false},
+			},
 			want: ">1.0,<2.0.3",
 		},
 		{
@@ -1030,12 +1061,16 @@ func TestMakeConstraints(t *testing.T) {
 		},
 		{
 			name: "invalid_from_version_skipped",
-			avs:  []vuln.AffectedVersion{{FromVersion: "not-a-version", FromInclusive: true, ToVersion: "2.0", ToInclusive: true}},
+			avs: []vuln.AffectedVersion{
+				{FromVersion: "not-a-version", FromInclusive: true, ToVersion: "2.0", ToInclusive: true},
+			},
 			want: "",
 		},
 		{
 			name: "invalid_to_version_skipped",
-			avs:  []vuln.AffectedVersion{{FromVersion: "1.0", FromInclusive: true, ToVersion: "not-a-version", ToInclusive: true}},
+			avs: []vuln.AffectedVersion{
+				{FromVersion: "1.0", FromInclusive: true, ToVersion: "not-a-version", ToInclusive: true},
+			},
 			want: "",
 		},
 	}
@@ -1060,18 +1095,24 @@ func TestMakeConstraints_Warn(t *testing.T) {
 		wantWarns int
 	}{
 		{
-			name:      "invalid_from_version_triggers_warn",
-			avs:       []vuln.AffectedVersion{{FromVersion: "not-a-version", FromInclusive: true, ToVersion: "2.0.0", ToInclusive: true}},
+			name: "invalid_from_version_triggers_warn",
+			avs: []vuln.AffectedVersion{
+				{FromVersion: "not-a-version", FromInclusive: true, ToVersion: "2.0.0", ToInclusive: true},
+			},
 			wantWarns: 1,
 		},
 		{
-			name:      "invalid_to_version_triggers_warn",
-			avs:       []vuln.AffectedVersion{{FromVersion: "1.0.0", FromInclusive: true, ToVersion: "not-a-version", ToInclusive: true}},
+			name: "invalid_to_version_triggers_warn",
+			avs: []vuln.AffectedVersion{
+				{FromVersion: "1.0.0", FromInclusive: true, ToVersion: "not-a-version", ToInclusive: true},
+			},
 			wantWarns: 1,
 		},
 		{
-			name:      "valid_versions_do_not_trigger_warn",
-			avs:       []vuln.AffectedVersion{{FromVersion: "1.0.0", FromInclusive: true, ToVersion: "2.0.0", ToInclusive: true}},
+			name: "valid_versions_do_not_trigger_warn",
+			avs: []vuln.AffectedVersion{
+				{FromVersion: "1.0.0", FromInclusive: true, ToVersion: "2.0.0", ToInclusive: true},
+			},
 			wantWarns: 0,
 		},
 		{
