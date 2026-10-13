@@ -2,9 +2,9 @@ exec composer config --quiet repositories.wpsecadv ${REPO}
 exec composer update --quiet
 ! exec composer audit --format=json
 stdout CVE-2017-14990
-stdout CVE-2022-3590
-stdout CVE-2025-58246
-stdout CVE-2025-58674
+stdout CVE-2026-66666
+stdout 2822114a-ffc2-43dd-bbf1-e4504aababfb
+stdout 866f5121-81be-409e-b6d5-81b72bfb5539
 
 -- composer.json --
 {
@@ -15,7 +15,7 @@ stdout CVE-2025-58674
             "type": "package",
             "package": {
                 "name": "roots/wordpress-full",
-                "version": "6.8.2",
+                "version": "7.0.1",
                 "dist": { "type": "file", "url": "./dummy.txt" }
             }
         },
