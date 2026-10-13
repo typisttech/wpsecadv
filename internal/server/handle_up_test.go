@@ -16,7 +16,7 @@ func TestUpRoute(t *testing.T) {
 		dst := time.Date(2029, 12, 13, 14, 15, 16, 17, time.UTC)
 		time.Sleep(time.Until(dst))
 
-		srv := newTestServer()
+		srv, _ := newTestServer()
 		req := httptest.NewRequest(http.MethodGet, "/up", http.NoBody)
 		rec := httptest.NewRecorder()
 
@@ -24,12 +24,6 @@ func TestUpRoute(t *testing.T) {
 
 		if rec.Code != http.StatusOK {
 			t.Fatalf("status = %d, want %d", rec.Code, http.StatusOK)
-		}
-
-		gotCC := rec.Header().Get("Cache-Control")
-		wantCC := "no-store"
-		if gotCC != wantCC {
-			t.Errorf("Cache-Control header = %q, want %q", gotCC, wantCC)
 		}
 
 		gotCT := rec.Header().Get("Content-Type")
@@ -62,16 +56,9 @@ func TestUpRoute(t *testing.T) {
 		}
 
 		assertCacheControl(t, rec, "no-store")
-	})
-}
 
-func TestUpRoute_NoConditionalGet(t *testing.T) {
-	t.Parallel()
-
-	synctest.Test(t, func(t *testing.T) {
-		dst := time.Date(2029, 12, 13, 14, 15, 16, 17, time.UTC)
-		time.Sleep(time.Until(dst))
-
-		assertNoConditionalGet(t, "/up", nil)
+		if gotLM := rec.Header().Get("Last-Modified"); gotLM != "" {
+			t.Fatalf("Last-Modified header = %q, want empty", gotLM)
+		}
 	})
 }
