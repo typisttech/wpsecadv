@@ -13,7 +13,7 @@ updates:
     schedule:
       interval: daily
     groups:
-      docker-images:
+      docker-dependencies:
         group-by: dependency-name
 
   - package-ecosystem: github-actions
@@ -25,6 +25,5 @@ updates:
       exclude:
         - "typisttech/*"
     groups:
-      typisttech:
-        patterns:
-          - "typisttech/*"
+      github-actions-dependencies:
+        group-by: dependency-name
