@@ -23,10 +23,13 @@ updates:
     cooldown:
       default-days: 3
       exclude:
-        - "typisttech/*"
+        - typisttech/*
     groups:
-      typisttech-resuable:
+      typisttech-dot-github:
         patterns:
-          - "typisttech/.github/*"
+          - typisttech/.github/**/*
       github-actions-dependencies:
         group-by: dependency-name
+        exclude-patterns:
+          - typisttech/.github/**/*
+
