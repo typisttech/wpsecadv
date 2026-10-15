@@ -15,6 +15,7 @@ updates:
     groups:
       docker-dependencies:
         group-by: dependency-name
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
