@@ -5757,6 +5757,7 @@ func plugins() []string {
 		"goqsmile",
 		"goracash",
 		"gosign-posts-slider-block",
+		"gosmtp-pro",
 		"gostats-for-wordpress",
 		"gotcha-gesture-based-captcha",
 		"gotham-block-extra-light",
