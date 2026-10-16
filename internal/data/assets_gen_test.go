@@ -14161,6 +14161,7 @@ func plugins() []string {
 		"woocommerce-email-test",
 		"woocommerce-es",
 		"woocommerce-eu-vat-assistant",
+		"woocommerce-eu-vat-compliance",
 		"woocommerce-exporter",
 		"woocommerce-extra-charges-to-payment-gateways",
 		"woocommerce-file-approval",
