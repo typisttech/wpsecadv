@@ -16161,6 +16161,7 @@ func plugins() []string {
 		"xserver-migrator",
 		"xserver-typesquare-webfonts",
 		"xshare",
+		"xspeed",
 		"xt-facebook-events",
 		"xt-woo-ajax-add-to-cart",
 		"xt-woo-points-rewards",
