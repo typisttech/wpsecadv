@@ -142,7 +142,6 @@ jobs:
       - build-and-push
     permissions:
       contents: read
-    cache-mode: none
     uses: $/.github/workflows/deploy.yml
     with:
       tag: latest
