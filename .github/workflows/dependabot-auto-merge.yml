@@ -11,11 +11,14 @@ concurrency:
 
 permissions: {}
 
+cache-mode: none
+
 jobs:
   dependabot:
     permissions:
       contents: read
       pull-requests: read
+    cache-mode: none
     uses: typisttech/.github/.github/workflows/dependabot-auto-merge.yml@51e7a334c027d04864092d8b5469d1ccc5dcfcb6 # v9.0.1
     with:
       minor: true

@@ -51,6 +51,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    cache-mode: none
     runs-on: ubuntu-slim
     steps:
       - parallel:
@@ -82,6 +83,7 @@ jobs:
       id-token: write
       attestations: write
       artifact-metadata: write
+    cache-mode: none
     runs-on: ubuntu-26.04
     steps:
       - run: |
@@ -108,7 +110,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ github.token }}
         background: true
 
       - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
@@ -140,6 +142,7 @@ jobs:
       - build-and-push
     permissions:
       contents: read
+    cache-mode: none
     uses: $/.github/workflows/deploy.yml
     with:
       tag: latest
