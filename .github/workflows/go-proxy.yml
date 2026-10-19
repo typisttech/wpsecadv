@@ -10,6 +10,9 @@ concurrency:
 
 permissions: {}
 
+cache-mode: none
+
 jobs:
   go:
+    cache-mode: none
     uses: typisttech/.github/.github/workflows/go-proxy.yml@51e7a334c027d04864092d8b5469d1ccc5dcfcb6 # v9.0.1

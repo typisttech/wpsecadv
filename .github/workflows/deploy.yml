@@ -29,6 +29,7 @@ permissions: {}
 jobs:
   fly:
     environment: production-fly
+    cache-mode: none
     runs-on: ubuntu-slim
     steps:
       - run: |
