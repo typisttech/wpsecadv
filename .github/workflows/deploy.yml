@@ -34,10 +34,10 @@ jobs:
     cache-mode: none
     runs-on: ubuntu-slim
     steps:
-      - run: |
+      - id: verify
+        run: |
           digest=$(gh attestation verify --format json  --jq "${JQ}" --repo "${REPO}" "${IMAGE}")
           echo "digest=${digest}" >> "${GITHUB_OUTPUT}"
-        id: verify
         env:
           IMAGE: oci://ghcr.io/${{ github.repository }}:${{ inputs.tag || 'latest' }}
           REPO: ${{ github.repository }}
