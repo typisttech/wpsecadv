@@ -49,8 +49,8 @@ jobs:
     needs:
       - test
     permissions:
-      contents: read
       id-token: write
+      contents: read
     cache-mode: none
     runs-on: ubuntu-slim
     steps:
@@ -142,6 +142,7 @@ jobs:
       - build-and-push
     permissions:
       contents: read
+      packages: read
     uses: $/.github/workflows/deploy.yml
     with:
       tag: latest
