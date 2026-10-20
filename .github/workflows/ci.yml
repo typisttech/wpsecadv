@@ -20,6 +20,8 @@ jobs:
     permissions:
       contents: read
     runs-on: ubuntu-26.04
+    outputs:
+      coverage-artifact-id: ${{ steps.upload-coverage.outputs.artifact-id }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -30,20 +32,12 @@ jobs:
 
       - run: go test -count=1 -race -shuffle=on -coverprofile=coverage.out -covermode=atomic ./...
 
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+      - id: upload-coverage
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: coverage
           path: coverage.out
           if-no-files-found: error
-
-  e2e:
-    needs:
-      - test
-    permissions:
-      contents: read
-    uses: $/.github/workflows/test-e2e.yml
-    with:
-      url: '' # Leave blank to boot a local server for testing
 
   codecov:
     needs:
@@ -70,6 +64,13 @@ jobs:
           disable_search: true
           files: coverage.out
 
+  e2e:
+    permissions:
+      contents: read
+    uses: $/.github/workflows/test-e2e.yml
+    with:
+      url: '' # Leave blank to boot a local server for testing
+
   build-and-push:
     if: github.event_name == 'push' && github.ref_name == 'main'
     needs:
@@ -86,17 +87,17 @@ jobs:
     cache-mode: none
     runs-on: ubuntu-26.04
     steps:
-      - run: |
+      - id: mod-time
+        run: |
           t=$(gh api --jq .commit.committer.date "${ENDPOINT}")
           echo "mod-time=${t}" >> "${GITHUB_OUTPUT}"
-        id: mod-time
         env:
           ENDPOINT: /repos/${{ github.repository }}/commits/${{ github.sha }}
           GH_TOKEN: ${{ github.token }}
         background: true
 
-      - uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
-        id: meta
+      - id: meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
@@ -118,8 +119,8 @@ jobs:
 
       - wait-all:
 
-      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
-        id: build-and-push
+      - id: build-and-push
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           push: true
           platforms: linux/amd64,linux/arm64
