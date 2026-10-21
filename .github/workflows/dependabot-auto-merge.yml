@@ -19,7 +19,7 @@ jobs:
       contents: read
       pull-requests: read
     cache-mode: none
-    uses: typisttech/.github/.github/workflows/dependabot-auto-merge.yml@35e5494fea692807fa0060dce74b5ed55cf5fd3a # v9.1.1
+    uses: typisttech/.github/.github/workflows/dependabot-auto-merge.yml@e8fb21eeafb5416e1d47d71d5ac656b61e524af1 # v9.3.0
     with:
       minor: true
       patch: true
