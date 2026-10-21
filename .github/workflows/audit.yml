@@ -23,6 +23,6 @@ jobs:
       security-events: write
       contents: read
       actions: read
-    uses: typisttech/.github/.github/workflows/audit-go.yml@c8e3ce97517cd2b2a02c3e3c1452ec19bf703175 # v9.2.0
+    uses: typisttech/.github/.github/workflows/audit-go.yml@e8fb21eeafb5416e1d47d71d5ac656b61e524af1 # v9.3.0
     with:
       tags: e2econtainer,e2escripts
