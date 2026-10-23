@@ -1332,6 +1332,8 @@ var (
 	theme_657374617465811c9dc5 []byte
 	//go:embed assets/theme_65737465656d811c9dc5_gen.json
 	theme_65737465656d811c9dc5 []byte
+	//go:embed assets/theme_6573746f7265811c9dc5_gen.json
+	theme_6573746f7265811c9dc5 []byte
 	//go:embed assets/theme_6573747275747572612d626173696361811c9dc5_gen.json
 	theme_6573747275747572612d626173696361811c9dc5 []byte
 	//go:embed assets/theme_6574636879811c9dc5_gen.json
@@ -5734,6 +5736,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_657374617465811c9dc5, nil
 	case "esteem":
 		return theme_65737465656d811c9dc5, nil
+	case "estore":
+		return theme_6573746f7265811c9dc5, nil
 	case "estrutura-basica":
 		return theme_6573747275747572612d626173696361811c9dc5, nil
 	case "etchy":
