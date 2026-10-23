@@ -105,6 +105,8 @@ jobs:
             type=raw,value={{commit_date 'YYYYMMDDHHmmss'}},enable={{is_default_branch}}
             type=sha
             type=ref,event=branch,enable={{is_not_default_branch}}
+        env:
+          DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
         background: true
 
       - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
@@ -115,7 +117,9 @@ jobs:
         background: true
 
       - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
+        background: true
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+        background: true
 
       - wait-all:
 
@@ -124,6 +128,7 @@ jobs:
         with:
           push: true
           platforms: linux/amd64,linux/arm64
+          no-cache: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           annotations: ${{ steps.meta.outputs.annotations }}
