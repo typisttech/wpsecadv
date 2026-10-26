@@ -1,6 +1,6 @@
 ARG COMPOSER_VERSION
 
-FROM docker.io/library/golang:1.27.3-alpine3.24@sha256:895e5feab11a4b3774d24ee3c9579028456b82ad37f42a9eb6f82adaf776a201 AS build
+FROM docker.io/library/golang:1.27.3-alpine3.24@sha256:b8c9b82affbbb82a020bbcf998dad2ba9516944ac7e883524642a481a9505e9c AS build
 WORKDIR /app
 
 COPY go.mod go.sum ./
