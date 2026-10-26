@@ -9907,6 +9907,7 @@ func plugins() []string {
 		"qnotsquiz",
 		"qode-essential-addons",
 		"qode-instagram-widget",
+		"qode-membership",
 		"qode-music",
 		"qode-real-estate",
 		"qode-tours",
