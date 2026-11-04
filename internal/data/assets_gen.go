@@ -3334,6 +3334,8 @@ var (
 	theme_726f76656e7374617274811c9dc5 []byte
 	//go:embed assets/theme_726f79616c2d656c656d656e746f722d6b6974811c9dc5_gen.json
 	theme_726f79616c2d656c656d656e746f722d6b6974811c9dc5 []byte
+	//go:embed assets/theme_726f79616c2d6576656e74811c9dc5_gen.json
+	theme_726f79616c2d6576656e74811c9dc5 []byte
 	//go:embed assets/theme_726f79616c652d6e657773811c9dc5_gen.json
 	theme_726f79616c652d6e657773811c9dc5 []byte
 	//go:embed assets/theme_726f7a6172696f811c9dc5_gen.json
@@ -7748,6 +7750,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_726f76656e7374617274811c9dc5, nil
 	case "royal-elementor-kit":
 		return theme_726f79616c2d656c656d656e746f722d6b6974811c9dc5, nil
+	case "royal-event":
+		return theme_726f79616c2d6576656e74811c9dc5, nil
 	case "royale-news":
 		return theme_726f79616c652d6e657773811c9dc5, nil
 	case "rozario":
