@@ -15,4 +15,4 @@ cache-mode: none
 jobs:
   go:
     cache-mode: none
-    uses: typisttech/.github/.github/workflows/go-proxy.yml@0e705d95d40209ccd0f925385f14bd998ed20258 # v9.3.1
+    uses: typisttech/.github/.github/workflows/go-proxy.yml@9028c3cd5e28ea757373075b8aeedd97cd045767 # v9.3.2
