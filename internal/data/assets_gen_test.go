@@ -1429,6 +1429,7 @@ func plugins() []string {
 		"barcode-scanner-lite-pos-to-manage-products-inventory-and-orders",
 		"bard-extra",
 		"base64-encoderdecoder",
+		"basel-post-types",
 		"basepress",
 		"basepress-migration-tools",
 		"basic-google-maps-placemarks",
