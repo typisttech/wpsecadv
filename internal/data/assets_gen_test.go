@@ -14363,6 +14363,7 @@ func plugins() []string {
 		"woocommerce-refund-and-exchange",
 		"woocommerce-request-a-quote",
 		"woocommerce-role-pricing",
+		"woocommerce-roles-permissions",
 		"woocommerce-sendinblue-newsletter-subscription",
 		"woocommerce-services",
 		"woocommerce-shipping-canada-post",
