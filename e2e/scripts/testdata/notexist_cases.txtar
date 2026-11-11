@@ -2,7 +2,8 @@ exec composer repo --quiet add wpsecadv composer ${WPSECADV_SERVER_URL}
 exec composer update --quiet
 exec composer audit --format=json
 
-cmp stdout stdout.golden
+[composer:v2.11] cmp stdout stdout.golden
+[!composer:v2.11] cmp stdout stdout.v2.10.golden
 
 -- composer.json --
 {
@@ -66,6 +67,13 @@ cmp stdout stdout.golden
 }
 
 -- stdout.golden --
+{
+    "advisories": [],
+    "abandoned": [],
+    "filter": [],
+    "cooldown": []
+}
+-- stdout.v2.10.golden --
 {
     "advisories": [],
     "abandoned": [],
