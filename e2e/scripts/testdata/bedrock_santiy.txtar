@@ -6,8 +6,8 @@ exec composer require --quiet --no-install wp-plugin/woocommerce:10.0.0
 
 exec composer audit --locked --format=json
 
-[composer:v2.11] cmp stdout ../stdout.golden
-[!composer:v2.11] cmp stdout ../stdout.v2.10.golden
+[composer:2.11] cmp stdout ../stdout.golden
+[!composer:2.11] cmp stdout ../stdout.v2.10.golden
 
 -- stdout.golden --
 {
