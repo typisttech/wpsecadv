@@ -40,6 +40,7 @@ func TestE2E(t *testing.T) {
 		name            string
 		composerVersion string
 	}{
+		{"composer_2.11", "2.11"},
 		{"composer_2.10", "2.10"},
 	}
 
