@@ -2410,6 +2410,7 @@ func plugins() []string {
 		"chatra-live-chat",
 		"chatroll-live-chat",
 		"chatter",
+		"chatterbug-forms",
 		"chatway-live-chat",
 		"chatwee",
 		"chaty",
