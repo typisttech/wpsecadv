@@ -1259,6 +1259,7 @@ func plugins() []string {
 		"automatically-hierarchic-categories-in-menu",
 		"automation-web-platform",
 		"automatorwp",
+		"automatorwp-webhooks",
 		"automizy-gravity-forms",
 		"automotive",
 		"autonettv-relay",
