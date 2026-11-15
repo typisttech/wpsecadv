@@ -5645,6 +5645,7 @@ func plugins() []string {
 		"github-shortcode",
 		"give",
 		"give-donation-modules-for-divi",
+		"give-peer-to-peer",
 		"give-tributes",
 		"giveasap",
 		"giveaway",
