@@ -1826,6 +1826,8 @@ var (
 	theme_68656c766967811c9dc5 []byte
 	//go:embed assets/theme_68656e646f6e811c9dc5_gen.json
 	theme_68656e646f6e811c9dc5 []byte
+	//go:embed assets/theme_6865726f6963811c9dc5_gen.json
+	theme_6865726f6963811c9dc5 []byte
 	//go:embed assets/theme_686573746572811c9dc5_gen.json
 	theme_686573746572811c9dc5 []byte
 	//go:embed assets/theme_686573746961811c9dc5_gen.json
@@ -1884,6 +1886,8 @@ var (
 	theme_686f73746d657632811c9dc5 []byte
 	//go:embed assets/theme_686f742d636f66666565811c9dc5_gen.json
 	theme_686f742d636f66666565811c9dc5 []byte
+	//go:embed assets/theme_686f74656c2d626f6f6b696e672d6c697465811c9dc5_gen.json
+	theme_686f74656c2d626f6f6b696e672d6c697465811c9dc5 []byte
 	//go:embed assets/theme_686f74656c2d67616c617879811c9dc5_gen.json
 	theme_686f74656c2d67616c617879811c9dc5 []byte
 	//go:embed assets/theme_686f74656c696361811c9dc5_gen.json
@@ -2372,6 +2376,8 @@ var (
 	theme_6d61686f67616e79811c9dc5 []byte
 	//go:embed assets/theme_6d616961811c9dc5_gen.json
 	theme_6d616961811c9dc5 []byte
+	//go:embed assets/theme_6d616b65811c9dc5_gen.json
+	theme_6d616b65811c9dc5 []byte
 	//go:embed assets/theme_6d616b655f615f73746174656d656e74811c9dc5_gen.json
 	theme_6d616b655f615f73746174656d656e74811c9dc5 []byte
 	//go:embed assets/theme_6d616b6561686f6c6963811c9dc5_gen.json
@@ -4186,6 +4192,8 @@ var (
 	theme_776162692d73616269811c9dc5 []byte
 	//go:embed assets/theme_77616c6c737472656574811c9dc5_gen.json
 	theme_77616c6c737472656574811c9dc5 []byte
+	//go:embed assets/theme_77616c6c7374726565742d6167656e6379811c9dc5_gen.json
+	theme_77616c6c7374726565742d6167656e6379811c9dc5 []byte
 	//go:embed assets/theme_77616e6465726963811c9dc5_gen.json
 	theme_77616e6465726963811c9dc5 []byte
 	//go:embed assets/theme_77616e6465726c616e64811c9dc5_gen.json
@@ -6254,6 +6262,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_68656c766967811c9dc5, nil
 	case "hendon":
 		return theme_68656e646f6e811c9dc5, nil
+	case "heroic":
+		return theme_6865726f6963811c9dc5, nil
 	case "hester":
 		return theme_686573746572811c9dc5, nil
 	case "hestia":
@@ -6312,6 +6322,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_686f73746d657632811c9dc5, nil
 	case "hot-coffee":
 		return theme_686f742d636f66666565811c9dc5, nil
+	case "hotel-booking-lite":
+		return theme_686f74656c2d626f6f6b696e672d6c697465811c9dc5, nil
 	case "hotel-galaxy":
 		return theme_686f74656c2d67616c617879811c9dc5, nil
 	case "hotelica":
@@ -6800,6 +6812,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_6d61686f67616e79811c9dc5, nil
 	case "maia":
 		return theme_6d616961811c9dc5, nil
+	case "make":
+		return theme_6d616b65811c9dc5, nil
 	case "make_a_statement":
 		return theme_6d616b655f615f73746174656d656e74811c9dc5, nil
 	case "makeaholic":
@@ -8614,6 +8628,8 @@ func themeAdvisories(slug string) ([]byte, error) {
 		return theme_776162692d73616269811c9dc5, nil
 	case "wallstreet":
 		return theme_77616c6c737472656574811c9dc5, nil
+	case "wallstreet-agency":
+		return theme_77616c6c7374726565742d6167656e6379811c9dc5, nil
 	case "wanderic":
 		return theme_77616e6465726963811c9dc5, nil
 	case "wanderland":
