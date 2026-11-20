@@ -1937,6 +1937,7 @@ func plugins() []string {
 		"buckets",
 		"buddy-press-force-password-change",
 		"buddybadges",
+		"buddyboss-addons",
 		"buddyboss-app",
 		"buddyboss-media",
 		"buddyboss-platform",
