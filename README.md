@@ -621,20 +621,19 @@ jobs:
       contents: read # For non-public repositories
     runs-on: ubuntu-26.04
     steps:
-      - parallel:
-        - uses: actions/checkout@v7
-          with:
-            persist-credentials: false
-            sparse-checkout: |
-              composer.json
-              composer.lock
-            sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            composer.json
+            composer.lock
+          sparse-checkout-cone-mode: false
 
-        - uses: shivammathur/setup-php@v2
-          with:
-            php-version: '8.6'
-            tools: composer:v2
-            coverage: none
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.6'
+          tools: composer:v2
+          coverage: none
 
       - run: composer audit --locked --format json > audit.json
         continue-on-error: true
