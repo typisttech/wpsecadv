@@ -21,14 +21,14 @@ jobs:
       security-events: write
       contents: read
       actions: read
-    uses: typisttech/.github/.github/workflows/lint-actions.yml@b47d0d4a4ee68f942149ec70104569519cbb9a4f # v9.4.3
+    uses: typisttech/.github/.github/workflows/lint-actions.yml@fff1a4a3c5b3cf1f8618cf68600f0603a8c4236e # v9.5.0
 
   go:
     permissions:
       security-events: write
       contents: read
       actions: read
-    uses: typisttech/.github/.github/workflows/lint-go.yml@b47d0d4a4ee68f942149ec70104569519cbb9a4f # v9.4.3
+    uses: typisttech/.github/.github/workflows/lint-go.yml@fff1a4a3c5b3cf1f8618cf68600f0603a8c4236e # v9.5.0
     with:
       tags: e2econtainer,e2escripts
       golangci-lint: true
